@@ -22,6 +22,7 @@ import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
 
+DOMAIN = "onkyo"
 _LOGGER = logging.getLogger(__name__)
 
 CONF_SOURCES = "sources"
@@ -109,6 +110,18 @@ ONKYO_SELECT_OUTPUT_SCHEMA = vol.Schema(
 SERVICE_SELECT_HDMI_OUTPUT = "onkyo_select_hdmi_output"
 
 
+ATTR_ISCP_COMMAND = "iscp_command"
+ATTR_ISCP_RAW = "iscp_raw"
+
+ONKYO_COMMAND_SCHEMA = vol.Schema(
+    {
+        vol.Required(ATTR_ENTITY_ID): cv.entity_ids,
+        vol.Required(ATTR_ISCP_COMMAND): cv.string,
+        vol.Optional(ATTR_ISCP_RAW, default=False): cv.boolean,
+    }
+)
+SERVICE_COMMAND = "onkyo_command"
+
 def _parse_onkyo_payload(payload):
     """Parse a payload returned from the eiscp library."""
     if isinstance(payload, bool):
@@ -170,20 +183,29 @@ def setup_platform(
     """Set up the Onkyo platform."""
     hosts: list[OnkyoDevice] = []
 
-    def service_handle(service: ServiceCall) -> None:
+    def service_handle(call: ServiceCall) -> None:
         """Handle for services."""
-        entity_ids = service.data[ATTR_ENTITY_ID]
+        entity_ids = call.data[ATTR_ENTITY_ID]
         devices = [d for d in hosts if d.entity_id in entity_ids]
 
         for device in devices:
-            if service.service == SERVICE_SELECT_HDMI_OUTPUT:
-                device.select_output(service.data[ATTR_HDMI_OUTPUT])
+            if call.service == SERVICE_SELECT_HDMI_OUTPUT:
+                device.select_output(call.data[ATTR_HDMI_OUTPUT])
+            if call.service == SERVICE_COMMAND:
+                device.command(call.data[ATTR_ISCP_COMMAND], call.data[ATTR_ISCP_RAW])
 
     hass.services.register(
         DOMAIN,
         SERVICE_SELECT_HDMI_OUTPUT,
         service_handle,
         schema=ONKYO_SELECT_OUTPUT_SCHEMA,
+    )
+
+    hass.services.register(
+        DOMAIN,
+        SERVICE_COMMAND,
+        service_handle,
+        schema=ONKYO_COMMAND_SCHEMA,
     )
 
     if CONF_HOST in config and (host := config[CONF_HOST]) not in KNOWN_HOSTS:
@@ -276,10 +298,13 @@ class OnkyoDevice(MediaPlayerEntity):
         self._audio_info_supported = True
         self._video_info_supported = True
 
-    def command(self, command):
+    def command(self, command, raw_iscp=False):
         """Run an eiscp command and catch connection errors."""
         try:
-            result = self._receiver.command(command)
+            if raw_iscp is True:
+                result = self._receiver.raw(command)
+            else:
+                result = self._receiver.command(command)
         except (ValueError, OSError, AttributeError, AssertionError):
             if self._receiver.command_socket:
                 self._receiver.command_socket = None
