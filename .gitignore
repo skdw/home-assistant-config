@@ -129,3 +129,5 @@ secrets.yaml
 ## Others
 tts/
 image/
+tmp/
+www/
