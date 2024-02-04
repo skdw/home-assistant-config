@@ -1,0 +1,17 @@
+type: glance
+title: Printer
+show_name: true
+show_icon: true
+show_state: true
+state_color: true
+entities:
+  - entity: sensor.epson_et_2720
+    name: Epson
+  - entity: sensor.epson_et_2720_series_black_ink
+    name: Black
+  - entity: sensor.epson_et_2720_series_cyan_ink
+    name: Cyan
+  - entity: sensor.epson_et_2720_series_magenta_ink
+    name: Magenta
+  - entity: sensor.epson_et_2720_series_yellow_ink
+    name: Yellow

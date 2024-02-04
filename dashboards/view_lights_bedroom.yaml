@@ -1,0 +1,17 @@
+title: Bedroom lights
+path: lights-bedroom
+icon: mdi:bed
+type: sidebar
+subview: true
+badges: []
+cards:
+  - features:
+      - type: light-brightness
+    type: tile
+    entity: light.cannage_lamp
+  - features:
+      - type: light-brightness
+      - type: light-color-temp
+    type: tile
+    entity: light.bed_reading_bulb
+

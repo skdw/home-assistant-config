@@ -1,0 +1,286 @@
+type: picture-elements
+image: /local/floor_plan_dark.png
+elements:
+  - type: state-icon # Air conditioner
+    icon: mdi:air-conditioner
+    entity: climate.air_conditioner
+    style:
+      top: 84.5%
+      left: 53%
+      '--paper-item-icon-color': '#445'
+  - type: state-label
+    entity: sensor.air_conditioner_temperature_measurement
+    style:
+      top: 88.3%
+      left: 53%
+  - type: state-label
+    entity: sensor.air_conditioner_relative_humidity_measurement
+    style:
+      top: 90.8%
+      left: 53%
+  - type: state-icon # Pioneer
+    entity: media_player.pioneer
+    icon: mdi:audio-video
+    style:
+      top: 66%
+      left: 50.3%
+      '--paper-item-icon-color': '#445'
+      '--state-media_player-active-color': white
+  - type: state-icon
+    entity: media_player.pioneer_onkyo_zone_2
+    icon: mdi:speaker-wireless
+    style:
+      top: 18%
+      left: 65%
+      '--paper-item-icon-color': '#556'
+      '--state-media_player-active-color': white
+  - type: conditional
+    conditions:
+      - entity: media_player.pioneer_onkyo
+        state: 'on'
+    elements:
+      - type: state-label
+        entity: input_select.pioneer_source
+        style:
+          top: 67%
+          left: 65%
+      - type: state-label
+        entity: sensor.volume_pioneer
+        style:
+          top: 70%
+          left: 65%
+      - type: state-label
+        entity: sensor.listening_mode
+        style:
+          top: 73%
+          left: 65%
+      - type: state-label
+        entity: sensor.output_channels
+        style:
+          top: 76%
+          left: 65%
+  - type: state-icon # PC
+    entity: binary_sensor.pc_is_on
+    icon: mdi:desktop-tower-monitor
+    style:
+      top: 87.4%
+      left: 71.5%
+      '--paper-item-icon-color': '#445'
+      '--paper-item-icon-active-color': white
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.pc_is_on
+        state: 'on'
+    elements:
+      - type: state-label
+        entity: sensor.pc_kamil_load
+        style:
+          top: 86.3%
+          left: 80.5%
+      - type: state-label
+        entity: sensor.pc_kamil_memory_free
+        style:
+          top: 88.8%
+          left: 80.5%
+  - type: state-icon # Printer
+    entity: sensor.epson_et_2720
+    style:
+      top: 44.5%
+      left: 16%
+      '--paper-item-icon-color': '#445'
+      '--paper-item-icon-active-color': white
+  - type: state-icon # Kitchen cooktop
+    entity: switch.cooktop
+    icon: mdi:chef-hat
+    style:
+      top: 28.3%
+      left: 55.8%
+      '--paper-item-icon-color': '#445'
+      '--paper-item-icon-active-color': white
+  - type: conditional # Kitchen oven
+    conditions:
+      - entity: sensor.oven_temperature_measurement
+        state_not: '0'
+    elements:
+      - type: state-label
+        entity: sensor.oven_temperature_measurement
+        style:
+          top: 37%
+          left: 55.8%
+  - type: state-label
+    entity: sensor.oven_job_state
+    style:
+      top: 34%
+      left: 55.8%
+  - type: state-icon # Sensors motion
+    entity: binary_sensor.motion_sink
+    style:
+      top: 18%
+      left: 54%
+      '--paper-item-icon-color': '#556'
+      '--paper-item-icon-active-color': white
+  - type: state-icon
+    entity: binary_sensor.motion_wardrobe
+    style:
+      top: 37%
+      left: 20%
+      '--paper-item-icon-color': '#556'
+      '--paper-item-icon-active-color': white
+  - type: state-label # Sensors temperature
+    entity: sensor.environment_sensor_temperature_sensor
+    style:
+      top: 38%
+      left: 96.5%
+  - type: state-label
+    entity: sensor.environment_sensor_humidity_sensor
+    style:
+      top: 40.5%
+      left: 96.5%
+  - type: state-label
+    entity: sensor.balcony_temperature
+    style:
+      top: 88.3%
+      left: 16%
+  - type: state-label
+    entity: sensor.balcony_humidity
+    style:
+      top: 90.8%
+      left: 16%
+  - type: state-icon
+    entity: binary_sensor.shower
+    style:
+      top: 12.5%
+      left: 83.9%
+      '--paper-item-icon-color': '#556'
+      '--paper-item-icon-active-color': white
+  - type: state-label
+    entity: sensor.environment_sensor_shower_temperature
+    style:
+      top: 16.3%
+      left: 84%
+  - type: state-label
+    entity: sensor.environment_sensor_shower_humidity
+    style:
+      top: 18.8%
+      left: 84%
+  - type: state-label # Sensors air quality
+    entity: sensor.home_air_quality_index
+    style:
+      top: 85.8%
+      left: 33%
+  - type: state-label
+    entity: sensor.home_pm2_5
+    style:
+      top: 88.3%
+      left: 33%
+  - type: state-label
+    entity: sensor.home_pm10
+    style:
+      top: 90.8%
+      left: 33%
+  - type: state-icon # Sensors door opened
+    entity: binary_sensor.door_sensor_contact
+    style:
+      top: 18%
+      left: 16%
+      '--paper-item-icon-color': '#445'
+      '--state-media_player-active-color': white
+  - type: state-icon # Sensors water leakage
+    entity: binary_sensor.air_cond_leakage_leak_sensor
+    style:
+      top: 82.5%
+      left: 40%
+      '--paper-item-icon-color': '#445'
+      '--state-media_player-active-color': white
+  - type: state-icon # Lights bedroom
+    entity: light.bed_reading_bulb
+    icon: mdi:track-light
+    style:
+      top: 51%
+      left: 16%
+      '--paper-item-icon-color': '#556'
+      '--state-media_player-active-color': white
+  - type: state-icon
+    entity: light.cannage_lamp
+    icon: mdi:ceiling-light
+    style:
+      top: 61.5%
+      left: 26%
+      '--paper-item-icon-color': '#445'
+      '--state-media_player-active-color': white
+  - type: state-icon # Lights bathroom
+    entity: light.mirror
+    icon: mdi:spotlight
+    style:
+      top: 10%
+      left: 54.6%
+      '--paper-item-icon-color': '#445'
+      '--state-media_player-active-color': white
+  - type: state-icon
+    entity: light.bseed_dimmer
+    style:
+      top: 28%
+      left: 63%
+      '--paper-item-icon-color': '#445'
+      '--state-media_player-active-color': white
+  - type: state-icon # Lights wardrobe
+    entity: light.wardrobe_clothes
+    style:
+      top: 30%
+      left: 16%
+      '--paper-item-icon-color': '#445'
+      '--state-media_player-active-color': white
+  - type: state-icon
+    entity: light.wardrobe_ceiling
+    style:
+      top: 37%
+      left: 25%
+      '--paper-item-icon-color': '#445'
+      '--state-media_player-active-color': white
+  - type: state-icon # Lights living room
+    entity: light.table_lamp
+    icon: mdi:ceiling-light
+    style:
+      top: 48.3%
+      left: 77%
+      '--paper-item-icon-color': '#445'
+      '--state-media_player-active-color': white
+  - type: state-icon
+    entity: light.sofa_lamp
+    icon: mdi:ceiling-light
+    style:
+      top: 78.3%
+      left: 66%
+      '--paper-item-icon-color': '#445'
+      '--state-media_player-active-color': white
+  - type: state-icon
+    entity: light.desk_lamp
+    icon: mdi:desk-lamp
+    style:
+      top: 87%
+      left: 66%
+      '--paper-item-icon-color': '#445'
+      '--state-media_player-active-color': white
+
+  - type: state-icon
+    entity: light.entrance_lamp
+    style:
+      top: 18%
+      left: 21%
+      '--paper-item-icon-color': '#445'
+      '--state-media_player-active-color': white
+  - type: state-icon # Lights balcony
+    entity: light.balcony_ceiling
+    style:
+      top: 83%
+      left: 21%
+      '--paper-item-icon-color': '#445'
+      '--state-media_player-active-color': white
+  - type: state-icon
+    entity: light.balcony_bamboo
+    style:
+      top: 83%
+      left: 14%
+      '--paper-item-icon-color': '#445'
+      '--state-media_player-active-color': white
+
