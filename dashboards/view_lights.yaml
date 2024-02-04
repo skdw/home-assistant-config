@@ -1,0 +1,62 @@
+title: Lights
+path: lights
+icon: mdi:lightbulb
+badges: []
+cards:
+  - type: horizontal-stack
+    cards:
+      - show_name: true
+        show_icon: true
+        type: button
+        tap_action:
+          action: toggle
+        entity: scene.welcome_home
+      - show_name: true
+        show_icon: true
+        type: button
+        tap_action:
+          action: toggle
+        entity: scene.leave_home
+      - show_name: true
+        show_icon: true
+        type: button
+        tap_action:
+          action: toggle
+        entity: scene.focus
+      - show_name: true
+        show_icon: true
+        type: button
+        tap_action:
+          action: toggle
+        entity: scene.late_evening
+      - show_name: true
+        show_icon: true
+        type: button
+        tap_action:
+          action: toggle
+        entity: scene.good_night
+        show_state: false
+  - type: area
+    area: living_room
+    navigation_path: lights-living-room
+    aspect_ratio: '20:9'
+  - type: area
+    area: bathroom
+    navigation_path: lights-bathroom
+    aspect_ratio: '20:9'
+  - type: area
+    area: bedroom
+    navigation_path: lights-bedroom
+    aspect_ratio: '20:9'
+  - type: area
+    area: kitchen
+    navigation_path: lights-kitchen
+    aspect_ratio: '20:9'
+  - type: area
+    area: wardrobe
+    navigation_path: lights-wardrobe
+    aspect_ratio: '20:9'
+  - type: area
+    area: balcony
+    navigation_path: lights-balcony
+    aspect_ratio: '20:9'

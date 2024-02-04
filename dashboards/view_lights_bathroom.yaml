@@ -1,0 +1,12 @@
+title: Bathroom lights
+path: lights-bathroom
+icon: mdi:bathtub
+type: sidebar
+subview: true
+badges: []
+cards:
+  - features:
+      - type: light-brightness
+    type: tile
+    entity: light.mirror
+
