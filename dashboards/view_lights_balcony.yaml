@@ -1,0 +1,17 @@
+title: Balcony lights
+path: lights-balcony
+icon: mdi:balcony
+type: sidebar
+subview: true
+badges: []
+cards:
+  - features:
+      - type: light-brightness
+    type: tile
+    entity: light.balcony_bamboo
+  - features:
+      - type: light-brightness
+      - type: light-color-temp
+    type: tile
+    entity: light.balcony_ceiling
+

@@ -1,0 +1,132 @@
+path: home-desktop
+title: Home
+icon: mdi:home
+subview: false
+badges: []
+cards:
+  - type: grid
+    square: false
+    columns: 1
+    cards:
+      - !include 'picture_home_map.yaml'
+      - show_name: false
+        show_icon: true
+        show_state: true
+        type: glance
+        entities:
+          - entity: person.kamil_gorzynski
+          - entity: sensor.iphone_kamil_battery_level
+          - entity: sensor.iphone_kamil_distance
+        state_color: true
+      - graph: line
+        type: sensor
+        detail: 1
+        entity: sensor.iphone_kamil_steps
+        hours_to_show: 72
+      - type: weather-forecast
+        entity: weather.forecast_home
+        show_forecast: true
+        forecast_type: daily
+      - title: Air quality
+        show_name: true
+        show_icon: false
+        show_state: true
+        type: glance
+        entities:
+          - entity: sensor.home_air_quality_index
+            name: Index
+          - entity: sensor.home_pm2_5
+            name: PM2.5
+          - entity: sensor.home_pm10
+            name: PM10
+          - entity: sensor.home_nitrogen_dioxide
+            name: NO₂
+          - entity: sensor.home_ozone
+            name: O₃
+          - entity: sensor.home_sulphur_dioxide
+            name: SO₂
+        columns: 6
+  - square: false
+    type: grid
+    columns: 1
+    cards:
+      - !include 'card_grid_media.yaml'
+      - type: horizontal-stack
+        cards:
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: scene.welcome_home
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: scene.leave_home
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: scene.focus
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: scene.late_evening
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: scene.good_night
+            show_state: false
+      - initial_view: dayGridDay
+        type: calendar
+        entities:
+          - calendar.google
+  - type: entities
+    entities:
+      - entity: input_select.pc_power_mode
+      - entity: binary_sensor.pc_is_on
+      - entity: sensor.orange_funbox_6_kib_s_sent
+    title: PC
+  - !include "card_glance_printer.yaml"
+  - square: false
+    type: grid
+    columns: 1
+    cards:
+      - type: thermostat
+        entity: climate.air_conditioner
+        features:
+          - type: climate-hvac-modes
+            hvac_modes:
+              - cool
+              - heat_cool
+              - dry
+              - heat
+              - 'off'
+          - style: dropdown
+            preset_modes:
+              - windFree
+              - wind 
+            type: climate-preset-modes
+        name: ' '
+      - type: entities
+        entities:
+          - entity: sensor.air_conditioner_deltaenergy
+          - entity: sensor.air_conditioner_energy
+          - entity: sensor.air_conditioner_energysaved
+          - entity: sensor.air_conditioner_power
+          - entity: sensor.air_conditioner_powerenergy
+          - entity: sensor.air_conditioner_relative_humidity_measurement
+          - entity: sensor.air_conditioner_temperature_measurement
+          - entity: sensor.air_conditioner_volume
+          - entity: sensor.oven_job_state
+          - entity: sensor.oven_set_point
+          - entity: sensor.oven_temperature_measurement
+        title: Living Room
+ 
