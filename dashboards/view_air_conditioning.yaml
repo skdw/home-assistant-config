@@ -1,0 +1,47 @@
+title: Air conditioning
+path: air-conditioning
+icon: mdi:air-conditioner
+type: sidebar
+badges: []
+cards:
+  - features:
+      - type: target-temperature
+      - type: climate-hvac-modes
+        hvac_modes:
+          - cool
+          - dry
+          - 'off'
+          - heat
+          - heat_cool
+      - type: climate-fan-modes
+        style: dropdown
+        fan_modes:
+          - auto
+          - high
+          - low
+          - medium
+          - turbo
+      - style: dropdown
+        preset_modes:
+          - windFree
+        type: climate-preset-modes
+    type: tile
+    entity: climate.air_conditioner
+    show_entity_picture: false
+    hide_state: false
+    state_content:
+      - state
+      - current_temperature
+      - preset_mode
+  - type: horizontal-stack
+    cards:
+      - graph: line
+        type: sensor
+        detail: 1
+        entity: sensor.environment_sensor_temperature_sensor
+        name: Street
+      - graph: line
+        type: sensor
+        detail: 1
+        entity: sensor.balcony_temperature
+        name: Balcony

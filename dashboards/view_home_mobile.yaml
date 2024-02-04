@@ -1,0 +1,140 @@
+title: Home
+path: home-mobile
+icon: mdi:view-compact
+badges: []
+cards:
+  - type: picture-elements
+    elements:
+      - type: state-label
+        entity: sensor.time
+        style:
+          top: 55%
+          left: 50%
+          font-size: 70px
+      - type: state-label
+        entity: sensor.date
+        style:
+          top: 78%
+          left: 50%
+          font-size: 30px
+      - type: state-icon
+        entity: weather.forecast_home
+        style:
+          top: 1pc
+          left: 1.5pc
+          '--mdc-icon-size': 150%
+          transform: none
+      - type: state-label
+        entity: weather.forecast_home
+        attribute: temperature
+        suffix: °C
+        style:
+          top: 1.5pc
+          left: 5pc
+          font-size: 30px
+          transform: none
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: media_player.spotify
+            state_not:
+              - idle
+        elements:
+          - type: state-icon
+            entity: media_player.spotify
+            icon: mdi:spotify
+            style:
+              top: 1pc
+              left: 47%
+              '--mdc-icon-size': 150%
+              transform: none
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: media_player.spotify
+            state:
+              - idle
+        elements:
+          - type: state-icon
+            entity: media_player.spotify
+            icon: mdi:spotify
+            style:
+              top: 1pc
+              left: 47%
+              '--mdc-icon-size': 150%
+              transform: none
+              opacity: 50%
+      - type: state-label
+        entity: media_player.pioneer
+        style:
+          top: 2pc
+          left: 60%
+          transform: none
+          color: gray
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: sensor.pioneer_media_title
+            state_not:
+              - ''
+              - unknown
+        elements:
+          - type: state-label
+            entity: media_player.pioneer
+            attribute: media_title
+            style:
+              top: 1pc
+              left: 60%
+              transform: none
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: sensor.pioneer_media_title
+            state:
+              - ''
+              - unknown
+          - condition: state
+            entity: media_player.pioneer
+            state_not: 'off'
+        elements:
+          - type: state-label
+            entity: media_player.pioneer
+            attribute: source
+            style:
+              top: 1pc
+              left: 60%
+              transform: none
+    image: https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png
+  - type: horizontal-stack
+    cards:
+      - show_name: true
+        show_icon: true
+        type: button
+        tap_action:
+          action: toggle
+        entity: scene.welcome_home
+      - show_name: true
+        show_icon: true
+        type: button
+        tap_action:
+          action: toggle
+        entity: scene.leave_home
+      - show_name: true
+        show_icon: true
+        type: button
+        tap_action:
+          action: toggle
+        entity: scene.focus
+      - show_name: true
+        show_icon: true
+        type: button
+        tap_action:
+          action: toggle
+        entity: scene.late_evening
+      - show_name: true
+        show_icon: true
+        type: button
+        tap_action:
+          action: toggle
+        entity: scene.good_night
+        show_state: false

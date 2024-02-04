@@ -1,0 +1,10 @@
+title: Media
+path: media
+type: sidebar
+icon: mdi:play-box
+badges:
+  - entity: media_player.pioneer
+  - entity: media_player.pioneer_onkyo_zone_2
+cards:
+  - !include 'card_grid_media.yaml'
+

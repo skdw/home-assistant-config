@@ -1,0 +1,22 @@
+title: Living room lights
+path: lights-living-room
+icon: mdi:sofa
+subview: true
+badges: []
+cards:
+  - features:
+      - type: light-brightness
+      - type: light-color-temp
+    type: tile
+    entity: light.sofa_lamp
+  - features:
+      - type: light-brightness
+      - type: light-color-temp
+    type: tile
+    entity: light.table_lamp
+  - features:
+      - type: light-brightness
+      - type: light-color-temp
+    type: tile
+    entity: light.desk_lamp
+

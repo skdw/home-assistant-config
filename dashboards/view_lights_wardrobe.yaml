@@ -1,0 +1,17 @@
+title: Wardrobe lights
+path: lights-wardrobe
+icon: mdi:wardrobe
+type: sidebar
+subview: true
+badges: []
+cards:
+  - type: tile
+    entity: light.wardrobe_ceiling
+    features:
+      - type: light-brightness
+      - type: light-color-temp
+  - features:
+      - type: light-brightness
+    type: tile
+    entity: light.wardrobe_clothes
+

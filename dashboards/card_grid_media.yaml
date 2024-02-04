@@ -1,0 +1,210 @@
+square: false
+type: grid
+columns: 1
+show_header_toggle: true
+state_color: true
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: entity
+        entity: media_player.spotify
+        state_color: true
+        name: 'Spotify'
+      - type: entity
+        entity: media_player.google_tv
+        state_color: true
+  - type: entities
+    entities:
+      - entity: media_player.pioneer
+      - type: conditional
+        conditions:
+          - entity: media_player.pioneer
+            state_not: 'off'
+        row:
+          entity: input_select.pioneer_source
+      - type: conditional
+        conditions:
+          - entity: media_player.pioneer
+            state_not: 'off'
+        row:
+          entity: input_select.sound_mode
+      - type: conditional
+        conditions:
+          - entity: media_player.pioneer
+            state_not: 'off'
+          - entity: input_select.pioneer_source
+            state: Radio FM
+        row:
+          entity: input_select.radio_fm
+      - type: conditional
+        conditions:
+          - entity: media_player.pioneer
+            state_not: 'off'
+          - entity: input_select.pioneer_source
+            state: Network
+        row:
+          entity: input_select.radio_net
+      - type: conditional
+        conditions:
+          - entity: media_player.pioneer
+            state_not: 'off'
+          - entity: sensor.pioneer_media_title
+            state_not: unknown
+          - entity: input_select.pioneer_source
+            state_not: Radio FM
+        row:
+          entity: sensor.pioneer_media_title
+          icon: mdi:music
+          secondary_info: none
+      - type: conditional
+        conditions:
+          - entity: media_player.pioneer
+            state_not: 'off'
+          - entity: sensor.media_album
+            state_not: unknown
+          - entity: input_select.pioneer_source
+            state_not: Radio FM
+        row:
+          entity: sensor.media_album
+      - type: conditional
+        conditions:
+          - entity: media_player.pioneer
+            state_not: 'off'
+          - entity: sensor.media_artist
+            state_not: unknown
+          - entity: input_select.pioneer_source
+            state_not: Radio FM
+        row:
+          entity: sensor.media_artist
+      - type: conditional
+        conditions:
+          - entity: media_player.pioneer
+            state_not: 'off'
+          - entity: sensor.media_source
+            state_not: unknown
+          - entity: input_select.pioneer_source
+            state_not: Radio FM
+        row:
+          entity: sensor.media_source
+      - entity: media_player.pioneer_onkyo_zone_2
+        secondary_info: none
+        icon: mdi:speaker-wireless
+        name: Bathroom Zone
+  - type: conditional
+    conditions:
+      - entity: media_player.pioneer
+        state_not: 'off'
+    card:
+      type: horizontal-stack
+      cards:
+        - show_name: true
+          show_icon: false
+          type: button
+          tap_action:
+            action: toggle
+          entity: media_player.pioneer
+          show_state: true
+        - show_name: false
+          show_icon: false
+          type: button
+          entity: sensor.volume_pioneer
+          show_state: true
+          icon: mdi:volume-high
+        - show_name: false
+          show_icon: true
+          type: button
+          tap_action:
+            action: call-service
+            service: media_player.volume_up
+            target:
+              entity_id: media_player.pioneer
+          entity: media_player.pioneer
+          name: Volume Up
+          icon: mdi:volume-plus
+          show_state: false
+        - show_name: false
+          show_icon: true
+          type: button
+          tap_action:
+            action: call-service
+            service: media_player.volume_down
+            target:
+              entity_id: media_player.pioneer
+            data: {}
+          entity: media_player.pioneer
+          name: Volume Down
+          icon: mdi:volume-minus
+        - show_name: false
+          show_icon: true
+          type: button
+          tap_action:
+            action: call-service
+            service: media_player.volume_mute
+            target:
+              entity_id: media_player.pioneer_onkyo
+            data:
+              is_volume_muted: true
+          entity: media_player.pioneer
+          name: Volume Mute
+          icon: mdi:volume-mute
+          show_state: false
+  - type: conditional
+    conditions:
+      - entity: media_player.pioneer_onkyo_zone_2
+        state_not: 'off'
+    card:
+      type: horizontal-stack
+      cards:
+        - show_name: true
+          show_icon: false
+          type: button
+          tap_action:
+            action: toggle
+          entity: media_player.pioneer_onkyo_zone_2
+          show_state: true
+          name: Bathroom
+        - show_name: false
+          show_icon: false
+          type: button
+          entity: sensor.volume_bathroom
+          show_state: true
+          icon: mdi:volume-high
+        - show_name: false
+          show_icon: true
+          type: button
+          tap_action:
+            action: call-service
+            service: media_player.volume_up
+            target:
+              entity_id: media_player.pioneer_onkyo_zone_2
+          entity: media_player.pioneer_onkyo_zone_2
+          name: Volume Up
+          icon: mdi:volume-plus
+          show_state: false
+        - show_name: false
+          show_icon: true
+          type: button
+          tap_action:
+            action: call-service
+            service: media_player.volume_down
+            target:
+              entity_id: media_player.pioneer_onkyo_zone_2
+            data: {}
+          entity: media_player.pioneer_onkyo_zone_2
+          name: Volume Down
+          icon: mdi:volume-minus
+        - show_name: false
+          show_icon: true
+          type: button
+          tap_action:
+            action: call-service
+            service: media_player.volume_mute
+            target:
+              entity_id: media_player.pioneer_onkyo_zone_2
+            data:
+              is_volume_muted: true
+          entity: media_player.pioneer_onkyo_zone_2
+          name: Volume Mute
+          icon: mdi:volume-mute
+          show_state: false
+
