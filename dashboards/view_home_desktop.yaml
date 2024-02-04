@@ -91,7 +91,6 @@ cards:
   - type: entities
     entities:
       - entity: input_select.pc_power_mode
-      - entity: binary_sensor.pc_is_on
       - entity: sensor.orange_funbox_6_kib_s_sent
     title: PC
   - !include "card_glance_printer.yaml"

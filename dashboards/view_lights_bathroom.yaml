@@ -5,8 +5,11 @@ type: sidebar
 subview: true
 badges: []
 cards:
-  - features:
-      - type: light-brightness
-    type: tile
-    entity: light.mirror
+  - type: grid
+    square: false
+    cards:
+      - entity: light.mirror
+        type: tile
+        features:
+          - type: light-brightness
 

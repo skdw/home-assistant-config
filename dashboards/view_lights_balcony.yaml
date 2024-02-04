@@ -5,13 +5,16 @@ type: sidebar
 subview: true
 badges: []
 cards:
-  - features:
-      - type: light-brightness
-    type: tile
-    entity: light.balcony_bamboo
-  - features:
-      - type: light-brightness
-      - type: light-color-temp
-    type: tile
-    entity: light.balcony_ceiling
+  - type: grid
+    square: false
+    cards:
+      - entity: light.balcony_bamboo
+        type: tile
+        features:
+          - type: light-brightness
+      - entity: light.balcony_ceiling
+        type: tile
+        features:
+          - type: light-brightness
+          - type: light-color-temp
 

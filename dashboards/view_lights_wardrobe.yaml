@@ -5,13 +5,16 @@ type: sidebar
 subview: true
 badges: []
 cards:
-  - type: tile
-    entity: light.wardrobe_ceiling
-    features:
-      - type: light-brightness
-      - type: light-color-temp
-  - features:
-      - type: light-brightness
-    type: tile
-    entity: light.wardrobe_clothes
+  - type: grid
+    square: false
+    cards:
+      - entity: light.wardrobe_ceiling
+        type: tile
+        features:
+          - type: light-brightness
+          - type: light-color-temp
+      - entity: light.wardrobe_clothes
+        type: tile
+        features:
+          - type: light-brightness
 
