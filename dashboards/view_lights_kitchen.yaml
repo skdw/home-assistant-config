@@ -5,8 +5,11 @@ subview: true
 icon: mdi:chef-hat
 badges: []
 cards:
-  - features:
-      - type: light-brightness
-    type: tile
-    entity: light.bseed_dimmer
+  - type: grid
+    square: false
+    cards:
+      - entity: light.bseed_dimmer
+        type: tile
+        features:
+          - type: light-brightness
 

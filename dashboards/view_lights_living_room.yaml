@@ -4,19 +4,26 @@ icon: mdi:sofa
 subview: true
 badges: []
 cards:
-  - features:
-      - type: light-brightness
-      - type: light-color-temp
-    type: tile
-    entity: light.sofa_lamp
-  - features:
-      - type: light-brightness
-      - type: light-color-temp
-    type: tile
-    entity: light.table_lamp
-  - features:
-      - type: light-brightness
-      - type: light-color-temp
-    type: tile
-    entity: light.desk_lamp
-
+  - type: grid
+    square: false
+    cards:
+      - entity: light.sofa_lamp
+        type: tile
+        features:
+          - type: light-brightness
+          - type: light-color-temp
+      - entity: light.table_lamp
+        type: tile
+        features:
+          - type: light-brightness
+          - type: light-color-temp
+      - entity: light.desk_lamp
+        type: tile
+        features:
+          - type: light-brightness
+          - type: light-color-temp
+      - entity: light.entrance_lamp
+        type: tile
+        features:
+          - type: light-brightness
+          - type: light-color-temp
