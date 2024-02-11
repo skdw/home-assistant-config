@@ -200,7 +200,7 @@ elements:
       '--paper-item-icon-color': '#556'
       '--state-media_player-active-color': white
   - type: state-icon
-    entity: light.cannage_lamp
+    entity: light.bedroom_cannage
     style:
       top: 61.5%
       left: 26%
