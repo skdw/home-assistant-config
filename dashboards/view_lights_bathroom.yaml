@@ -8,7 +8,11 @@ cards:
   - type: grid
     square: false
     cards:
-      - entity: light.mirror
+      - entity: light.bathroom_ceiling
+        type: tile
+        features:
+          - type: light-brightness
+      - entity: light.bathroom_mirror
         type: tile
         features:
           - type: light-brightness
