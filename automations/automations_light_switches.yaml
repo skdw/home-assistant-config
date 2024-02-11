@@ -1,5 +1,5 @@
 - id: 'switch2light_on'
-  alias: On switch enabled turn light ON
+  alias: YAML Lights - On switch enabled turn light ON
   variables:
     lights: !include variables_lights.yaml
     switches: !include variables_switches.yaml
@@ -16,7 +16,7 @@
       target:
         entity_id: "{{ lights[switches.index(trigger.entity_id)] }}"
 - id: 'switch2light_off'
-  alias: On switch disabled turn light OFF
+  alias: YAML Lights - On switch disabled turn light OFF
   variables:
     lights: !include variables_lights.yaml
     switches: !include variables_switches.yaml
@@ -33,7 +33,7 @@
       target:
         entity_id: "{{ lights[switches.index(trigger.entity_id)] }}"
 - id: 'light2switch_on'
-  alias: On light enabled turn switch ON
+  alias: YAML Lights - On light enabled turn switch ON
   variables:
     lights: !include variables_lights.yaml
     switches: !include variables_switches.yaml
@@ -50,7 +50,7 @@
       target:
         entity_id: "{{ switches[lights.index(trigger.entity_id)] }}"
 - id: 'light2switch_off'
-  alias: On light disabled turn switch OFF
+  alias: YAML Lights - On light disabled turn switch OFF
   variables:
     lights: !include variables_lights.yaml
     switches: !include variables_switches.yaml
