@@ -8,6 +8,10 @@ cards:
   - type: grid
     square: false
     cards:
+      - entity: light.kitchen_countertop
+        type: tile
+        features:
+          - type: light-brightness
       - entity: light.bseed_dimmer
         type: tile
         features:
