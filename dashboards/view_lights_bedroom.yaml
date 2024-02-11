@@ -8,7 +8,7 @@ cards:
   - type: grid
     square: false
     cards:
-      - entity: light.cannage_lamp
+      - entity: light.bedroom_cannage
         type: tile
         features:
           - type: light-brightness
