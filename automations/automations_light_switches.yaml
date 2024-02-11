@@ -3,7 +3,7 @@
   variables:
     lights: !include variables_lights.yaml
     switches: !include variables_switches.yaml
-  mode: single
+  mode: parallel
   trigger:
   - platform: state
     entity_id: !include variables_switches.yaml
@@ -20,7 +20,7 @@
   variables:
     lights: !include variables_lights.yaml
     switches: !include variables_switches.yaml
-  mode: single
+  mode: parallel
   trigger:
   - platform: state
     entity_id: !include variables_switches.yaml
@@ -37,7 +37,7 @@
   variables:
     lights: !include variables_lights.yaml
     switches: !include variables_switches.yaml
-  mode: single
+  mode: parallel
   trigger:
   - platform: state
     entity_id: !include variables_lights.yaml
@@ -54,7 +54,7 @@
   variables:
     lights: !include variables_lights.yaml
     switches: !include variables_switches.yaml
-  mode: single
+  mode: parallel
   trigger:
   - platform: state
     entity_id: !include variables_lights.yaml
