@@ -1,6 +1,6 @@
-- switch.bathroom_ceiling
-- switch.bathroom_mirror
-- switch.balcony_ceiling
-- switch.balcony_bamboo
+- switch.bathroom_l1
+- switch.bathroom_l2
+- switch.balcony_l1
+- switch.balcony_l2
 - switch.bedroom_cannage
 - switch.wardrobe
