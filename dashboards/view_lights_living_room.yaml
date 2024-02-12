@@ -7,22 +7,22 @@ cards:
   - type: grid
     square: false
     cards:
-      - entity: light.sofa_lamp
+      - entity: light.living_room_sofa
         type: tile
         features:
           - type: light-brightness
           - type: light-color-temp
-      - entity: light.table_lamp
+      - entity: light.living_room_table
         type: tile
         features:
           - type: light-brightness
           - type: light-color-temp
-      - entity: light.desk_lamp
+      - entity: light.living_room_desk
         type: tile
         features:
           - type: light-brightness
           - type: light-color-temp
-      - entity: light.entrance_lamp
+      - entity: light.living_room_entrance
         type: tile
         features:
           - type: light-brightness
