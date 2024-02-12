@@ -1,6 +1,14 @@
+# - light.living_room_rail_entrance
+# - light.living_room_rail_kitchen
+# - light.living_room_countertop
+# - light.living_room_table
+# - light.living_room_sofa
+# - light.living_room_desk
 - light.bathroom_ceiling
 - light.bathroom_mirror
+- light.bedroom_cannage
+# - light.bedroom_reading_left
+# - light.bedroom_reading_right
 - light.balcony_ceiling
 - light.balcony_bamboo
-- light.bedroom_cannage
 - light.wardrobe

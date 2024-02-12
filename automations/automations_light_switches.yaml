@@ -4,6 +4,7 @@
     lights: !include variables_lights.yaml
     switches: !include variables_switches.yaml
   mode: parallel
+  max: 20
   trigger:
   - platform: state
     entity_id: !include variables_switches.yaml
@@ -20,6 +21,7 @@
     lights: !include variables_lights.yaml
     switches: !include variables_switches.yaml
   mode: parallel
+  max: 20
   trigger:
   - platform: state
     entity_id: !include variables_lights.yaml
