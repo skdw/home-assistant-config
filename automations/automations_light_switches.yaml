@@ -1,5 +1,5 @@
-- id: 'switch2light_on'
-  alias: YAML Lights - On switch enabled turn light ON
+- id: 'switch2light'
+  alias: YAML Lights - On switch toggle light
   variables:
     lights: !include variables_lights.yaml
     switches: !include variables_switches.yaml
@@ -7,33 +7,15 @@
   trigger:
   - platform: state
     entity_id: !include variables_switches.yaml
-    to: 'on'
   condition:
-  - condition: template
-    value_template: "{{ states(lights[switches.index(trigger.entity_id)]) == 'off' }}"
+  - condition: template # automate only if initial light and switch states match
+    value_template: "{{ states(lights[switches.index(trigger.entity_id)]) == trigger.from_state.state }}"
   action:
-    - service: light.turn_on
-      target:
-        entity_id: "{{ lights[switches.index(trigger.entity_id)] }}"
-- id: 'switch2light_off'
-  alias: YAML Lights - On switch disabled turn light OFF
-  variables:
-    lights: !include variables_lights.yaml
-    switches: !include variables_switches.yaml
-  mode: parallel
-  trigger:
-  - platform: state
-    entity_id: !include variables_switches.yaml
-    to: 'off'
-  condition:
-  - condition: template
-    value_template: "{{ states(lights[switches.index(trigger.entity_id)]) == 'on' }}"
-  action:
-    - service: light.turn_off
-      target:
-        entity_id: "{{ lights[switches.index(trigger.entity_id)] }}"
-- id: 'light2switch_on'
-  alias: YAML Lights - On light enabled turn switch ON
+  - service: "{{ 'light.turn_on' if(trigger.to_state.state == 'on') else 'light.turn_off' }}"
+    target:
+      entity_id: "{{ lights[switches.index(trigger.entity_id)] }}"
+- id: 'light2switch'
+  alias: YAML Lights - On light toggle switch
   variables:
     lights: !include variables_lights.yaml
     switches: !include variables_switches.yaml
@@ -41,29 +23,11 @@
   trigger:
   - platform: state
     entity_id: !include variables_lights.yaml
-    to: 'on'
   condition:
-  - condition: template
-    value_template: "{{ states(switches[lights.index(trigger.entity_id)]) == 'off' }}"
+  - condition: template # automate only if initial switch and light states match
+    value_template: "{{ states(switches[lights.index(trigger.entity_id)]) == trigger.from_state.state }}"
   action:
-    - service: switch.turn_on
-      target:
-        entity_id: "{{ switches[lights.index(trigger.entity_id)] }}"
-- id: 'light2switch_off'
-  alias: YAML Lights - On light disabled turn switch OFF
-  variables:
-    lights: !include variables_lights.yaml
-    switches: !include variables_switches.yaml
-  mode: parallel
-  trigger:
-  - platform: state
-    entity_id: !include variables_lights.yaml
-    to: 'off'
-  condition:
-  - condition: template
-    value_template: "{{ states(switches[lights.index(trigger.entity_id)]) == 'on' }}"
-  action:
-    - service: switch.turn_off
-      target:
-        entity_id: "{{ switches[lights.index(trigger.entity_id)] }}"
+  - service: "{{ 'switch.turn_on' if(trigger.to_state.state == 'on') else 'switch.turn_off' }}"
+    target:
+      entity_id: "{{ switches[lights.index(trigger.entity_id)] }}"
 
