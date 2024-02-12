@@ -1,0 +1,98 @@
+- id: 'yaml_lights_on'
+  name: YAML Lights On
+  icon: mdi:human-greeting
+  entities:
+    light.living_room_rail_entrance:
+      state: 'on'
+    light.living_room_rail_kitchen:
+      state: 'on'
+    light.living_room_countertop:
+      state: 'on'
+    light.living_room_table:
+      state: 'on'
+    light.living_room_sofa:
+      state: 'on'
+    light.living_room_desk:
+      state: 'on'
+    light.bathroom_ceiling:
+      state: 'on'
+    light.bathroom_mirror:
+      state: 'on'
+    light.bedroom_cannage:
+      state: 'on'
+    # light.bedroom_reading_left
+    # light.bedroom_reading_right
+    light.balcony_ceiling:
+      state: 'on'
+    light.balcony_bamboo:
+      state: 'on'
+    light.wardrobe:
+      state: 'on'
+- id: 'yaml_lights_focus'
+  name: YAML Stay focused
+  icon: mdi:head-snowflake-outline
+  entities:
+    light.living_room_table:
+      state: 'on'
+      brightness: 200
+      color_temp_kelvin: 3500
+    light.living_room_sofa:
+      state: 'on'
+      brightness: 150
+      color_temp_kelvin: 3500
+    light.living_room_desk:
+      state: 'on'
+      brightness: 160
+      color_temp_kelvin: 3500
+    light.balcony_bamboo:
+      state: 'on'
+      brightness: 50
+- id: 'yaml_lights_evening'
+  name: YAML Evening Mood
+  icon: mdi:clock-time-eleven-outline
+  entities:
+    light.living_room_table:
+      state: 'on'
+      brightness: 30
+      color_temp_kelvin: 2700
+    light.living_room_sofa:
+      state: 'on'
+      brightness: 30
+      color_temp_kelvin: 2700
+    light.living_room_desk:
+      state: 'on'
+      brightness: 30
+      color_temp_kelvin: 2700
+    light.balcony_bamboo:
+      state: 'on'
+      brightness: 50
+- id: 'yaml_lights_off'
+  name: YAML Lights Off
+  icon: mdi:sleep
+  entities:
+    switch.living_room_l1:
+      state: 'off'
+    switch.living_room_l2:
+      state: 'off'
+    switch.living_room_l3:
+      state: 'off'
+    switch.living_room_l4:
+      state: 'off'
+    switch.living_room_l5:
+      state: 'off'
+    switch.living_room_l6:
+      state: 'off'
+    switch.bathroom_l1:
+      state: 'off'
+    switch.bathroom_l2:
+      state: 'off'
+    switch.bedroom_cannage:
+      state: 'off'
+    # switch.bedroom_reading_left
+    # switch.bedroom_reading_right
+    switch.balcony_l1:
+      state: 'off'
+    switch.balcony_l2:
+      state: 'off'
+    switch.wardrobe:
+      state: 'off'
