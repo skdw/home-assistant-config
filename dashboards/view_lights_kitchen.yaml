@@ -12,8 +12,6 @@ cards:
         type: tile
         features:
           - type: light-brightness
-      - entity: light.bseed_dimmer
+      - entity: light.kitchen_hood_bseed
         type: tile
-        features:
-          - type: light-brightness
-
+      # - entity: light.kitchen_rail # TODO add light
