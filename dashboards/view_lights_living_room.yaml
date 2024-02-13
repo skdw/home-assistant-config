@@ -22,7 +22,7 @@ cards:
         features:
           - type: light-brightness
           - type: light-color-temp
-      - entity: light.living_room_entrance
+      - entity: light.living_room_rail_entrance
         type: tile
         features:
           - type: light-brightness
