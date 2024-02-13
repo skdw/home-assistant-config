@@ -1,9 +1,9 @@
-# - switch.living_room_l1
+- switch.living_room_l1
 # - switch.living_room_l2
-# - switch.living_room_l3
-# - switch.living_room_l4
-# - switch.living_room_l5
-# - switch.living_room_l6
+- switch.living_room_l3
+- switch.living_room_l4
+- switch.living_room_l5
+- switch.living_room_l6
 - switch.bathroom_l1
 - switch.bathroom_l2
 - switch.bedroom_cannage
