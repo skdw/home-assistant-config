@@ -1,5 +1,5 @@
 title: Lights
-path: lights
+path: lights-desktop
 icon: mdi:lightbulb
 badges: []
 cards:
@@ -41,16 +41,16 @@ cards:
     navigation_path: lights-living-room
     aspect_ratio: '20:9'
   - type: area
+    area: kitchen
+    navigation_path: lights-hall-kitchen
+    aspect_ratio: '20:9'
+  - type: area
     area: bathroom
     navigation_path: lights-bathroom
     aspect_ratio: '20:9'
   - type: area
     area: bedroom
     navigation_path: lights-bedroom
-    aspect_ratio: '20:9'
-  - type: area
-    area: kitchen
-    navigation_path: lights-kitchen
     aspect_ratio: '20:9'
   - type: area
     area: wardrobe

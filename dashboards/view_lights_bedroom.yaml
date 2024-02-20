@@ -8,11 +8,11 @@ cards:
   - type: grid
     square: false
     cards:
-      - entity: light.bedroom_cannage
+      - entity: light.bedroom_ceiling
         type: tile
         features:
           - type: light-brightness
-      - entity: light.bed_reading_bulb
+      - entity: light.bedroom_reading
         type: tile
         features:
           - type: light-brightness
