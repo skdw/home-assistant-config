@@ -1,5 +1,5 @@
-title: Kitchen lights
-path: lights-kitchen
+title: Hall & Kitchen lights
+path: lights-hall-kitchen
 type: sidebar
 subview: true
 icon: mdi:chef-hat
@@ -14,4 +14,9 @@ cards:
           - type: light-brightness
       - entity: light.kitchen_hood_bseed
         type: tile
-      # - entity: light.kitchen_rail # TODO add light
+      - entity: light.hall_rail_entrance
+        type: tile
+        features:
+          - type: light-brightness
+          - type: light-temperature
+      # - entity: light.hall_rail_kitchen # TODO add light

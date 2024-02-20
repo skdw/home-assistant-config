@@ -1,0 +1,106 @@
+title: Lights
+path: lights-mobile
+icon: mdi:lightbulb
+type: sidebar
+badges: []
+cards:
+  - type: horizontal-stack
+    view_layout:
+     position: sidebar
+    cards:
+      - show_name: true
+        show_icon: true
+        type: button
+        tap_action:
+          action: toggle
+        entity: scene.welcome_home
+      - show_name: true
+        show_icon: true
+        type: button
+        tap_action:
+          action: toggle
+        entity: scene.leave_home
+      - show_name: true
+        show_icon: true
+        type: button
+        tap_action:
+          action: toggle
+        entity: scene.focus
+      - show_name: true
+        show_icon: true
+        type: button
+        tap_action:
+          action: toggle
+        entity: scene.late_evening
+      - show_name: true
+        show_icon: true
+        type: button
+        tap_action:
+          action: toggle
+        entity: scene.good_night
+  - type: grid
+    columns: 2
+    square: false
+    view_layout:
+      position: sidebar
+    cards:
+      - camera_view: auto
+        type: picture-glance
+        title: Living room
+        image: /api/image/serve/d7880d9afde6c3c4abdd6e25092bd771/512x512
+        entities:
+          - entity: light.living_room_table
+          - entity: light.living_room_sofa
+        tap_action:
+          action: navigate
+          navigation_path: lights-living-room
+      - camera_view: auto
+        type: picture-glance
+        title: Hall Kitchen
+        image: /api/image/serve/849624b1f3cb3365cea051cb32129aad/512x512
+        entities:
+          - entity: light.hall_rail_entrance
+          - entity: light.kitchen_countertop
+        tap_action:
+          action: navigate
+          navigation_path: lights-hall-kitchen
+      - camera_view: auto
+        type: picture-glance
+        title: Bathroom
+        image: /api/image/serve/70cc3ef6930ccca73028ead6febc7c76/512x512
+        entities:
+          - entity: light.bathroom_ceiling
+          - entity: light.bathroom_mirror
+        tap_action:
+          action: navigate
+          navigation_path: lights-bathroom
+      - camera_view: auto
+        type: picture-glance
+        title: Bedroom
+        image: /api/image/serve/d6760b05bf3344f39373844034491435/512x512
+        entities:
+          - entity: light.bedroom_ceiling
+          - entity: light.bedroom_reading
+        tap_action:
+          action: navigate
+          navigation_path: lights-bedroom
+      - camera_view: auto
+        type: picture-glance
+        title: Wardrobe
+        image: /api/image/serve/3df56d7ce6ce7ebf5b609658c2e30e97/512x512
+        entities:
+          - entity: light.wardrobe_ceiling
+          - entity: light.wardrobe_clothes
+        tap_action:
+          action: navigate
+          navigation_path: lights-wardrobe
+      - camera_view: auto
+        type: picture-glance
+        title: Balcony
+        image: /api/image/serve/431405b4afa5016cb1b163d0f82c62df/512x512
+        entities:
+          - entity: light.balcony_bamboo
+          - entity: light.balcony_ceiling
+        tap_action:
+          action: navigate
+          navigation_path: lights-balcony
