@@ -6,23 +6,19 @@ badges: []
 cards:
   - type: grid
     square: false
+    columns: 2
     cards:
-      - entity: light.living_room_sofa
-        type: tile
-        features:
-          - type: light-brightness
-          - type: light-color-temp
       - entity: light.living_room_table
         type: tile
         features:
           - type: light-brightness
           - type: light-color-temp
-      - entity: light.living_room_desk
+      - entity: light.living_room_sofa
         type: tile
         features:
           - type: light-brightness
           - type: light-color-temp
-      - entity: light.living_room_rail_entrance
+      - entity: light.living_room_desk
         type: tile
         features:
           - type: light-brightness
