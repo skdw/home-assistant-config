@@ -7,14 +7,15 @@ badges: []
 cards:
   - type: grid
     square: false
+    columns: 2
     cards:
-      - entity: light.balcony_bamboo
-        type: tile
-        features:
-          - type: light-brightness
       - entity: light.balcony_ceiling
         type: tile
         features:
           - type: light-brightness
           - type: light-color-temp
+      - entity: light.balcony_bamboo
+        type: tile
+        features:
+          - type: light-brightness
 

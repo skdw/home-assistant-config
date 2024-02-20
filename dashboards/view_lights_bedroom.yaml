@@ -7,6 +7,7 @@ badges: []
 cards:
   - type: grid
     square: false
+    columns: 2
     cards:
       - entity: light.bedroom_ceiling
         type: tile
