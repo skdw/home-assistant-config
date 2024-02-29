@@ -1,5 +1,5 @@
 - id: 'yaml_lights_on'
-  name: YAML Lights On
+  name: Lights On
   icon: mdi:human-greeting
   entities:
     light.living_room_rail_entrance:
@@ -29,7 +29,7 @@
     light.wardrobe:
       state: 'on'
 - id: 'yaml_lights_focus'
-  name: YAML Stay focused
+  name: Stay focused
   icon: mdi:head-snowflake-outline
   entities:
     light.living_room_table:
@@ -48,7 +48,7 @@
       state: 'on'
       brightness: 50
 - id: 'yaml_lights_evening'
-  name: YAML Evening Mood
+  name: Evening Mood
   icon: mdi:clock-time-eleven-outline
   entities:
     light.living_room_table:
@@ -67,7 +67,7 @@
       state: 'on'
       brightness: 50
 - id: 'yaml_lights_off'
-  name: YAML Lights Off
+  name: Lights Off
   icon: mdi:sleep
   entities:
     switch.living_room_l1:
