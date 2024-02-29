@@ -3,39 +3,7 @@ path: lights-desktop
 icon: mdi:lightbulb
 badges: []
 cards:
-  - type: horizontal-stack
-    cards:
-      - show_name: true
-        show_icon: true
-        type: button
-        tap_action:
-          action: toggle
-        entity: scene.welcome_home
-      - show_name: true
-        show_icon: true
-        type: button
-        tap_action:
-          action: toggle
-        entity: scene.leave_home
-      - show_name: true
-        show_icon: true
-        type: button
-        tap_action:
-          action: toggle
-        entity: scene.focus
-      - show_name: true
-        show_icon: true
-        type: button
-        tap_action:
-          action: toggle
-        entity: scene.late_evening
-      - show_name: true
-        show_icon: true
-        type: button
-        tap_action:
-          action: toggle
-        entity: scene.good_night
-        show_state: false
+  - !include 'card_hstack_scenes.yaml'
   - type: area
     area: living_room
     navigation_path: lights-living-room
