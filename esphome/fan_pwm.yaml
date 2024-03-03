@@ -1,0 +1,34 @@
+light:
+  - platform: status_led
+    name: "ESP LED"
+    pin: GPIO4
+
+output:
+  - platform: ledc
+    id: ventilation_fan_pwm
+    pin: GPIO22
+
+    # 25KHz is standard PWM PC fan frequency, minimises buzzing
+    frequency: "25000 Hz"
+
+    min_power: 0%
+    max_power: 80%
+
+fan:
+  - platform: speed
+    id: fan_control
+    output: ventilation_fan_pwm
+    name: "Fan Speed"
+
+sensor:
+  - platform: pulse_counter
+    pin: GPIO23
+    name: PWM Fan RPM
+    id: fan_pulse
+    unit_of_measurement: 'RPM'
+    filters:
+      - multiply: 0.5
+    count_mode:
+      rising_edge: INCREMENT
+      falling_edge: DISABLE
+    update_interval: 3s
