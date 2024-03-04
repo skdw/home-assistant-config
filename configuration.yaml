@@ -1,0 +1,93 @@
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include themes.yaml
+
+lovelace:
+  mode: yaml
+  dashboards:
+    skynet-board:
+      mode: yaml
+      title: Skynet
+      icon: mdi:view-dashboard
+      show_in_sidebar: true
+      filename: dashboards/skynet.yaml
+    skynet-mobile:
+      mode: yaml
+      title: Skynet Mobile
+      icon: mdi:view-compact
+      show_in_sidebar: true
+      filename: dashboards/skynet_mobile.yaml
+
+# Text-to-speech
+tts:
+  - platform: google_translate
+
+automation ui: !include automations.yaml
+automation manual: !include_dir_merge_list automations/
+
+script: !include scripts.yaml
+
+scene ui: !include scenes.yaml
+scene manual: !include_dir_merge_list scenes/
+
+homeassistant:
+  external_url: !secret external_url
+
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 192.168.1.0/24
+    - 172.30.33.0/24
+
+recorder:
+  exclude: !include configuration/exclude.yaml
+
+logbook:
+  exclude: !include configuration/exclude.yaml
+
+influxdb:
+  username: !secret influxdb_user
+  password: !secret influxdb_password
+  max_retries: 3
+  default_measurement: state
+  exclude: !include configuration/exclude.yaml
+
+input_select:
+  pioneer_source:
+    name: "Pioneer Source"
+    icon: "mdi:import"
+    options:
+      - "Google TV"
+      - "DVB-T2"
+      - "PC"
+      - "Radio FM"
+      - "Network"
+      - "Bluetooth"
+  pc_power_mode:
+    name: "PC power mode"
+    options:
+      - "Power on"
+      - "Lock"
+      - "Hibernate"
+      - "Power off"
+
+media_player: !include configuration/media_player.yaml
+
+sensor:
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+
+#  - platform: rest
+#    resource: http://ip.jsontest.com
+#    name: External IP
+#    value_template: "{{ value_json.ip }}"
+
+#rest: !include configuration/rest_transport.yaml
+
+template: !include configuration/template.yaml
+

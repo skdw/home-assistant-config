@@ -1,0 +1,8 @@
+entities:
+  - sensor.transport_m1
+  - sensor.transport_m2
+  - sensor.time
+  - sensor.date
+  - weather.forecast_home
+  - weather.forecast_home_hourly
+

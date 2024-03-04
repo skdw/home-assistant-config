@@ -1,0 +1,71 @@
+- sensor:
+    - name: "Media source"
+      unique_id: "media_source"
+      icon: "mdi:multimedia"
+      state: >
+        {% set src = state_attr('media_player.pioneer_onkyo', 'source') %}
+        {% set dlna_src = state_attr('media_player.pioneer_dlna', 'media_content_id') %}
+        {% if (src == "Network" and dlna_src == "spotify://") %}  {{ "Spotify" }}
+        {% elif (src == "Network" and dlna_src == "airplay://") %}  {{ "Airplay" }}
+        {% elif (src == "Network" and dlna_src == "http://stream-uk1.radioparadise.com/aac-320") %}  {{ "Radio Paradise" }}
+        {% elif (src == "Network") %}  {{ dlna_src }}
+        {% elif (src == "Google TV") %} {{ state_attr('media_player.chromecast_pioneer', 'app_name') }}
+        {% else %} {{ src }}
+        {% endif %}
+    - name: "Media title"
+      unique_id: "media_title"
+      icon: "mdi:music"
+      state: >
+        {% set src = state_attr('media_player.pioneer_onkyo', 'source') %}
+        {% if (src == "Network") %} {{ state_attr('media_player.pioneer_dlna', 'media_title') }}
+        {% elif (src == "Google TV") %} {{ state_attr('media_player.chromecast_pioneer', 'media_title') }}
+        {% else %} {{ "" }}
+        {% endif %}
+    - name: "Media album"
+      unique_id: "media_album"
+      icon: "mdi:album"
+      state: >
+        {% set src = state_attr('media_player.pioneer_onkyo', 'source') %}
+        {% if (src == "Network") %} {{ state_attr('media_player.pioneer_dlna', 'media_album_name') }}
+        {% elif (src == "Google TV") %} {{ state_attr('media_player.chromecast_pioneer', 'media_album_name') }}
+        {% else %} {{ "" }}
+        {% endif %}
+    - name: "Media artist"
+      unique_id: "media_artist"
+      icon: "mdi:account-music"
+      state: >
+        {% set src = state_attr('media_player.pioneer_onkyo', 'source') %}
+        {% set dlna_src = state_attr('media_player.pioneer_dlna', 'media_content_id') %}
+        {% if (src == "Network" and dlna_src == "spotify://") %} {{ state_attr('media_player.spotify', 'media_artist') }}
+        {% elif (src == "Network") %} {{ state_attr('media_player.pioneer_dlna', 'media_artist') }}
+        {% elif (src == "Google TV") %} {{ state_attr('media_player.chromecast_pioneer', 'media_artist') }}
+        {% else %} {{ "" }}
+        {% endif %}
+    - name: "Volume Pioneer"
+      unit_of_measurement: "dB"
+      unique_id: "volume_pioneer"
+      icon: "mdi:volume-high"
+      state: >
+        {% set vol_float = state_attr('media_player.pioneer_onkyo', 'volume_level') | float(0) %}
+        {{ vol_float * 100 - 82 }}
+    - name: "Volume Bathroom"
+      unit_of_measurement: "dB"
+      unique_id: "volume_pioneer_zone_2"
+      icon: "mdi:volume-high"
+      state: >
+        {% set vol_float = state_attr('media_player.pioneer_onkyo_zone_2', 'volume_level') | float(0) %}
+        {{ vol_float * 100 - 82 }}
+    - name: "Listening mode"
+      state: >
+        {{ state_attr('media_player.pioneer_onkyo', 'audio_information')['listening_mode'] }}
+    - name: "Output channels"
+      state: >
+        {{ state_attr('media_player.pioneer_onkyo', 'audio_information')['output_channels'] }}
+- binary_sensor:
+  #      - name: "PC is active"
+  #        state: >
+  #          {{ states('sensor.pc_kamil_active_ratio') | float(0) > 0 }}
+  #      - name: "Shower"
+  #        icon: "mdi:shower-head"
+  #        state: >
+  #          {{ states('sensor.environment_sensor_shower_humidity') | float(0) > 62 }}
