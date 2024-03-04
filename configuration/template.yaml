@@ -57,10 +57,16 @@
         {{ vol_float * 100 - 82 }}
     - name: "Listening mode"
       state: >
-        {{ state_attr('media_player.pioneer_onkyo', 'audio_information')['listening_mode'] }}
+        {% set attr = state_attr('media_player.pioneer_onkyo', 'audio_information') %}
+        {% if(attr != None and 'listening_mode' in attr) %} {{ attr['listening_mode'] }}
+        {% else %} {{ "" }}
+        {% endif %}
     - name: "Output channels"
       state: >
-        {{ state_attr('media_player.pioneer_onkyo', 'audio_information')['output_channels'] }}
+        {% set attr = state_attr('media_player.pioneer_onkyo', 'audio_information') %}
+        {% if(attr != None and 'output_channels' in attr) %} {{ attr['output_channels'] }}
+        {% else %} {{ "" }}
+        {% endif %}
 - binary_sensor:
   #      - name: "PC is active"
   #        state: >
