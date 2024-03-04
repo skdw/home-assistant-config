@@ -1,0 +1,148 @@
+- platform: onkyo
+  host: !secret ip_onkyo
+  name: Pioneer Onkyo
+  sources:
+    strm-box: "Google TV"
+    video2: "DVB-T2"
+    video3: "PC"
+    fm: "Radio FM"
+    network: "Network"
+  receiver_max_volume: 200
+- platform: universal
+  name: Pioneer Universal
+  unique_id: pioneer_universal
+  children:
+    - media_player.pioneer_onkyo
+    - media_player.pioneer_dlna
+  # - media_player.spotify
+  active_child_template: >
+    {% if not is_state_attr('media_player.pioneer_onkyo', 'source', 'Network') %}
+       media_player.pioneer_onkyo
+    {% else %}
+       media_player.pioneer_dlna
+    {% endif %}
+  commands:
+    turn_on:
+      service: media_player.turn_on
+      target:
+        entity_id: media_player.pioneer_onkyo
+    turn_off:
+      service: media_player.turn_off
+      target:
+        entity_id: media_player.pioneer_onkyo
+    toggle:
+      service: media_player.toggle
+      target:
+        entity_id: media_player.pioneer_dlna
+    volume_up:
+      service: media_player.volume_up
+      target:
+        entity_id: media_player.pioneer_onkyo
+    volume_down:
+      service: media_player.volume_down
+      target:
+        entity_id: media_player.pioneer_onkyo
+    volume_set:
+      service: media_player.volume_set
+      target:
+        entity_id: media_player.pioneer_onkyo
+      data:
+        volume_level: "{{ volume_level }}"
+    volume_mute:
+      service: media_player.volume_mute
+      target:
+        entity_id: media_player.pioneer_onkyo
+      data:
+        is_volume_muted: "{{ is_volume_muted }}"
+    media_play_pause:
+      service: media_player.media_play_pause
+      target:
+        entity_id: media_player.pioneer_dlna
+    media_play:
+      service: media_player.media_play
+      target:
+        entity_id: media_player.pioneer_dlna
+    media_pause:
+      service: media_player.media_pause
+      target:
+        entity_id: media_player.pioneer_dlna
+    media_stop:
+      service: media_player.media_stop
+      target:
+        entity_id: media_player.pioneer_dlna
+    media_next_track:
+      service: media_player.media_next_track
+      target:
+        entity_id: media_player.pioneer_dlna
+    media_previous_track:
+      service: media_player.media_previous_track
+      target:
+        entity_id: media_player.pioneer_dlna
+    media_seek:
+      service: media_player.media_seek
+      target:
+        entity_id: media_player.pioneer_dlna
+      data:
+        seek_position: "{{ media_position }}"
+    clear_playlist:
+      service: media_player.clear_playlist
+      target:
+        entity_id: media_player.pioneer_dlna
+    shuffle_set:
+      service: media_player.shuffle_set
+      target:
+        entity_id: media_player.pioneer_dlna
+    repeat_set:
+      service: media_player.repeat_set
+      target:
+        entity_id: media_player.pioneer_dlna
+    play_media:
+      service: media_player.play_media
+      target:
+        entity_id: media_player.pioneer_dlna
+      data:
+        media_content_id: "{{ media_content_id }}"
+        media_content_type: "{{ media_content_type }}"
+    select_source:
+      service: media_player.select_source
+      target:
+        entity_id: media_player.pioneer_onkyo
+      data:
+        source: "{{ source }}"
+  attributes:
+    state: media_player.pioneer_onkyo
+    source_list: media_player.pioneer_onkyo|source_list
+    volume_level: media_player.pioneer_onkyo|volume_level
+    is_volume_muted: media_player.pioneer_onkyo|is_volume_muted
+    source: media_player.pioneer_onkyo|source
+    audio_information: media_player.pioneer_onkyo|audio_information
+    format: media_player.pioneer_onkyo|format
+    input_frequency: media_player.pioneer_onkyo|input_frequency
+    input_channels: media_player.pioneer_onkyo|input_channels
+    listening_mode: media_player.pioneer_onkyo|listening_mode
+    output_channels: media_player.pioneer_onkyo|output_channels
+    output_frequency: media_player.pioneer_onkyo|output_frequency
+    video_information: media_player.pioneer_onkyo|video_information
+    input_resolution: media_player.pioneer_onkyo|input_resolution
+    input_color_schema: media_player.pioneer_onkyo|input_color_schema
+    input_color_depth: media_player.pioneer_onkyo|input_color_depth
+    output_resolution: media_player.pioneer_onkyo|output_resolution
+    output_color_schema: media_player.pioneer_onkyo|output_color_schema
+    output_color_depth: media_player.pioneer_onkyo|output_color_depth
+    picture_mode: media_player.pioneer_onkyo|picture_mode
+    video_out: media_player.pioneer_onkyo|video_out
+    media_content_id: media_player.pioneer_dlna|media_content_id
+    media_content_type: media_player.pioneer_dlna|media_content_type
+    media_duration: media_player.pioneer_dlna|media_duration
+    media_position: media_player.pioneer_dlna|media_position
+    media_position_updated_at: media_player.pioneer_dlna|media_position_updated_at
+    media_title: "{{ media_title }}"
+    media_track: media_player.pioneer_dlna|media_track
+    media_artist: "{{ media_artist }}"
+    media_album_name: media_player.pioneer_dlna|media_album_name
+    shuffle: media_player.pioneer_dlna|shuffle
+    repeat: media_player.pioneer_dlna|repeat
+    entity_picture: media_player.pioneer_dlna|entity_picture
+  browse_media_entity: media_player.pioneer_dlna
+  device_class: receiver
+
