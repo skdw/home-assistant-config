@@ -1,13 +1,13 @@
 - id: 'switch2light'
   alias: YAML Lights - On switch toggle light
   variables:
-    lights: !include entities_lights.yaml
-    switches: !include entities_switches.yaml
+    lights: !include ../entities/lights.yaml
+    switches: !include ../entities/switches.yaml
   mode: parallel
   max: 20
   trigger:
   - platform: state
-    entity_id: !include entities_switches.yaml
+    entity_id: !include ../entities/switches.yaml
   condition:
   - condition: template # automate only if initial light and switch states match
     value_template: "{{ states(lights[switches.index(trigger.entity_id)]) == trigger.from_state.state }}"
@@ -18,13 +18,13 @@
 - id: 'light2switch'
   alias: YAML Lights - On light toggle switch
   variables:
-    lights: !include entities_lights.yaml
-    switches: !include entities_switches.yaml
+    lights: !include ../entities/lights.yaml
+    switches: !include ../entities/switches.yaml
   mode: parallel
   max: 20
   trigger:
   - platform: state
-    entity_id: !include entities_lights.yaml
+    entity_id: !include ../entities/lights.yaml
   condition:
   - condition: template # automate only if initial switch and light states match
     value_template: "{{ states(switches[lights.index(trigger.entity_id)]) == trigger.from_state.state }}"
