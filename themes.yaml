@@ -1,0 +1,30 @@
+skynet:
+  modes:
+    dark:
+      secondary-text-color: slategray
+
+  # Main colors
+  primary-color: '#82be5a'                            # Header
+  accent-color: '#f06330'                             # Accent color
+  dark-primary-color: 'var(--accent-color)'           # Hyperlinks                     
+  light-primary-color: 'var(--accent-color)'          # Horizontal line in about
+                                       
+  # Text colors                                  
+  #primary-text-color: '#FFFFFF'                           # Primary text colour, here is referencing dark-primary-color
+  #text-primary-color: 'var(--primary-text-color)'         # Primary text colour
+  #secondary-text-color: '#5294E2'                         # For secondary titles in
+  
+  # State colors
+  state-icon-color: 'var(--primary-color)'
+  state-icon-active-color: 'var(--primary-color)'
+  state-icon-unavailable-color: 'rgba(var(--primary-color), 0.6)'
+  state-active-color: 'var(--primary-color)'
+  state-media_player-active-color: 'var(--primary-color)'
+  paper-item-icon-active-color: '#FFFFFF'
+
+  # Material Design icons
+  mdc-theme-secondary: 'var(--accent-color)'
+
+  # Google Calendar icon colors
+  fc-event-bg-color: 'var(--primary-color)'
+  fc-event-border-color: 'var(--primary-color)'
