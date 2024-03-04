@@ -126,6 +126,10 @@ ip_bans.yaml
 known_devices.yaml
 secrets.yaml
 
+## UI-managed configuration
+/automations.yaml
+/scenes.yaml
+
 ## Others
 tts/
 image/
