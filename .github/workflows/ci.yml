@@ -18,5 +18,6 @@ jobs:
         pip install homeassistant
     - name: Analyze the hass configuration
       run: |
+        mv mocks_ci/* .
         hass -c . --script check_config
 
