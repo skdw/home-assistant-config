@@ -1,1 +1,19 @@
-{}
+spotify_transfer:
+  alias: Spotify Transfer
+  sequence:
+  - service: media_player.select_source
+    metadata: {}
+    data:
+      source: '{{ target_source }}'
+    target:
+      entity_id: media_player.spotify
+  mode: single
+  fields:
+    target_source:
+      selector:
+        select:
+          options:
+          - Pioneer (Kamil)
+          - iPhone
+      name: target_source
+      required: true
