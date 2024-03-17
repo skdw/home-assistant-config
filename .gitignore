@@ -124,7 +124,7 @@ home-assistant.log*
 ## Ensure these YAML files are ignored, otherwise your secret data/credentials will leak.
 ip_bans.yaml
 known_devices.yaml
-secrets.yaml
+secret*.yaml
 
 ## UI-managed configuration
 /automations.yaml

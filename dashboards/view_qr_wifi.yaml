@@ -1,0 +1,16 @@
+title: QR code - join Wi-Fi network
+path: qr-wifi
+icon: mdi:wifi
+badges: []
+type: sidebar
+cards:
+- type: grid
+  view_layout:
+    position: sidebar
+  columns: 2
+  cards:
+  - type: markdown
+    content: !include secret_join_wifi.yaml
+  - type: picture
+    image: /local/qr_wifi.png
+    alt_text: QR code - Wi-Fi
