@@ -13,7 +13,7 @@ cards:
         type: tile
         features:
           - type: light-brightness
-      - entity: light.bedroom_reading
+      - entity: light.bedroom_reading_left
         type: tile
         features:
           - type: light-brightness
