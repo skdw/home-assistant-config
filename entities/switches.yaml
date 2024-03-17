@@ -6,8 +6,8 @@
 - switch.living_room_l6
 - switch.bathroom_l1
 - switch.bathroom_l2
-- switch.bedroom_cannage
-# - switch.bedroom_reading_left
+- switch.bedroom_ceiling
+- switch.bedroom_reading_left
 # - switch.bedroom_reading_right
 - switch.balcony_l1
 - switch.balcony_l2

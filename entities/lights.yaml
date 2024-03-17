@@ -7,7 +7,7 @@
 - light.bathroom_ceiling
 - light.bathroom_mirror
 - light.bedroom_ceiling
-# - light.bedroom_reading_left
+- light.bedroom_reading_left
 # - light.bedroom_reading_right
 - light.balcony_ceiling
 - light.balcony_bamboo
