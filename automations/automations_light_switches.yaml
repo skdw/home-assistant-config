@@ -1,4 +1,4 @@
-- id: 'switch2light'
+- id: 'lights_switch2light'
   alias: YAML Lights - On switch toggle light
   variables:
     lights: !include ../entities/lights.yaml
@@ -15,7 +15,7 @@
   - service: "{{ 'light.turn_on' if(trigger.to_state.state == 'on') else 'light.turn_off' }}"
     target:
       entity_id: "{{ lights[switches.index(trigger.entity_id)] }}"
-- id: 'light2switch'
+- id: 'lights_light2switch'
   alias: YAML Lights - On light toggle switch
   variables:
     lights: !include ../entities/lights.yaml

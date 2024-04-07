@@ -1,8 +1,4 @@
 type: horizontal-stack
-style:
-  height: fit-content
-  layout:
-    match: height
 cards:
   - type: vertical-stack
     cards:
