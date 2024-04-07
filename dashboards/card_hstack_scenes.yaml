@@ -1,11 +1,23 @@
 type: horizontal-stack
+style:
+  height: fit-content
+  layout:
+    match: height
 cards:
-  - show_name: true
-    show_icon: true
-    type: button
-    tap_action:
-      action: toggle
-    entity: scene.yaml_lights_on #scene.welcome_home
+  - type: vertical-stack
+    cards:
+    - show_name: false
+      show_icon: true
+      type: button
+      tap_action:
+        action: toggle
+      entity: scene.yaml_lights_on
+    - show_name: false
+      show_icon: true
+      type: button
+      tap_action:
+        action: toggle
+      entity: scene.yaml_lights_off
   - show_name: true
     show_icon: true
     type: button
@@ -24,10 +36,18 @@ cards:
     tap_action:
       action: toggle
     entity: scene.yaml_lights_evening
-  - show_name: true
-    show_icon: true
-    type: button
-    tap_action:
-      action: toggle
-    entity: scene.yaml_lights_off
-    show_state: false
+  - type: vertical-stack
+    cards:
+    - show_name: false
+      show_icon: true
+      type: button
+      tap_action:
+        action: toggle
+      entity: input_boolean.lights_dim
+    - show_name: false
+      show_icon: true
+      type: button
+      tap_action:
+        action: toggle
+      entity: input_boolean.lights_motion
+

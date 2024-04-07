@@ -19,5 +19,5 @@ cards:
         type: tile
         features:
           - type: light-brightness
-      - entity: light.kitchen_hood_bseed
+      - entity: switch.kitchen_hood
         type: tile
