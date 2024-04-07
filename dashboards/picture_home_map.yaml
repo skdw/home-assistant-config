@@ -263,10 +263,10 @@ elements:
       '--paper-item-icon-color': '#445'
       '--state-media_player-active-color': white
   - type: state-icon # Lights kitchen
-    entity: light.kitchen_hood_bseed
+    entity: switch.kitchen_hood
     style:
       top: 28%
-      left: 63%
+      left: 63.5%
       '--paper-item-icon-color': '#445'
       '--state-media_player-active-color': white
   - type: state-icon
