@@ -1,0 +1,57 @@
+- id: 'lights_dim_on_toggle'
+  alias: "YAML Lights - dim on toggle"
+  description: Adjusts lights brightness and temperature to day/night time
+  trigger:
+    - platform: state
+      entity_id:
+        - input_boolean.lights_dim
+  action:
+    - variables:
+        entities:
+          - id: light.wardrobe_ceiling
+            previous_state: "{{ states('light.wardrobe_ceiling') }}"
+          - id: light.wardrobe_clothes
+            previous_state: "{{ states('light.wardrobe_clothes') }}"
+          - id: light.bathroom_ceiling
+            previous_state: "{{ states('light.bathroom_ceiling') }}"
+          - id: light.bathroom_mirror
+            previous_state: "{{ states('light.bathroom_mirror') }}"
+        color_temp_kelvin: "{{ 3600 if (states('input_boolean.lights_dim') == 'on') else 2000 }}"
+        brightness_pct: "{{ 30 if (states('input_boolean.lights_dim') == 'on') else 1 }}"
+    - service: light.turn_on
+      data:
+        color_temp_kelvin: "{{ color_temp_kelvin }}"
+        brightness_pct: "{{ brightness_pct }}"
+      target:
+        entity_id: "{{ entities | map(attribute='id') | list }}"
+    - delay:
+        seconds: 2
+    - service: light.turn_off
+      target:
+        entity_id: >-
+          {{ entities | selectattr('previous_state', 'eq', 'off') |
+          map(attribute='id') | list }}
+  mode: single
+- id: 'lights_dim_on_morning'
+  alias: "YAML lights - dim on morning"
+  trigger:
+    - platform: time
+      at: "06:30:00"
+  action:
+    - service: input_boolean.turn_on
+      target:
+        entity_id:
+          - input_boolean.lights_dim
+  mode: single
+- id: 'lights_dim_on_evening'
+  alias: "YAML lights - dim on evening"
+  trigger:
+    - platform: time
+      at: "22:00:00"
+  action:
+    - service: input_boolean.turn_off
+      target:
+        entity_id:
+          - input_boolean.lights_dim
+  mode: single
+  
