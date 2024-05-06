@@ -4,7 +4,7 @@
   entities:
     light.hall_rail_entrance:
       state: 'on'
-    light.kitchen_rail:
+    light.kitchen_spot:
       state: 'on'
     light.kitchen_hood_bseed:
       state: 'on'
@@ -35,6 +35,10 @@
   name: Stay focused
   icon: mdi:head-snowflake-outline
   entities:
+    light.kitchen_spot:
+      state: 'on'
+      brightness: 100
+      color_temp_kelvin: 3500
     light.living_room_table:
       state: 'on'
       brightness: 200
@@ -62,6 +66,10 @@
   name: Evening Mood
   icon: mdi:clock-time-eleven-outline
   entities:
+    light.kitchen_spot:
+      state: 'on'
+      brightness: 10
+      color_temp_kelvin: 2000
     light.kitchen_countertop:
       state: 'on'
       brightness: 10

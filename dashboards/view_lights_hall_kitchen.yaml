@@ -14,7 +14,11 @@ cards:
         features:
           - type: light-brightness
           - type: light-color-temp
-      # - entity: light.hall_rail_kitchen # TODO add light
+      - entity: light.kitchen_spot
+        type: tile
+        features:
+          - type: light-brightness
+          - type: light-color-temp
       - entity: light.kitchen_countertop
         type: tile
         features:
