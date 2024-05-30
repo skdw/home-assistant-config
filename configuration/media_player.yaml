@@ -16,10 +16,12 @@
     - media_player.pioneer_dlna
   # - media_player.spotify
   active_child_template: >
-    {% if not is_state_attr('media_player.pioneer_onkyo', 'source', 'Network') %}
+    {% if states('media_player.pioneer_dlna') == 'unavailable' %}
        media_player.pioneer_onkyo
-    {% else %}
+    {% elif is_state_attr('media_player.pioneer_onkyo', 'source', 'Network') %}
        media_player.pioneer_dlna
+    {% else %}
+       media_player.pioneer_onkyo
     {% endif %}
   commands:
     turn_on:

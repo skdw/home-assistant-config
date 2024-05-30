@@ -61,6 +61,12 @@
         {% if(attr != None and 'listening_mode' in attr) %} {{ attr['listening_mode'] }}
         {% else %} {{ "" }}
         {% endif %}
+    - name: "Input channels"
+      state: >
+        {% set attr = state_attr('media_player.pioneer_onkyo', 'audio_information') %}
+        {% if(attr != None and 'input_channels' in attr) %} {{ attr['input_channels'] }}
+        {% else %} {{ "" }}
+        {% endif %}
     - name: "Output channels"
       state: >
         {% set attr = state_attr('media_player.pioneer_onkyo', 'audio_information') %}
