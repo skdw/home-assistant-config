@@ -184,28 +184,24 @@ elements:
       top: 18%
       left: 16%
       '--paper-item-icon-color': '#445'
-      '--state-media_player-active-color': white
   - type: state-icon # Sensors water leakage
     entity: binary_sensor.kitchen_leakage
     style:
       top: 28%
       left: 70.6%
       '--paper-item-icon-color': '#445'
-      '--state-media_player-active-color': white
   - type: state-icon
     entity: binary_sensor.air_cond_leakage
     style:
       top: 82.5%
       left: 40%
       '--paper-item-icon-color': '#445'
-      '--state-media_player-active-color': white
   - type: state-icon # Lights bedroom
     entity: light.bedroom_reading_left
     style:
       top: 51%
       left: 16%
       '--paper-item-icon-color': '#556'
-      '--state-media_player-active-color': white
   - type: state-icon
     entity: light.bedroom_reading_right
     style:
@@ -213,103 +209,87 @@ elements:
       left: 12%
       transform: scaleY(-1)
       '--paper-item-icon-color': '#556'
-      '--state-media_player-active-color': white
   - type: state-icon
     entity: light.bedroom_ceiling
     style:
       top: 61.5%
       left: 26%
       '--paper-item-icon-color': '#445'
-      '--state-media_player-active-color': white
   - type: state-icon # Lights bathroom
     entity: light.bathroom_ceiling
     style:
       top: 18%
       left: 61%
       '--paper-item-icon-color': '#445'
-      '--state-media_player-active-color': white
   - type: state-icon
     entity: light.bathroom_mirror
     style:
       top: 10%
       left: 54.6%
       '--paper-item-icon-color': '#445'
-      '--state-media_player-active-color': white
   - type: state-icon # Lights wardrobe
     entity: light.wardrobe_clothes
     style:
       top: 30%
       left: 16%
       '--paper-item-icon-color': '#445'
-      '--state-media_player-active-color': white
   - type: state-icon
     entity: light.wardrobe_ceiling
     style:
       top: 37%
       left: 25%
       '--paper-item-icon-color': '#445'
-      '--state-media_player-active-color': white
   - type: state-icon # Lights living room
     entity: light.living_room_table
     style:
       top: 48.3%
       left: 77%
       '--paper-item-icon-color': '#445'
-      '--state-media_player-active-color': white
   - type: state-icon
     entity: light.living_room_sofa
     style:
       top: 78.3%
       left: 66%
       '--paper-item-icon-color': '#445'
-      '--state-media_player-active-color': white
   - type: state-icon
     entity: light.living_room_desk
     style:
       top: 87%
       left: 66%
       '--paper-item-icon-color': '#445'
-      '--state-media_player-active-color': white
   - type: state-icon
     entity: light.hall_rail_entrance
     style:
       top: 18%
       left: 21%
       '--paper-item-icon-color': '#445'
-      '--state-media_player-active-color': white
   - type: state-icon # Lights kitchen
     entity: light.kitchen_spot
     style:
       top: 37%
       left: 78%
       '--paper-item-icon-color': '#445'
-      '--state-media_player-active-color': white
   - type: state-icon
     entity: switch.kitchen_hood
     style:
       top: 28%
       left: 63.5%
       '--paper-item-icon-color': '#445'
-      '--state-media_player-active-color': white
   - type: state-icon
     entity: light.kitchen_countertop
     style:
       top: 28%
       left: 78%
       '--paper-item-icon-color': '#445'
-      '--state-media_player-active-color': white
   - type: state-icon # Lights balcony
     entity: light.balcony_ceiling
     style:
       top: 83%
       left: 21%
       '--paper-item-icon-color': '#445'
-      '--state-media_player-active-color': white
   - type: state-icon
     entity: light.balcony_bamboo
     style:
       top: 83%
       left: 14%
       '--paper-item-icon-color': '#445'
-      '--state-media_player-active-color': white
-
