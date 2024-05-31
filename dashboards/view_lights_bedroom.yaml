@@ -9,13 +9,18 @@ cards:
     square: false
     columns: 2
     cards:
-      - entity: light.bedroom_ceiling
-        type: tile
-        features:
-          - type: light-brightness
-      - entity: light.bedroom_reading_left
-        type: tile
-        features:
-          - type: light-brightness
-          - type: light-color-temp
+     - entity: light.bedroom_reading_left
+       type: tile
+       features:
+         - type: light-brightness
+         - type: light-color-temp
+     - entity: light.bedroom_reading_right
+       type: tile
+       features:
+         - type: light-brightness
+         - type: light-color-temp
+     - entity: light.bedroom_ceiling
+       type: tile
+       features:
+         - type: light-brightness
 
