@@ -24,7 +24,8 @@
       state: 'on'
     light.bedroom_reading_left:
       state: 'on'
-    # light.bedroom_reading_right
+    light.bedroom_reading_right:
+      state: 'on'
     light.balcony_ceiling:
       state: 'on'
     light.balcony_bamboo:
@@ -58,7 +59,10 @@
       state: 'on'
       brightness: 130
       color_temp_kelvin: 4500
-    # light.bedroom_reading_right
+    light.bedroom_reading_right:
+      state: 'on'
+      brightness: 130
+      color_temp_kelvin: 4500
     light.balcony_bamboo:
       state: 'on'
       brightness: 40
@@ -92,7 +96,10 @@
       state: 'on'
       brightness: 5
       color_temp_kelvin: 2000
-    # light.bedroom_reading_right
+    light.bedroom_reading_right:
+      state: 'on'
+      brightness: 5
+      color_temp_kelvin: 2000
     light.balcony_bamboo:
       state: 'on'
       brightness: 40
@@ -120,7 +127,8 @@
       state: 'off'
     switch.bedroom_reading_left:
       state: 'off'
-    # switch.bedroom_reading_right
+    switch.bedroom_reading_right:
+      state: 'off'
     switch.balcony_l1:
       state: 'off'
     switch.balcony_l2:

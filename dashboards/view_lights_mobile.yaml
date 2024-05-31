@@ -49,7 +49,7 @@ cards:
           image: /api/image/serve/d6760b05bf3344f39373844034491435/512x512
           entities:
             - entity: light.bedroom_ceiling
-            - entity: light.bedroom_reading_left
+            - entity: light.bedroom_reading
           tap_action:
             action: navigate
             navigation_path: lights-bedroom
