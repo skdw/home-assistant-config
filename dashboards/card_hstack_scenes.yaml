@@ -26,12 +26,20 @@ cards:
     tap_action:
       action: toggle
     entity: scene.yaml_lights_focus
-  - show_name: true
-    show_icon: true
-    type: button
-    tap_action:
-      action: toggle
-    entity: scene.yaml_lights_evening
+  - type: vertical-stack
+    cards:
+    - show_name: false
+      show_icon: true
+      type: button
+      tap_action:
+        action: toggle
+      entity: scene.yaml_lights_dinner
+    - show_name: false
+      show_icon: true
+      type: button
+      tap_action:
+        action: toggle
+      entity: scene.yaml_lights_evening
   - type: vertical-stack
     cards:
     - show_name: false
