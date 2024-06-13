@@ -36,6 +36,13 @@
   name: Stay focused
   icon: mdi:head-snowflake-outline
   entities:
+    light.hall_rail_entrance:
+      state: 'on'
+      brightness: 35
+      color_temp_kelvin: 3000
+    light.kitchen_countertop:
+      state: 'on'
+      brightness: 224
     light.kitchen_spot:
       state: 'on'
       brightness: 100
@@ -66,10 +73,16 @@
     light.balcony_bamboo:
       state: 'on'
       brightness: 40
-- id: 'yaml_lights_evening'
-  name: Evening Mood
-  icon: mdi:clock-time-eleven-outline
+    light.balcony_ceiling:
+      state: 'on'
+      brightness: 80
+      color_temp_kelvin: 3500
+- id: 'yaml_lights_dinner'
+  name: Dinner
+  icon: 'mdi:silverware'
   entities:
+    light.hall_rail_entrance:
+      state: 'off'
     light.kitchen_spot:
       state: 'on'
       brightness: 10
@@ -79,30 +92,69 @@
       brightness: 10
     light.living_room_table:
       state: 'on'
-      brightness: 10
-      color_temp_kelvin: 2000
+      brightness: 80
+      color_temp_kelvin: 3000
     light.living_room_sofa:
       state: 'on'
       brightness: 10
       color_temp_kelvin: 2000
     light.living_room_desk:
       state: 'on'
-      brightness: 30
+      brightness: 4
       color_temp_kelvin: 2000
     light.bedroom_ceiling:
       state: 'on'
-      brightness: 5
+      brightness: 4
     light.bedroom_reading_left:
       state: 'on'
-      brightness: 5
+      brightness: 4
       color_temp_kelvin: 2000
     light.bedroom_reading_right:
       state: 'on'
-      brightness: 5
+      brightness: 4
       color_temp_kelvin: 2000
     light.balcony_bamboo:
       state: 'on'
-      brightness: 40
+      brightness: 4
+    light.balcony_ceiling:
+      state: 'on'
+      brightness: 4
+      color_temp_kelvin: 2000
+- id: 'yaml_lights_evening'
+  name: Evening
+  icon: 'mdi:clock-time-eleven-outline'
+  entities:
+    light.hall_rail_entrance:
+      state: 'off'
+    light.kitchen_spot:
+      state: 'on'
+      brightness: 10
+      color_temp_kelvin: 2000
+    light.kitchen_countertop:
+      state: 'off'
+    light.living_room_table:
+      state: 'off'
+    light.living_room_sofa:
+      state: 'off'
+    light.living_room_desk:
+      state: 'on'
+      brightness: 4
+      color_temp_kelvin: 2000
+    light.bedroom_ceiling:
+      state: 'off'
+    light.bedroom_reading_left:
+      state: 'on'
+      brightness: 4
+      color_temp_kelvin: 2000
+    light.bedroom_reading_right:
+      state: 'on'
+      brightness: 4
+      color_temp_kelvin: 2000
+    light.balcony_bamboo:
+      state: 'on'
+      brightness: 4
+    light.balcony_ceiling:
+      state: 'off'
 - id: 'yaml_lights_off'
   name: Lights Off
   icon: mdi:lightbulb-multiple-off
