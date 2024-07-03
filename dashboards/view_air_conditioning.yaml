@@ -33,15 +33,31 @@ cards:
       - state
       - current_temperature
       - preset_mode
-  - type: horizontal-stack
+  - type: grid
+    columns: 2
+    square: false
     cards:
       - graph: line
         type: sensor
+        limits: { min: -5, max: 40 }
         detail: 1
-        entity: sensor.environment_sensor_temperature_sensor
+        entity: sensor.street_temperature
         name: Street
       - graph: line
         type: sensor
+        limits: { min: -5, max: 40 }
         detail: 1
         entity: sensor.balcony_temperature
         name: Balcony
+      - graph: line
+        type: sensor
+        limits: { min: 15, max: 30 }
+        detail: 1
+        entity: sensor.air_conditioner_temperature
+        name: Living room
+      - graph: line
+        type: sensor
+        limits: { min: 15, max: 30 }
+        detail: 1
+        entity: sensor.shower_temperature
+        name: Bathroom
