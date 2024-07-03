@@ -89,8 +89,8 @@ cards:
           - entity: sensor.air_conditioner_energysaved
           - entity: sensor.air_conditioner_power
           - entity: sensor.air_conditioner_powerenergy
-          - entity: sensor.air_conditioner_relative_humidity_measurement
-          - entity: sensor.air_conditioner_temperature_measurement
+          - entity: sensor.air_conditioner_humidity
+          - entity: sensor.air_conditioner_temperature
           - entity: sensor.air_conditioner_volume
           - entity: sensor.oven_job_state
           - entity: sensor.oven_set_point

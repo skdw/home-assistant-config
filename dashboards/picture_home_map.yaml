@@ -9,12 +9,12 @@ elements:
       left: 53%
       '--paper-item-icon-color': '#445'
   - type: state-label
-    entity: sensor.air_conditioner_temperature_measurement
+    entity: sensor.air_conditioner_temperature
     style:
       top: 88.3%
       left: 53%
   - type: state-label
-    entity: sensor.air_conditioner_relative_humidity_measurement
+    entity: sensor.air_conditioner_humidity
     style:
       top: 90.8%
       left: 53%
@@ -127,12 +127,12 @@ elements:
       '--paper-item-icon-color': '#556'
       '--paper-item-icon-active-color': white
   - type: state-label # Sensors temperature
-    entity: sensor.environment_sensor_temperature_sensor
+    entity: sensor.street_temperature
     style:
       top: 38%
       left: 96.5%
   - type: state-label
-    entity: sensor.environment_sensor_humidity_sensor
+    entity: sensor.street_humidity
     style:
       top: 40.5%
       left: 96.5%
@@ -154,12 +154,12 @@ elements:
       '--paper-item-icon-color': '#556'
       '--paper-item-icon-active-color': white
   - type: state-label
-    entity: sensor.environment_sensor_shower_temperature
+    entity: sensor.shower_temperature
     style:
       top: 16.3%
       left: 84%
   - type: state-label
-    entity: sensor.environment_sensor_shower_humidity
+    entity: sensor.shower_humidity
     style:
       top: 18.8%
       left: 84%
