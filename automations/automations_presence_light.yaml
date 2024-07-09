@@ -1,0 +1,22 @@
+- id: 'presence-lights'
+  alias: YAML Presence lights
+  description: "Automates lights basing on user presence"
+  variables:
+    sensors: !include ../entities/presence_sensors.yaml
+    lights:
+      - light.living_room_sofa
+      - light.living_room_desk
+      - light.kitchen_countertop
+  trigger:
+    - platform: state
+      entity_id: !include ../entities/presence_sensors.yaml
+  condition:
+    - condition: state
+      entity_id: input_boolean.presence_lights
+      state: "on"
+  action:
+    - service: >-
+        {{ 'light.turn_on' if(trigger.to_state.state == 'on') else 'light.turn_off' }}
+      target:
+        entity_id: "{{ lights[sensors.index(trigger.entity_id)] }}"
+  mode: parallel

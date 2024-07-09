@@ -1,0 +1,3 @@
+- binary_sensor.presence_sofa
+- binary_sensor.presence_desk
+- binary_sensor.presence_kitchen
