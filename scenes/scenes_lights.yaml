@@ -34,22 +34,18 @@
       state: 'on'
 - id: 'yaml_lights_focus'
   name: Stay focused
-  icon: mdi:head-snowflake-outline
+  icon: 'mdi:head-snowflake-outline'
   entities:
-    light.hall_rail_entrance:
-      state: 'on'
-      brightness: 35
-      color_temp_kelvin: 3000
     light.kitchen_countertop:
       state: 'on'
-      brightness: 224
+      brightness: 220
     light.kitchen_spot:
       state: 'on'
-      brightness: 100
+      brightness: 150
       color_temp_kelvin: 3500
     light.living_room_table:
       state: 'on'
-      brightness: 200
+      brightness: 220
       color_temp_kelvin: 4500
     light.living_room_sofa:
       state: 'on'
@@ -77,23 +73,48 @@
       state: 'on'
       brightness: 80
       color_temp_kelvin: 3500
+    switch.kitchen_hood:
+      state: 'on'
+- id: 'yaml_lights_cooking'
+  name: Cooking
+  icon: 'mdi:chef-hat'
+  entities:
+    light.kitchen_spot:
+      state: 'on'
+      brightness: 60
+      color_temp_kelvin: 3000
+    light.kitchen_countertop:
+      state: 'on'
+      brightness: 220
+    light.living_room_table:
+      state: 'on'
+      brightness: 200
+      color_temp_kelvin: 3000
+    light.living_room_sofa:
+      state: 'on'
+      brightness: 40
+      color_temp_kelvin: 2500
+    light.living_room_desk:
+      state: 'on'
+      brightness: 40
+      color_temp_kelvin: 2000
+    switch.kitchen_hood:
+      state: 'on'
 - id: 'yaml_lights_dinner'
   name: Dinner
   icon: 'mdi:silverware'
   entities:
-    light.hall_rail_entrance:
-      state: 'off'
     light.kitchen_spot:
       state: 'on'
-      brightness: 10
-      color_temp_kelvin: 2000
+      brightness: 30
+      color_temp_kelvin: 2500
     light.kitchen_countertop:
       state: 'on'
       brightness: 10
     light.living_room_table:
       state: 'on'
-      brightness: 80
-      color_temp_kelvin: 3000
+      brightness: 140
+      color_temp_kelvin: 2500
     light.living_room_sofa:
       state: 'on'
       brightness: 10
@@ -120,6 +141,8 @@
       state: 'on'
       brightness: 4
       color_temp_kelvin: 2000
+    switch.kitchen_hood:
+      state: 'off'
 - id: 'yaml_lights_evening'
   name: Evening
   icon: 'mdi:clock-time-eleven-outline'
