@@ -22,3 +22,4 @@
       target:
         entity_id: "{{ scenes[switches.index(trigger.entity_id)] }}"
   mode: single
+  max_exceeded: silent
