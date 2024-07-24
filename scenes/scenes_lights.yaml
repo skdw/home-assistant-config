@@ -6,7 +6,7 @@
       state: 'on'
     light.kitchen_spot:
       state: 'on'
-    light.kitchen_hood_bseed:
+    switch.kitchen_hood:
       state: 'on'
     light.kitchen_countertop:
       state: 'on'
@@ -210,5 +210,5 @@
       state: 'off'
     switch.wardrobe:
       state: 'off'
-    light.kitchen_hood_bseed:
+    switch.kitchen_hood:
       state: 'off'
