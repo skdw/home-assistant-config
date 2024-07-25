@@ -1,0 +1,70 @@
+title: Presence
+path: presence
+icon: "mdi:human-handsup"
+badges: []
+type: sidebar
+cards:
+- type: horizontal-stack
+  title: Presence automations
+  cards:
+    - show_name: true
+      show_icon: true
+      type: button
+      entity: input_boolean.presence_announce
+      show_state: true
+      name: Announce
+      icon_height: 50px
+    - show_name: true
+      show_icon: true
+      type: button
+      entity: input_boolean.presence_lights
+      show_state: true
+      name: Lights
+      icon_height: 50px
+    - show_name: true
+      show_icon: true
+      type: button
+      entity: input_boolean.presence_speakers
+      show_state: true
+      name: Speakers
+      icon_height: 50px
+    - show_name: true
+      show_icon: true
+      type: button
+      entity: input_boolean.presence_stand_up
+      show_state: true
+      name: Stand Up
+      icon_height: 50px
+- type: horizontal-stack
+  title: Presence in areas
+  cards:
+    - show_name: true
+      show_icon: true
+      type: button
+      entity: binary_sensor.presence_desk
+      show_state: true
+      name: Desk
+      icon_height: 50px
+    - show_name: true
+      show_icon: true
+      type: button
+      entity: binary_sensor.presence_sofa
+      show_state: true
+      name: Sofa
+      icon_height: 50px
+    - show_name: true
+      show_icon: true
+      type: button
+      entity: binary_sensor.presence_kitchen
+      show_state: true
+      name: Kitchen
+      icon_height: 50px
+- type: history-graph
+  entities:
+    - entity: binary_sensor.presence_desk
+      name: Desk
+    - entity: binary_sensor.presence_sofa
+      name: Sofa
+    - entity: binary_sensor.presence_kitchen
+      name: Kitchen
+

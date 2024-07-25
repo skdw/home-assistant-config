@@ -7,25 +7,13 @@ cards:
       type: button
       tap_action:
         action: toggle
-      entity: scene.yaml_lights_on
+      entity: script.amp_play
     - show_name: false
       show_icon: true
       type: button
       tap_action:
         action: toggle
-      entity: scene.yaml_lights_off
-  - show_name: true
-    show_icon: true
-    type: button
-    tap_action:
-      action: toggle
-    entity: scene.leave_home
-  - show_name: true
-    show_icon: true
-    type: button
-    tap_action:
-      action: toggle
-    entity: scene.yaml_lights_focus
+      entity: script.amp_stop
   - type: vertical-stack
     cards:
     - show_name: false
@@ -33,13 +21,41 @@ cards:
       type: button
       tap_action:
         action: toggle
-      entity: scene.yaml_lights_dinner
+      entity: scene.lights_on
     - show_name: false
       show_icon: true
       type: button
       tap_action:
         action: toggle
-      entity: scene.yaml_lights_evening
+      entity: scene.lights_focus
+  - type: vertical-stack
+    cards:
+    - show_name: false
+      show_icon: true
+      type: button
+      tap_action:
+        action: toggle
+      entity: scene.lights_cooking
+    - show_name: false
+      show_icon: true
+      type: button
+      tap_action:
+        action: toggle
+      entity: scene.lights_dinner
+  - type: vertical-stack
+    cards:
+    - show_name: false
+      show_icon: true
+      type: button
+      tap_action:
+        action: toggle
+      entity: scene.lights_evening
+    - show_name: false
+      show_icon: true
+      type: button
+      tap_action:
+        action: toggle
+      entity: scene.lights_off
   - type: vertical-stack
     cards:
     - show_name: false

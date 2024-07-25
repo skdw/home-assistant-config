@@ -1,0 +1,24 @@
+- id: 'presence-speakers'
+  alias: YAML Presence speakers
+  description: "Automates sound mode basing on user presence"
+  variables:
+    presence_sensors: !include ../entities/presence_sensors.yaml
+    sound_modes:
+      - Auto
+      - Desk
+      - Extended
+  trigger:
+    - platform: state
+      entity_id: !include ../entities/presence_sensors.yaml
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: input_boolean.presence_speakers
+      state: "on"
+  action:
+    - service: input_select.select_option
+      data:
+        option: "{{ sound_modes[presence_sensors.index(trigger.entity_id)] }}"
+      target:
+        entity_id: input_select.sound_mode
+  mode: single

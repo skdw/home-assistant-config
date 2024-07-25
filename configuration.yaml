@@ -66,21 +66,47 @@ input_select:
       - "Radio FM"
       - "Network"
       - "Bluetooth"
-  pc_power_mode:
-    name: "PC power mode"
-    options:
-      - "Power on"
-      - "Lock"
-      - "Hibernate"
-      - "Power off"
+#  pc_power_mode:
+#    name: "PC power mode"
+#    options:
+#      - "Power on"
+#      - "Lock"
+#      - "Hibernate"
+#      - "Power off"
 
 media_player: !include configuration/media_player.yaml
+
+input_boolean:
+  lights_dim:
+    name: Lights Dim
+    icon: "mdi:theme-light-dark"
+  lights_motion:
+    name: Lights Motion
+    icon: "mdi:motion"
+  presence_announce:
+    name: Presence Announce
+    icon: "mdi:human-greeting-variant"
+  presence_lights:
+    name: Presence Lights
+    icon: "mdi:lightbulb-auto"
+  presence_speakers:
+    name: Presence Speakers
+    icon: "mdi:speaker-multiple"
+  presence_stand_up:
+    name: Presence Stand Up
+    icon: "mdi:human-handsup"
+  shower:
+    name: Shower
+    icon: "mdi:shower-head"
 
 sensor:
   - platform: time_date
     display_options:
       - 'time'
       - 'date'
+  - platform: derivative
+    source: sensor.shower_humidity
+    name: Shower humidity derivative
 
 #  - platform: rest
 #    resource: http://ip.jsontest.com
