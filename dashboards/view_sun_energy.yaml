@@ -1,0 +1,32 @@
+title: Sun / Energy
+path: sun-energy
+icon: "mdi:solar-power"
+badges: []
+type: sidebar
+cards:
+- type: horizontal-stack
+  title: Electricity Map
+  cards:
+    - graph: line
+      type: sensor
+      detail: 1
+      entity: sensor.electricity_maps_co2_intensity
+      name: CO2 Intensity
+    - graph: line
+      type: sensor
+      detail: 1
+      entity: sensor.electricity_maps_grid_fossil_fuel_percentage
+      name: Fossil fuel
+- type: horizontal-stack
+  title: Sun light
+  cards:
+    - graph: line
+      type: sensor
+      detail: 1
+      entity: sensor.sun_solar_elevation
+      name: Sun elevation
+    - graph: line
+      type: sensor
+      detail: 1
+      entity: sensor.presence_light_level
+      name: Room light
