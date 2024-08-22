@@ -5,9 +5,10 @@
       entity_id: binary_sensor.air_cond_leakage
       to: "on"
   condition:
-    - condition: state
-      entity_id: climate.air_conditioner
-      state: "on"
+    not:
+     - condition: state
+       entity_id: climate.air_conditioner
+       state: "off"
   action:
     - service: climate.set_hvac_mode
       target:
