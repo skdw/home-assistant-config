@@ -12,6 +12,7 @@ views:
   - !include "view_lights_balcony.yaml"
   - !include "view_media.yaml"
   - !include "view_air_conditioning.yaml"
+  - !include "view_sun_energy.yaml"
   - !include "view_presence.yaml"
   - !include "view_qr_wifi.yaml"
   - !include "view_strava.yaml"
