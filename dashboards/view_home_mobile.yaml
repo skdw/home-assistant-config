@@ -1,108 +1,38 @@
 title: Home
 path: home-mobile
-icon: mdi:view-compact
-badges: []
+icon: "mdi:view-compact"
+badges:
+- type: entity
+  entity: weather.forecast_home
+  state_content: temperature
+  name: Warsaw
+  display_type: complete
+- type: entity
+  entity: climate.air_conditioner
+  icon: mdi:air-conditioner
+  show_entity_picture: false
+  state_content: current_temperature
+  name: Home
+  display_type: complete
+- type: entity
+  entity: light.hall_rail_entrance
+  display_type: complete
+  show_entity_picture: false
+  name: Hall
+- type: entity
+  entity: media_player.pioneer
+  show_entity_picture: true
+  state_content: source
+  display_type: complete
+  tap_action:
+    action: navigate
+    navigation_path: media
 cards:
-  - type: picture-elements
-    elements:
-      - type: state-label
-        entity: sensor.time
-        style:
-          top: 55%
-          left: 50%
-          font-size: 70px
-      - type: state-label
-        entity: sensor.date
-        style:
-          top: 78%
-          left: 50%
-          font-size: 30px
-      - type: state-icon
-        entity: weather.forecast_home
-        style:
-          top: 1pc
-          left: 1.5pc
-          '--mdc-icon-size': 150%
-          transform: none
-      - type: state-label
-        entity: weather.forecast_home
-        attribute: temperature
-        suffix: °C
-        style:
-          top: 1.5pc
-          left: 5pc
-          font-size: 30px
-          transform: none
-      - type: conditional
-        conditions:
-          - condition: state
-            entity: media_player.spotify
-            state_not:
-              - idle
-        elements:
-          - type: state-icon
-            entity: media_player.spotify
-            icon: mdi:spotify
-            style:
-              top: 1pc
-              left: 47%
-              '--mdc-icon-size': 150%
-              transform: none
-      - type: conditional
-        conditions:
-          - condition: state
-            entity: media_player.spotify
-            state:
-              - idle
-        elements:
-          - type: state-icon
-            entity: media_player.spotify
-            icon: mdi:spotify
-            style:
-              top: 1pc
-              left: 47%
-              '--mdc-icon-size': 150%
-              transform: none
-              opacity: 50%
-      - type: state-label
-        entity: media_player.pioneer
-        style:
-          top: 2pc
-          left: 60%
-          transform: none
-          color: gray
-      - type: conditional
-        conditions:
-          - condition: state
-            entity: sensor.pioneer_media_title
-            state_not:
-              - ''
-              - unknown
-        elements:
-          - type: state-label
-            entity: media_player.pioneer
-            attribute: media_title
-            style:
-              top: 1pc
-              left: 60%
-              transform: none
-      - type: conditional
-        conditions:
-          - condition: state
-            entity: sensor.pioneer_media_title
-            state:
-              - ''
-              - unknown
-          - condition: state
-            entity: media_player.pioneer
-            state_not: 'off'
-        elements:
-          - type: state-label
-            entity: media_player.pioneer
-            attribute: source
-            style:
-              top: 1pc
-              left: 60%
-              transform: none
-    image: https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png
+  - type: markdown
+    content: |-
+      <center>
+      <font size=5>{{ states('sensor.date') }}
+      <font size=0>
+    
+      <font size=7><b>{{ states('sensor.time') }}
   - !include "card_hstack_scenes.yaml" 
