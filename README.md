@@ -16,7 +16,9 @@ Dashboards are optimized for desktop browser, mobile app and wall panel display.
     - Motion sensors sensors
     - Door sensors
     - Water leakage sensors
-  - [Aqara FP2](https://www.aqara.com/eu/product/presence-sensor-fp2/) presence sensor
+  - [Aqara FP2](https://www.aqara.com/eu/product/presence-sensor-fp2/)
+    - Human presence sensor
+    - Light level sensor
 - [Zigbee2MQTT](https://www.zigbee2mqtt.io/)
   - Wall light switches
   - Remote light switches, audio knobs
@@ -34,6 +36,7 @@ Dashboards are optimized for desktop browser, mobile app and wall panel display.
 - [HomeKit Bridge](https://www.home-assistant.io/integrations/homekit/) - HASS entities accessible in HomeKit
 - [OpenAI Conversation](https://www.home-assistant.io/integrations/openai_conversation/)
 - [Strava](https://github.com/craibo/ha_strava) - exercises tracking
+- [Electricity Maps](https://www.home-assistant.io/integrations/co2signal/) - CO2 intensity of home energy
 - [GIOŚ](https://www.home-assistant.io/integrations/gios/) - air quality index
 - [RESTful sensor](https://www.home-assistant.io/integrations/sensor.rest/) - Warsaw public transport live tracking
 - [InfluxDB](https://www.home-assistant.io/integrations/influxdb/) - history logging
