@@ -178,6 +178,11 @@ elements:
     style:
       top: 90.8%
       left: 33%
+  - type: state-label # Sensors light level
+    entity: sensor.presence_light_level
+    style:
+      top: 70%
+      left: 83%
   - type: state-icon # Sensors door opened
     entity: binary_sensor.door_sensor_contact
     style:
