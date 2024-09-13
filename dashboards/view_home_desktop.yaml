@@ -51,7 +51,7 @@ cards:
     columns: 1
     cards:
       - !include 'card_grid_media.yaml'
-      - !include 'card_hstack_scenes.yaml'
+      - !include 'card_hstack_scenes_lights.yaml'
       - initial_view: dayGridDay
         type: calendar
         entities:

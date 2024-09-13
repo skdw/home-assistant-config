@@ -180,7 +180,7 @@
       state: 'off'
 - id: 'yaml_lights_off'
   name: Lights Off
-  icon: mdi:lightbulb-multiple-off
+  icon: "mdi:weather-night"
   entities:
     switch.living_room_l1:
       state: 'off'
