@@ -17,3 +17,58 @@ spotify_transfer:
           - iPhone
       name: target_source
       required: true
+amp_play:
+  alias: AMP Play
+  icon: 'mdi:speaker-play'
+  sequence:
+  - service: script.spotify_transfer
+    data:
+      target_source: 'Pioneer (Kamil)'
+  - delay:
+     seconds: 3
+  - service: media_player.media_play
+    target:
+      entity_id: media_player.spotify
+amp_stop:
+  alias: AMP Stop
+  icon: 'mdi:speaker-stop'
+  sequence:
+  - service: script.spotify_transfer
+    data:
+      target_source: 'iPhone'
+  - delay:
+      seconds: 3
+  - service: media_player.media_pause
+    target:
+      entity_id: media_player.spotify
+  - service: media_player.turn_off
+    target:
+      entity_id: media_player.pioneer
+home_welcome:
+  alias: Welcome Home
+  icon: 'mdi:human-greeting'
+  sequence:
+  - action: script.turn_on # non-blocking call
+    target:
+      entity_id: script.amp_play
+  - choose:
+    - conditions: "{{ not '05:00' < states('sensor.time') < '21:00' }}"
+      sequence:
+      - action: scene.turn_on
+        target: # IF evening - late time
+          entity_id: scene.lights_evening
+    - conditions: "{{ state_attr('sun.sun', 'elevation') < 5 }}"
+      sequence:
+      - action: scene.turn_on
+        target: # ELIF evening - sun-based
+          entity_id: scene.lights_dinner
+home_leave:
+  alias: Leave Home
+  icon: 'mdi:exit-run'
+  sequence:
+  - action: script.turn_on # non-blocking call
+    target:
+      entity_id: script.amp_stop
+  - action: scene.turn_on
+    target:
+      entity_id: scene.lights_off

@@ -74,6 +74,11 @@
         {% else %} {{ "" }}
         {% endif %}
 - binary_sensor:
+  - name: "Home active"
+    unique_id: "home_active"
+    icon: 'mdi:human'
+    state: >
+      {{ states('counter.switches_enabled') | int > 0 }}
   #      - name: "PC is active"
   #        state: >
   #          {{ states('sensor.pc_kamil_active_ratio') | float(0) > 0 }}
