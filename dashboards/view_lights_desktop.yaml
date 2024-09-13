@@ -3,7 +3,7 @@ path: lights-desktop
 icon: mdi:lightbulb
 badges: []
 cards:
-  - !include 'card_hstack_scenes.yaml'
+  - !include 'card_hstack_scenes_lights.yaml'
   - type: area
     area: living_room
     navigation_path: lights-living-room
