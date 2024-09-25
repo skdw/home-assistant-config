@@ -111,6 +111,12 @@
         entity_id: media_player.pioneer_onkyo
       data:
         source: "{{ source }}"
+    select_sound_mode:
+      action: input_select.select_option
+      target:
+        entity_id: input_select.sound_mode
+      data:
+        option: "{{ sound_mode }}"
   attributes:
     state: media_player.pioneer_onkyo
     source_list: media_player.pioneer_onkyo|source_list
@@ -145,6 +151,9 @@
     shuffle: media_player.pioneer_dlna|shuffle
     repeat: media_player.pioneer_dlna|repeat
     entity_picture: media_player.pioneer_dlna|entity_picture
+    sound_mode: input_select.sound_mode
+    sound_mode_raw: input_select.sound_mode
+    sound_mode_list: input_select.sound_mode|options
   browse_media_entity: media_player.pioneer_dlna
   device_class: receiver
 
