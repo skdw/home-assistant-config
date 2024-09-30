@@ -15,17 +15,17 @@
          - condition: trigger
            id: 0
          - condition: state
-           entity_id: switch.kitchen_hood
+           entity_id: switch.outlet_kitchen_hood
            state: 'off'
      - condition: and
        conditions:
          - condition: trigger
            id: 1
          - condition: state
-           entity_id: switch.kitchen_hood
+           entity_id: switch.outlet_kitchen_hood
            state: 'on'
   action:
     - service: "{{ 'switch.turn_on' if(trigger.entity_id == 'switch.cooktop') else 'switch.turn_off' }}"
       target:
-        entity_id: switch.kitchen_hood
+        entity_id: switch.outlet_kitchen_hood
   mode: single

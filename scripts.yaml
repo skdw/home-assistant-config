@@ -24,8 +24,9 @@ amp_play:
   - service: script.spotify_transfer
     data:
       target_source: 'Pioneer (Kamil)'
+    continue_on_error: true
   - delay:
-     seconds: 3
+      seconds: 2
   - service: media_player.media_play
     target:
       entity_id: media_player.spotify
@@ -36,11 +37,13 @@ amp_stop:
   - service: script.spotify_transfer
     data:
       target_source: 'iPhone'
+    continue_on_error: true
   - delay:
-      seconds: 3
+      seconds: 2
   - service: media_player.media_pause
     target:
       entity_id: media_player.spotify
+    continue_on_error: true
   - service: media_player.turn_off
     target:
       entity_id: media_player.pioneer
