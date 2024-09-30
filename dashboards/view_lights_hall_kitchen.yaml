@@ -23,5 +23,5 @@ cards:
         type: tile
         features:
           - type: light-brightness
-      - entity: switch.kitchen_hood
+      - entity: switch.outlet_kitchen_hood
         type: tile

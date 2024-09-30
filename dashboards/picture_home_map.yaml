@@ -18,11 +18,27 @@ elements:
     style:
       top: 90.8%
       left: 53%
+  - type: state-icon # Audio cabinet fan
+    entity: fan.audio_cabinet
+    style:
+      top: 71%
+      left: 50.3%
+      '--paper-item-icon-color': '#445'
+  - type: state-label # Power
+    entity: sensor.outlet_audio_cabinet_power
+    style:
+      top: 63%
+      left: 50.3%
+  - type: state-label
+    entity: sensor.outlet_ceiling_power
+    style:
+      top: 66%
+      left: 83%
   - type: state-icon # Pioneer
     entity: media_player.pioneer
     icon: mdi:audio-video
     style:
-      top: 66%
+      top: 59%
       left: 50.3%
       '--paper-item-icon-color': '#445'
       '--state-media_player-active-color': white
@@ -146,6 +162,11 @@ elements:
     style:
       top: 90.8%
       left: 16%
+  - type: state-label
+    entity: sensor.audio_cabinet_temperature
+    style:
+      top: 67%
+      left: 50.3%
   - type: state-icon
     entity: binary_sensor.shower
     style:
@@ -275,7 +296,7 @@ elements:
       left: 78%
       '--paper-item-icon-color': '#445'
   - type: state-icon
-    entity: switch.kitchen_hood
+    entity: switch.outlet_kitchen_hood
     style:
       top: 28%
       left: 63.5%
