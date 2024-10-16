@@ -61,3 +61,11 @@ cards:
         detail: 1
         entity: sensor.shower_temperature
         name: Bathroom
+      - type: entity
+        entity: fan.audio_cabinet
+      - graph: line
+        type: sensor
+        limits: { min: 15, max: 30 }
+        detail: 1
+        entity: sensor.audio_cabinet_temperature
+        name: Audio Cabinet

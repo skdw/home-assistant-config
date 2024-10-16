@@ -3,6 +3,7 @@ light:
     name: "ESP LED"
     pin: GPIO4
 
+# PWM Fan
 output:
   - platform: ledc
     id: ventilation_fan_pwm
@@ -22,7 +23,7 @@ fan:
 
 sensor:
   - platform: pulse_counter
-    pin: GPIO23
+    pin: GPIO21
     name: PWM Fan RPM
     id: fan_pulse
     unit_of_measurement: 'RPM'
@@ -32,3 +33,4 @@ sensor:
       rising_edge: INCREMENT
       falling_edge: DISABLE
     update_interval: 3s
+
