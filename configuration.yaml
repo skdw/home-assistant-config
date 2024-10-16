@@ -55,6 +55,8 @@ influxdb:
   default_measurement: state
   exclude: !include configuration/exclude.yaml
 
+fan: !include configuration/fan.yaml
+
 input_select:
   pioneer_source:
     name: "Pioneer Source"
@@ -103,6 +105,9 @@ input_boolean:
   shower:
     name: Shower
     icon: "mdi:shower-head"
+  fan_audio_cabinet_auto:
+    name: Fan Audio Cabinet - auto speed
+    icon: "mdi:fan-auto"
 
 sensor:
   - platform: time_date

@@ -41,4 +41,4 @@ Dashboards are optimized for desktop browser, mobile app and wall panel display.
 - [RESTful sensor](https://www.home-assistant.io/integrations/sensor.rest/) - Warsaw public transport live tracking
 - [InfluxDB](https://www.home-assistant.io/integrations/influxdb/) - history logging
 - [Cloudflared](https://github.com/brenner-tobias/addon-cloudflared) - DNS tunnel for remote access
-- [ESPHome](https://www.home-assistant.io/integrations/esphome/) - PWM-controlled fans `[TODO]`
+- [ESPHome](https://www.home-assistant.io/integrations/esphome/) - PWM-controlled fans

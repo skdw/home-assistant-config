@@ -73,6 +73,20 @@
         {% if(attr != None and 'output_channels' in attr) %} {{ attr['output_channels'] }}
         {% else %} {{ "" }}
         {% endif %}
+    - name: "Fan audio cabinet - auto value"
+      unique_id: "fan_audio_cabinet_auto_value"
+      state: >
+        {% set power = states('sensor.outlet_audio_cabinet_power') | float %}
+        {% set temp = states('sensor.audio_cabinet_temperature') | float %}
+        {% set percentage_by_power = power * 0.5 %}
+        {% set percentage_by_temp = temp * 5.0 - 125 %}
+        {% set percentage_max = [percentage_by_power, percentage_by_temp] | max %}
+        {% if percentage_max < 30 %}
+          0
+        {% else %}
+          {{ [percentage_max, 100] | min }}
+        {% endif %}
+      unit_of_measurement: '%'
 - binary_sensor:
   - name: "Home active"
     unique_id: "home_active"
