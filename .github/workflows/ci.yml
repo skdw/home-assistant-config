@@ -14,10 +14,13 @@ jobs:
     - name: Install dependencies
       run: |
         python --version
+        python -m venv homeenv
+        source homeenv/bin/activate
         python -m pip install --upgrade pip
         pip install homeassistant
     - name: Analyze the hass configuration
       run: |
+        source homeenv/bin/activate
         mv mocks_ci/* .
         hass -c . --script check_config
 
