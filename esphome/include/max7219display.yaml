@@ -1,0 +1,186 @@
+# MAX7219 display
+
+number: # float number
+  - platform: homeassistant
+    name: "Page select"
+    entity_id: input_number.cabinet_display_page
+    id: page
+
+text_sensor: # std::string
+  - platform: homeassistant
+    name: "Media title sensor"
+    entity_id: sensor.pioneer_media_title
+    id: media_title
+  - platform: homeassistant
+    name: "Media album sensor"
+    entity_id: sensor.media_album
+    id: media_album
+  - platform: homeassistant
+    name: "Media artist sensor"
+    entity_id: sensor.media_artist
+    id: media_artist
+  - platform: homeassistant
+    name: "Sound mode sensor"
+    entity_id: input_select.sound_mode
+    id: sound_mode
+  - platform: homeassistant
+    name: "Pioneer zone 1"
+    entity_id: media_player.pioneer_onkyo
+    id: pioneer_zone1
+  - platform: homeassistant
+    name: "Pioneer zone 2"
+    entity_id: media_player.pioneer_onkyo_zone_2
+    id: pioneer_zone2
+  - platform: homeassistant
+    name: "Pioneer zone 3"
+    entity_id: media_player.pioneer_onkyo_zone_3
+    id: pioneer_zone3
+  - platform: homeassistant
+    name: "Pioneer source"
+    entity_id: input_select.pioneer_source
+    id: pioneer_source
+  - platform: homeassistant
+    name: "Volume Pioneer"
+    entity_id: sensor.volume_pioneer
+    id: volume_pioneer
+
+globals:
+  #- id: page
+  #  type: int
+  #  initial_value: "2"
+  - id: page01_scroll1_x
+    type: int
+    restore_value: no
+    initial_value: '0'
+  - id: page01_scroll1_length
+    type: int
+    restore_value: no
+    initial_value: '0'
+  - id: page01_scroll2_x
+    type: int
+    restore_value: no
+    initial_value: '0'
+  - id: page01_scroll2_length
+    type: int
+    restore_value: no
+    initial_value: '0'
+
+interval:
+- interval: 50ms
+  then:
+    if:
+      condition:
+        lambda: 'return (int)(id(page).state) == 1;'
+      then:
+      - component.update: cabinet_display
+      - lambda: |-
+          if (id(page01_scroll1_x) < -(id(page01_scroll1_length)))
+            // Start at right side of clipping area
+            id(page01_scroll1_x) = 63;
+          else
+            id(page01_scroll1_x) -= 1;
+
+          if (id(page01_scroll2_x) < -(id(page01_scroll2_length)))
+            // Start at right side of clipping area
+            id(page01_scroll2_x) = 63;
+          else
+            id(page01_scroll2_x) -= 1;
+
+spi:
+  clk_pin: GPIO18
+  mosi_pin: GPIO23
+
+display:
+  - id: cabinet_display
+    platform: max7219digit
+    cs_pin: GPIO5
+    num_chips: 16
+    num_chip_lines: 2
+    chip_lines_style: ZIGZAG
+    intensity: 1
+    scroll_mode: STOP
+    update_interval: 2s
+    lambda: |-
+      std::string printout;
+      int page_id = id(page).state;
+      switch (page_id)
+      {
+        case 1: // page01_home_amp_enabled
+        {
+          // L
+          // - title
+          // - album | artist
+          // R
+          // - sound_mode | dots_zones
+          // - input_format
+          // - source
+          // scrolling
+          // https://community.home-assistant.io/t/scrolling-text-on-ssd1306-oled-screen/305433/11
+          it.start_clipping(0,0,63,8);
+            printout = id(media_title).state;
+            id(page01_scroll1_length) = printout.length() * 7;
+            it.print(id(page01_scroll1_x), 0, id(digit_font), printout.c_str());
+          it.end_clipping();
+          it.start_clipping(0,8,63,15);
+            printout = id(media_artist).state + " - " + id(media_album).state;
+            id(page01_scroll2_length) = printout.length() * 7;
+            it.print(id(page01_scroll2_x), 8, id(digit_font), printout.c_str());
+          it.end_clipping();
+          break;
+        }
+        case 2: // page02_home_amp_disabled
+        {
+           // L
+           // - Skynet
+           // - Home sweet home
+           // R
+           // - temp outside, inside
+           it.print(0, 0, id(digit_font), "TODO home sweet home");
+           break;
+        }
+        case 3: // page03_menu_volume
+        {
+           // menu - newpage on NEXT button
+           // buttons remote mapping
+           // vol up-down -> UP/DOWN
+           // input -> NEXT
+           // power -> OK
+           it.print(0, 0, id(digit_font), "Volume");
+           it.printf(0, 8, id(digit_font), "%s dB", id(volume_pioneer).state.c_str());
+           break;
+        }
+        case 4: // page04_menu_sound_mode
+        {
+           it.print(0, 0, id(digit_font), "Sound mode");
+           it.print(0, 8, id(digit_font), id(sound_mode).state.c_str());
+           break;
+        }
+        case 5: // page05_menu_audio_zone
+        {
+           it.print(0, 0, id(digit_font), "Audio zones");
+           it.print(0, 8, id(digit_font), id(pioneer_zone1).state.c_str());
+           it.print(20, 8, id(digit_font), id(pioneer_zone2).state.c_str());
+           it.print(40, 8, id(digit_font), id(pioneer_zone3).state.c_str());
+           break;
+        }
+        case 6: // page06_menu_audio_source
+        {
+           it.print(0, 0, id(digit_font), "Media source");
+           it.print(0, 8, id(digit_font), id(pioneer_source).state.c_str());
+           break;
+        }
+        case 7: // page07_lights
+        {
+           break;
+        }
+        case 8: // page08_air_conditioning
+        {
+           break;
+        }
+      }
+
+# https://esphome.io/components/font#display-fonts
+font:
+  - file: "pixelmix.ttf"
+    id: digit_font
+    size: 8
