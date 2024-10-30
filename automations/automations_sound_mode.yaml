@@ -1,0 +1,36 @@
+- id: 'sound_mode'
+  alias: Sound Mode update
+  mode: single
+  triggers:
+  - entity_id: input_select.sound_mode
+    trigger: state
+  variables:
+    listening_mode_value:
+      'Auto':     auto-surround
+      'Extended': all-ch-stereo
+      'Surround': dolby-atmos
+      'Desk':     full-mono
+    cmt_message: # Audio Muting by Channel Command 
+      'Auto':     CMT00000000000000000000000000
+      'Extended': CMT00000000000000000000000000
+      'Surround': CMT00000000000000000000000000
+      'Desk':     CMT00010100010000000000000000
+    tcl_message: # Temporary Channel Level Command 
+      'Auto':     TCL000000+02-01000000000-01000000000000000
+      'Extended': TCL-0C000+02+0E+0A000000-04000000000000000
+      'Surround': TCL000000+02-01000000000-01000000000000000
+      'Desk':     TCL000-01+02+18000000000-04000000000000000
+  actions:
+  - action: media_player.onkyo_command
+    data:
+      entity_id: media_player.pioneer_onkyo
+      iscp_command: listening-mode
+      iscp_value: "{{ listening_mode_value[trigger.to_state.state] }}"
+  - action: media_player.onkyo_message
+    data:
+      entity_id: media_player.pioneer_onkyo
+      iscp_message: "{{ cmt_message[trigger.to_state.state] }}"
+  - action: media_player.onkyo_message
+    data:
+      entity_id: media_player.pioneer_onkyo
+      iscp_message: "{{ tcl_message[trigger.to_state.state] }}"
