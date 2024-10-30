@@ -42,3 +42,31 @@ Dashboards are optimized for desktop browser, mobile app and wall panel display.
 - [InfluxDB](https://www.home-assistant.io/integrations/influxdb/) - history logging
 - [Cloudflared](https://github.com/brenner-tobias/addon-cloudflared) - DNS tunnel for remote access
 - [ESPHome](https://www.home-assistant.io/integrations/esphome/) - PWM-controlled fans
+
+## Setup
+
+### Overwrite core integrations
+Perform `home-assistant-core` repo sparse checkout (instead of full submodule init)
+```
+cd repos
+
+# History of commits is too long for cloning
+# git clone --no-checkout git@github.com:skdw/home-assistant-core.git
+# remote: Total 1006214 (delta 115), reused 215 (delta 64), pack-reused 1005899 (from 1)
+# Receiving objects: 100% (1006214/1006214), 642.25 MiB | 18.14 MiB/s, done.
+
+# Clone only the latest commit
+git clone --no-checkout --depth=1 git@github.com:skdw/home-assistant-core.git
+remote: Total 21317 (delta 4059), reused 8738 (delta 2323), pack-reused 0 (from 0)
+Receiving objects: 100% (21317/21317), 21.64 MiB | 1.30 MiB/s, done.
+
+# Sparse checkout
+cd home-assistant-core/
+git sparse-checkout init --cone
+git sparse-checkout set homeassistant/components/onkyo
+git checkout skynet
+
+# Validate sparse checkout
+home-assistant-core git:(skynet) find -type f | wc -l
+85
+```
