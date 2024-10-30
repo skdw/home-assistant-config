@@ -128,6 +128,12 @@ elements:
     style:
       top: 34%
       left: 55.8%
+  - type: state-icon # Curtains
+    entity: cover.curtain_bedroom
+    style:
+      top: 75%
+      left: 38%
+      '--paper-item-icon-color': '#556'
   - type: state-icon # Sensors motion
     entity: binary_sensor.motion_sink
     style:
@@ -205,10 +211,16 @@ elements:
       top: 70%
       left: 83%
   - type: state-icon # Sensors door opened
-    entity: binary_sensor.door_sensor_contact
+    entity: binary_sensor.door_hall_entrance
     style:
       top: 18%
       left: 16%
+      '--paper-item-icon-color': '#445'
+  - type: state-icon
+    entity: binary_sensor.door_hall_wardrobe
+    style:
+      top: 10%
+      left: 40.5%
       '--paper-item-icon-color': '#445'
   - type: state-icon # Sensors water leakage
     entity: binary_sensor.kitchen_leakage

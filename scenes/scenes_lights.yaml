@@ -6,7 +6,7 @@
       state: 'on'
     light.kitchen_spot:
       state: 'on'
-    switch.kitchen_hood:
+    switch.outlet_kitchen_hood:
       state: 'on'
     light.kitchen_countertop:
       state: 'on'
@@ -73,7 +73,7 @@
       state: 'on'
       brightness: 80
       color_temp_kelvin: 3500
-    switch.kitchen_hood:
+    switch.outlet_kitchen_hood:
       state: 'on'
 - id: 'yaml_lights_cooking'
   name: Cooking
@@ -98,7 +98,7 @@
       state: 'on'
       brightness: 40
       color_temp_kelvin: 2000
-    switch.kitchen_hood:
+    switch.outlet_kitchen_hood:
       state: 'on'
 - id: 'yaml_lights_dinner'
   name: Dinner
@@ -137,11 +137,7 @@
     light.balcony_bamboo:
       state: 'on'
       brightness: 4
-    light.balcony_ceiling:
-      state: 'on'
-      brightness: 4
-      color_temp_kelvin: 2000
-    switch.kitchen_hood:
+    switch.outlet_kitchen_hood:
       state: 'off'
 - id: 'yaml_lights_evening'
   name: Evening
@@ -210,5 +206,5 @@
       state: 'off'
     switch.wardrobe:
       state: 'off'
-    switch.kitchen_hood:
+    switch.outlet_kitchen_hood:
       state: 'off'
