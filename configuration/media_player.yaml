@@ -1,13 +1,3 @@
-- platform: onkyo
-  host: !secret ip_onkyo
-  name: Pioneer Onkyo
-  sources:
-    strm-box: "Google TV"
-    video2: "DVB-T2"
-    video3: "PC"
-    fm: "Radio FM"
-    network: "Network"
-  receiver_max_volume: 200
 - platform: universal
   name: Pioneer Universal
   unique_id: pioneer_universal
