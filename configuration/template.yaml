@@ -9,16 +9,23 @@
         {% elif (src == "Network" and dlna_src == "airplay://") %}  {{ "Airplay" }}
         {% elif (src == "Network" and dlna_src == "http://stream-uk1.radioparadise.com/aac-320") %}  {{ "Radio Paradise" }}
         {% elif (src == "Network") %}  {{ dlna_src }}
-        {% elif (src == "Google TV") %} {{ state_attr('media_player.chromecast_pioneer', 'app_name') }}
-        {% else %} {{ src }}
+        {% elif (src == "Google TV"  and state_attr('media_player.chromecast_pioneer', 'app_name') is not none) %}
+          {{ state_attr('media_player.chromecast_pioneer', 'app_name') }}
+        {% elif (src is not none) %} {{ src }}
+        {% else %} {{ "" }}
         {% endif %}
     - name: "Media title"
       unique_id: "media_title"
       icon: "mdi:music"
       state: >
         {% set src = state_attr('media_player.pioneer_onkyo', 'source') %}
-        {% if (src == "Network") %} {{ state_attr('media_player.pioneer_dlna', 'media_title') }}
-        {% elif (src == "Google TV") %} {{ state_attr('media_player.chromecast_pioneer', 'media_title') }}
+        {% if (src == "Network" and state_attr('media_player.pioneer_dlna', 'media_title') is not none) %}
+          {{ state_attr('media_player.pioneer_dlna', 'media_title') }}
+        {% elif (src == "Google TV" and state_attr('media_player.chromecast_pioneer', 'media_title') is not none) %}
+          {{ state_attr('media_player.chromecast_pioneer', 'media_title') }}
+        {% elif(src == "Radio FM") %}
+          {{ states('input_select.radio_fm') }}
+        {% elif (src is not none) %} {{ src }}
         {% else %} {{ "" }}
         {% endif %}
     - name: "Media album"
@@ -26,8 +33,10 @@
       icon: "mdi:album"
       state: >
         {% set src = state_attr('media_player.pioneer_onkyo', 'source') %}
-        {% if (src == "Network") %} {{ state_attr('media_player.pioneer_dlna', 'media_album_name') }}
-        {% elif (src == "Google TV") %} {{ state_attr('media_player.chromecast_pioneer', 'media_album_name') }}
+        {% if (src == "Network" and state_attr('media_player.pioneer_dlna', 'media_album_name') is not none) %}
+          {{ state_attr('media_player.pioneer_dlna', 'media_album_name') }}
+        {% elif (src == "Google TV" and state_attr('media_player.chromecast_pioneer', 'media_album_name') is not none) %}
+          {{ state_attr('media_player.chromecast_pioneer', 'media_album_name') }}
         {% else %} {{ "" }}
         {% endif %}
     - name: "Media artist"
@@ -36,9 +45,12 @@
       state: >
         {% set src = state_attr('media_player.pioneer_onkyo', 'source') %}
         {% set dlna_src = state_attr('media_player.pioneer_dlna', 'media_content_id') %}
-        {% if (src == "Network" and dlna_src == "spotify://") %} {{ state_attr('media_player.spotify', 'media_artist') }}
-        {% elif (src == "Network") %} {{ state_attr('media_player.pioneer_dlna', 'media_artist') }}
-        {% elif (src == "Google TV") %} {{ state_attr('media_player.chromecast_pioneer', 'media_artist') }}
+        {% if (src == "Network" and dlna_src == "spotify://" and state_attr('media_player.spotify', 'media_artist') is not none) %}
+          {{ state_attr('media_player.spotify', 'media_artist') }}
+        {% elif (src == "Network" and state_attr('media_player.pioneer_dlna', 'media_artist') is not none) %}
+          {{ state_attr('media_player.pioneer_dlna', 'media_artist') }}
+        {% elif (src == "Google TV" and state_attr('media_player.chromecast_pioneer', 'media_artist') is not none) %}
+          {{ state_attr('media_player.chromecast_pioneer', 'media_artist') }}
         {% else %} {{ "" }}
         {% endif %}
     - name: "Volume Pioneer"
@@ -58,26 +70,26 @@
     - name: "Listening mode"
       state: >
         {% set attr = state_attr('media_player.pioneer_onkyo', 'audio_information') %}
-        {% if(attr != None and 'listening_mode' in attr) %} {{ attr['listening_mode'] }}
+        {% if(attr is not none and 'listening_mode' in attr) %} {{ attr['listening_mode'] }}
         {% else %} {{ "" }}
         {% endif %}
     - name: "Input channels"
       state: >
         {% set attr = state_attr('media_player.pioneer_onkyo', 'audio_information') %}
-        {% if(attr != None and 'input_channels' in attr) %} {{ attr['input_channels'] }}
+        {% if(attr is not none and 'input_channels' in attr) %} {{ attr['input_channels'] }}
         {% else %} {{ "" }}
         {% endif %}
     - name: "Output channels"
       state: >
         {% set attr = state_attr('media_player.pioneer_onkyo', 'audio_information') %}
-        {% if(attr != None and 'output_channels' in attr) %} {{ attr['output_channels'] }}
+        {% if(attr is not none and 'output_channels' in attr) %} {{ attr['output_channels'] }}
         {% else %} {{ "" }}
         {% endif %}
     - name: "Fan audio cabinet - auto value"
       unique_id: "fan_audio_cabinet_auto_value"
       state: >
-        {% set power = states('sensor.outlet_audio_cabinet_power') | float %}
-        {% set temp = states('sensor.audio_cabinet_temperature') | float %}
+        {% set power = states('sensor.outlet_audio_cabinet_power') | float(0) %}
+        {% set temp = states('sensor.audio_cabinet_temperature') | float(0) %}
         {% set percentage_by_power = power * 0.5 %}
         {% set percentage_by_temp = temp * 5.0 - 125 %}
         {% set percentage_max = [percentage_by_power, percentage_by_temp] | max %}
