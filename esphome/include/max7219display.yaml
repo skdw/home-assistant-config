@@ -1,10 +1,34 @@
 # MAX7219 display
-
-number: # float number
-  - platform: homeassistant
+select:
+  - platform: template
     name: "Page select"
-    entity_id: input_number.cabinet_display_page
-    id: page
+    id: display_page
+    optimistic: true
+    options:
+      - page00_blank
+      - page01_home_amp_enabled
+      - page02_home_amp_disabled
+      - page03_menu_volume
+      - page04_menu_power
+      - page05_menu_audio_source
+      - page06_menu_sound_mode
+      - page07_menu_audio_zone
+      - page08_lights
+      - page09_air_conditioning
+
+script:
+  - id: display_page_switch
+    parameters:
+      dest_page_id: int
+    mode: restart # will be kept on during 3 s since the latest time the script is executed
+    then:
+      - select.set_index:
+          id: display_page
+          index: !lambda return dest_page_id;
+      - delay: 3 s
+      - select.set_index:
+          id: display_page
+          index: 1
 
 text_sensor: # std::string
   - platform: homeassistant
@@ -70,17 +94,23 @@ interval:
   then:
     if:
       condition:
-        lambda: 'return (int)(id(page).state) == 1;'
+        lambda: 'return id(display_page).active_index() == 1;'
       then:
       - component.update: cabinet_display
       - lambda: |-
-          if (id(page01_scroll1_x) < -(id(page01_scroll1_length)))
+          const int SCROLL_LEN_MULT = 7;
+          const int SCROLL_LEN_THRESH = 11;
+          if (id(page01_scroll1_length) < SCROLL_LEN_THRESH)
+            id(page01_scroll1_x) = 0; // short string, do not scroll
+          else if (id(page01_scroll1_x) < -(id(page01_scroll1_length) * SCROLL_LEN_MULT))
             // Start at right side of clipping area
             id(page01_scroll1_x) = 63;
           else
             id(page01_scroll1_x) -= 1;
 
-          if (id(page01_scroll2_x) < -(id(page01_scroll2_length)))
+          if (id(page01_scroll2_length) < SCROLL_LEN_THRESH)
+            id(page01_scroll2_x) = 0; // short string, do not scroll
+          else if (id(page01_scroll2_x) < -(id(page01_scroll2_length) * SCROLL_LEN_MULT))
             // Start at right side of clipping area
             id(page01_scroll2_x) = 63;
           else
@@ -99,12 +129,31 @@ display:
     chip_lines_style: ZIGZAG
     intensity: 1
     scroll_mode: STOP
-    update_interval: 2s
+    update_interval: 1s
     lambda: |-
+      // it.intensity((int)id(cabinet_display_intensity)); TODO parametrize intensity
+      // it.turn_on_off((bool)id(cabinet_display_on_off)); // TODO parametrize
       std::string printout;
-      int page_id = id(page).state;
+      auto page_id_optional = id(display_page).active_index();
+      int page_id = 0;
+      if (page_id_optional.has_value()) {
+        //ESP_LOGD("main", "Option at index %d is active", page_id_optional.value());
+        page_id = page_id_optional.value();
+      } else {
+        ESP_LOGV("main", "No option is active");
+      }
+      auto trim_str = [](std::string& str, int n) {
+        if (str.length() < n)
+          return;
+        str.erase(n - 3);
+        str += "...";
+      };
       switch (page_id)
       {
+        case 0: // page00_blank
+        {
+          break;
+        }
         case 1: // page01_home_amp_enabled
         {
           // L
@@ -118,12 +167,17 @@ display:
           // https://community.home-assistant.io/t/scrolling-text-on-ssd1306-oled-screen/305433/11
           it.start_clipping(0,0,63,8);
             printout = id(media_title).state;
-            id(page01_scroll1_length) = printout.length() * 7;
+            trim_str(printout, 30);
+            id(page01_scroll1_length) = printout.length();
             it.print(id(page01_scroll1_x), 0, id(digit_font), printout.c_str());
           it.end_clipping();
           it.start_clipping(0,8,63,15);
-            printout = id(media_artist).state + " - " + id(media_album).state;
-            id(page01_scroll2_length) = printout.length() * 7;
+            printout = id(media_artist).state;
+            if(!printout.empty() && !id(media_album).state.empty())
+              printout += " - ";
+            printout += id(media_album).state;
+            trim_str(printout, 30);
+            id(page01_scroll2_length) = printout.length();
             it.print(id(page01_scroll2_x), 8, id(digit_font), printout.c_str());
           it.end_clipping();
           break;
@@ -149,13 +203,24 @@ display:
            it.printf(0, 8, id(digit_font), "%s dB", id(volume_pioneer).state.c_str());
            break;
         }
-        case 4: // page04_menu_sound_mode
+        case 4: // page04_menu_power
+        {
+           it.print(0, 0, id(digit_font), "Power");
+           break;
+        }
+        case 5: // page05_menu_audio_source
+        {
+           it.print(0, 0, id(digit_font), "Media source");
+           it.print(0, 8, id(digit_font), id(pioneer_source).state.c_str());
+           break;
+        }
+        case 6: // page06_menu_sound_mode
         {
            it.print(0, 0, id(digit_font), "Sound mode");
            it.print(0, 8, id(digit_font), id(sound_mode).state.c_str());
            break;
         }
-        case 5: // page05_menu_audio_zone
+        case 7: // page07_menu_audio_zone
         {
            it.print(0, 0, id(digit_font), "Audio zones");
            it.print(0, 8, id(digit_font), id(pioneer_zone1).state.c_str());
@@ -163,17 +228,11 @@ display:
            it.print(40, 8, id(digit_font), id(pioneer_zone3).state.c_str());
            break;
         }
-        case 6: // page06_menu_audio_source
-        {
-           it.print(0, 0, id(digit_font), "Media source");
-           it.print(0, 8, id(digit_font), id(pioneer_source).state.c_str());
-           break;
-        }
-        case 7: // page07_lights
+        case 8: // page08_lights
         {
            break;
         }
-        case 8: // page08_air_conditioning
+        case 9: // page09_air_conditioning
         {
            break;
         }
