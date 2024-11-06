@@ -1,0 +1,15 @@
+- id: 'media_radio_fm_update'
+  alias: Radio FM station update
+  mode: single
+  triggers:
+    - entity_id: input_select.radio_fm
+      trigger: state
+  variables:
+    preset_id: "{{ state_attr('input_select.radio_fm', 'options').index(trigger.to_state.state) + 1 }}"
+  actions:
+    - action: media_player.onkyo_command
+      data:
+        entity_id: media_player.pioneer_onkyo
+        iscp_command: preset
+        iscp_value: "{{ preset_id }}"
+

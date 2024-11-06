@@ -1,4 +1,4 @@
-- id: 'sound_mode'
+- id: 'media_sound_mode'
   alias: Sound Mode update
   mode: single
   triggers:
