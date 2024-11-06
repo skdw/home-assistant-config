@@ -56,17 +56,15 @@ cards:
         type: calendar
         entities:
           - calendar.google
-      - !include "card_hstack_energy_co2.yaml"
-  - type: entities
-    entities:
-      - entity: input_select.pc_power_mode
-      - entity: sensor.orange_funbox_6_kib_s_sent
-    title: PC
-  - !include "card_glance_printer.yaml"
   - square: false
     type: grid
     columns: 1
     cards:
+    # - title: PC
+    #   type: entities
+    #   entities:
+    #     - entity: input_select.pc_power_mode
+      - !include "card_hstack_router.yaml"
       - type: thermostat
         entity: climate.air_conditioner
         features:
@@ -83,18 +81,8 @@ cards:
               - wind 
             type: climate-preset-modes
         name: ' '
-      - type: entities
-        entities:
-          - entity: sensor.air_conditioner_deltaenergy
-          - entity: sensor.air_conditioner_energy
-          - entity: sensor.air_conditioner_energysaved
-          - entity: sensor.air_conditioner_power
-          - entity: sensor.air_conditioner_powerenergy
-          - entity: sensor.air_conditioner_humidity
-          - entity: sensor.air_conditioner_temperature
-          - entity: sensor.air_conditioner_volume
-          - entity: sensor.oven_job_state
-          - entity: sensor.oven_set_point
-          - entity: sensor.oven_temperature_measurement
-        title: Living Room
- 
+      - title: Energy
+        type: energy-devices-detail-graph
+      - !include "card_hstack_energy_co2.yaml"
+      - !include "card_glance_printer.yaml"
+

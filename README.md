@@ -22,8 +22,8 @@ Dashboards are optimized for desktop browser, mobile app and wall panel display.
 - [Zigbee2MQTT](https://www.zigbee2mqtt.io/)
   - Wall light switches
   - Remote light switches, audio knobs
-  - `[TODO]` Curtains
-  - `[TODO]` Energy monitoring
+  - [Aqara C3](https://www.aqara.com/en/product/curtain-controller-c3/) curtains
+  - [Bseed](https://www.bseed.com/products/bseed-zigbee-eu-wall-sockets-power-outlets-with-energy-monitoring-kids-protection) Energy monitoring power outlets
 - [SmartThings](https://www.home-assistant.io/integrations/smartthings/) - home appliances
   - Air conditioner
   - Oven

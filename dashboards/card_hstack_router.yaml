@@ -1,0 +1,12 @@
+type: horizontal-stack
+cards:
+  - graph: line
+    type: sensor
+    detail: 1
+    entity: sensor.orange_funbox_6_kib_s_received
+    name: Router received
+  - graph: line
+    type: sensor
+    detail: 1
+    entity: sensor.orange_funbox_6_kib_s_sent
+    name: Router sent
