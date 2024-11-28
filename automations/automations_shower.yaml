@@ -4,11 +4,11 @@
     - platform: numeric_state
       entity_id:
        - sensor.shower_humidity_derivative
-      above: 0.3
+      above: 30 # percents/min
     - platform: numeric_state
       entity_id:
        - sensor.shower_humidity_derivative
-      below: -0.05
+      below: -5 # percents/min
   action:
     - service: "{{ 'input_boolean.turn_on' if(trigger.id == 0) else 'input_boolean.turn_off' }}"
       target:
