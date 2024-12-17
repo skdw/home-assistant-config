@@ -19,39 +19,29 @@
       icon: "mdi:music"
       state: >
         {% set src = state_attr('media_player.pioneer_onkyo', 'source') %}
-        {% if (src == "Network" and state_attr('media_player.pioneer_dlna', 'media_title') is not none) %}
-          {{ state_attr('media_player.pioneer_dlna', 'media_title') }}
-        {% elif (src == "Google TV" and state_attr('media_player.chromecast_pioneer', 'media_title') is not none) %}
+        {% if (src == "Google TV" and state_attr('media_player.chromecast_pioneer', 'media_title') is not none) %}
           {{ state_attr('media_player.chromecast_pioneer', 'media_title') }}
         {% elif(src == "Radio FM") %}
           {{ states('input_select.radio_fm') }}
-        {% elif (src is not none) %} {{ src }}
-        {% else %} {{ "" }}
+        {% else %} {{ state_attr('media_player.pioneer_onkyo', 'media_title') }}
         {% endif %}
     - name: "Media album"
       unique_id: "media_album"
       icon: "mdi:album"
       state: >
         {% set src = state_attr('media_player.pioneer_onkyo', 'source') %}
-        {% if (src == "Network" and state_attr('media_player.pioneer_dlna', 'media_album_name') is not none) %}
-          {{ state_attr('media_player.pioneer_dlna', 'media_album_name') }}
-        {% elif (src == "Google TV" and state_attr('media_player.chromecast_pioneer', 'media_album_name') is not none) %}
+        {% if (src == "Google TV" and state_attr('media_player.chromecast_pioneer', 'media_album_name') is not none) %}
           {{ state_attr('media_player.chromecast_pioneer', 'media_album_name') }}
-        {% else %} {{ "" }}
+        {% else %} {{ state_attr('media_player.pioneer_onkyo', 'media_album_name') }}
         {% endif %}
     - name: "Media artist"
       unique_id: "media_artist"
       icon: "mdi:account-music"
       state: >
         {% set src = state_attr('media_player.pioneer_onkyo', 'source') %}
-        {% set dlna_src = state_attr('media_player.pioneer_dlna', 'media_content_id') %}
-        {% if (src == "Network" and dlna_src == "spotify://" and state_attr('media_player.spotify', 'media_artist') is not none) %}
-          {{ state_attr('media_player.spotify', 'media_artist') }}
-        {% elif (src == "Network" and state_attr('media_player.pioneer_dlna', 'media_artist') is not none) %}
-          {{ state_attr('media_player.pioneer_dlna', 'media_artist') }}
-        {% elif (src == "Google TV" and state_attr('media_player.chromecast_pioneer', 'media_artist') is not none) %}
+        {% if (src == "Google TV" and state_attr('media_player.chromecast_pioneer', 'media_artist') is not none) %}
           {{ state_attr('media_player.chromecast_pioneer', 'media_artist') }}
-        {% else %} {{ "" }}
+        {% else %} {{ state_attr('media_player.pioneer_onkyo', 'media_artist') }}
         {% endif %}
     - name: "Volume Pioneer"
       unit_of_measurement: "dB"
