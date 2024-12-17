@@ -134,10 +134,10 @@
     media_duration: media_player.pioneer_dlna|media_duration
     media_position: media_player.pioneer_dlna|media_position
     media_position_updated_at: media_player.pioneer_dlna|media_position_updated_at
-    media_title: "{{ media_title }}"
+    media_title: media_player.pioneer_onkyo|media_title
     media_track: media_player.pioneer_dlna|media_track
-    media_artist: "{{ media_artist }}"
-    media_album_name: media_player.pioneer_dlna|media_album_name
+    media_artist: media_player.pioneer_onkyo|media_artist
+    media_album_name: media_player.pioneer_onkyo|media_album_name
     shuffle: media_player.pioneer_dlna|shuffle
     repeat: media_player.pioneer_dlna|repeat
     entity_picture: media_player.pioneer_dlna|entity_picture
