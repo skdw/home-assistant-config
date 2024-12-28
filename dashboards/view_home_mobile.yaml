@@ -36,4 +36,4 @@ cards:
       <font size=2>
     
       <font size=7><b>{{ states('sensor.time') }}
-  - !include "card_hstack_scenes_home.yaml" 
+  - !include "card_hstack_scenes.yaml"
