@@ -66,3 +66,22 @@ cards:
       tap_action:
         action: toggle
       entity: scene.lights_off
+  - type: conditional
+    conditions:
+    - condition: screen
+      media_query: "(min-width: 768px)"
+    card:
+      type: vertical-stack
+      cards:
+      - show_name: false
+        show_icon: true
+        type: button
+        tap_action:
+          action: toggle
+        entity: input_boolean.lights_dim
+      - show_name: false
+        show_icon: true
+        type: button
+        tap_action:
+          action: toggle
+        entity: input_boolean.lights_motion
