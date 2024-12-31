@@ -95,9 +95,11 @@
     icon: 'mdi:human'
     state: >
       {{ states('counter.switches_enabled') | int > 0 }}
-  #      - name: "PC is active"
-  #        state: >
-  #          {{ states('sensor.pc_kamil_active_ratio') | float(0) > 0 }}
+  - name: "PC is active"
+    unique_id: "pc_is_active"
+    state: >
+      {{ states('sensor.pc_cpuload') != 'unavailable' }}
+     # {{ states('sensor.pc_kamil_active_ratio') | float(0) > 0 }}
   #      - name: "Shower"
   #        icon: "mdi:shower-head"
   #        state: >

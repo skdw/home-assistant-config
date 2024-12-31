@@ -48,12 +48,12 @@ cards:
         conditions:
           - entity: media_player.pioneer
             state_not: 'off'
-          - entity: sensor.pioneer_media_title
+          - entity: sensor.media_title
             state_not: unknown
           - entity: input_select.pioneer_source
             state_not: Radio FM
         row:
-          entity: sensor.pioneer_media_title
+          entity: sensor.media_title
           icon: mdi:music
           secondary_info: none
       - type: conditional

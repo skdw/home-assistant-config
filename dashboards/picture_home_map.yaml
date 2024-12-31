@@ -86,7 +86,7 @@ elements:
           top: 76%
           left: 65%
   - type: state-icon # PC
-    entity: binary_sensor.pc_is_on
+    entity: binary_sensor.pc_is_active
     icon: mdi:desktop-tower-monitor
     style:
       top: 87.4%
@@ -95,16 +95,16 @@ elements:
       '--paper-item-icon-active-color': white
   - type: conditional
     conditions:
-      - entity: binary_sensor.pc_is_on
+      - entity: binary_sensor.pc_is_active
         state: 'on'
     elements:
       - type: state-label
-        entity: sensor.pc_kamil_load
+        entity: sensor.pc_cpuload
         style:
           top: 86.3%
           left: 80.5%
       - type: state-label
-        entity: sensor.pc_kamil_memory_free
+        entity: sensor.pc_gputemperature
         style:
           top: 88.8%
           left: 80.5%
