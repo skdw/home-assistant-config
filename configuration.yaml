@@ -78,6 +78,8 @@ input_select:
 
 media_player: !include configuration/media_player.yaml
 
+light: !include configuration/light.yaml
+
 counter:
   switches_enabled:
     name: "Count enabled switches"
