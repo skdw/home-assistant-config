@@ -132,6 +132,8 @@ secret*.yaml
 
 ## Others
 tts/
-image/
 tmp/
 www/
+
+image/**
+!image/screenshot_card_scenes.png

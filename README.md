@@ -43,6 +43,66 @@ Dashboards are optimized for desktop browser, mobile app and wall panel display.
 - [Cloudflared](https://github.com/brenner-tobias/addon-cloudflared) - DNS tunnel for remote access
 - [ESPHome](https://www.home-assistant.io/integrations/esphome/) - PWM-controlled fans
 
+## Household guide
+
+### Quick actions
+
+Quick actions offer a simple way to execute routines at home. They are displayed as a card with buttons, available in both the full desktop home view and the compact mobile wall panel.
+
+The card is illustrated in the image: ![screenshot_card_scenes](image/screenshot_card_scenes.png)
+
+#### Entering and leaving home
+
+Actions are designed to be triggered manually by the user upon entering or leaving the home as part of their daily routine. The system detects whether the user intends to enter or exit the apartment, consolidating both actions into a single button for convenience.
+
+- **Welcome Home**
+  - *Condition: no home devices are active (indicating the user is outside home)*
+  - Sets the lighting scene based on the time of day
+    - Between 9 PM and 5 AM, activates the **Lights evening** scene
+    - If the sun's elevation is below 5°, activates the **Lights dinner** scene
+    - Otherwise, skips the lighting adjustment (daytime)
+  - Transfers media playback to the home media player
+- **Leave Home**
+  - *Condition: one or more home devices are active (indicating the user is at home)*
+  - Turns all the home lights off
+  - Transfers media playback to the mobile device, allowing the continuation of the track outside the home
+  - Turns the media player off
+
+#### Lights scenes
+
+The middle section of the card lists the available home lighting scenes, arranged from the brightest to the dimmest. These scenes can also be activated by **triple-clicking** the corresponding control on the physical six-button switch in the living room, ordered from left to right.
+
+- **Lights on**
+  - Turns all the home lights on
+  - Maintains the recent brightness and temperature properties
+- **Lights focus**
+  - Turns the living room lights on brightly
+  - Sets cold temperature of 4500 K
+- **Lights cooking**
+  - Sets lights in a way that is comfortable for cooking
+  - Sets kitchen and table lights to bright, 3000 K
+  - Dims sofa and desk lights, 2000 K
+- **Lights dinner**
+  - Sets lights that are comfortable for having a dinner
+  - Sets the bright table light, with warm temperature 2500 K
+  - Dims kitchen, sofa and desk lights
+  - Dims balcony bamboo and bedroom lights
+- **Lights evening**
+  - Sets dimmed lights suited for late evening relaxation
+  - Dims kitchen spot, desk light and bedroom spots to 1% with the warmest 2000 K
+  - Turns hall lights, kitchen countertop, table and all ceiling lights off
+- **Lights off**
+  - Turns all the lights off
+
+#### Lighting automation
+
+The final part of the interface provides controls for lighting automation in rooms without natural light, such as the bathroom and walk-in closet. This feature is available exclusively on the full desktop panel.
+
+- **Lights dim**
+  - Dims lights at night, between 10 PM and 6:30 AM
+- **Lights motion**
+  - Activates lights on motion detection
+
 ## Setup
 
 ### Overwrite core integrations
