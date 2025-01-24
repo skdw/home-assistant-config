@@ -5,23 +5,7 @@
   max: 50
   trigger:
     - platform: state
-      entity_id:
-        #- switch.living_room_l1 - skip hall light
-        - switch.living_room_l2
-        - switch.living_room_l3
-        - switch.living_room_l4
-        - switch.living_room_l5
-        - switch.living_room_l6
-        - switch.bathroom_l1
-        - switch.bathroom_l2
-        - switch.balcony_l1
-        - switch.balcony_l2
-        - switch.wardrobe
-        - switch.bedroom_ceiling
-        - switch.bedroom_reading_left
-        - switch.bedroom_reading_right
-        - media_player.pioneer_onkyo
-        - media_player.pioneer_onkyo_zone_2
+      entity_id: !include ../entities/home_presence.yaml
   condition: "{{ trigger.from_state.state != trigger.to_state.state and trigger.from_state.state in ['off', 'on'] and trigger.to_state.state in ['off', 'on'] }}"
   action:
     - action: "{{ 'counter.decrement' if trigger.to_state.state == 'off' else 'counter.increment' }}"
