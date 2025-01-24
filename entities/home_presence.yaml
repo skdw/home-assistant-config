@@ -1,0 +1,16 @@
+#- switch.living_room_l1 - skip hall light
+- switch.living_room_l2
+- switch.living_room_l3
+- switch.living_room_l4
+- switch.living_room_l5
+- switch.living_room_l6
+- switch.bathroom_l1
+- switch.bathroom_l2
+- switch.balcony_l1
+- switch.balcony_l2
+- switch.wardrobe
+- switch.bedroom_ceiling
+- switch.bedroom_reading_left
+- switch.bedroom_reading_right
+- media_player.pioneer_onkyo
+- media_player.pioneer_onkyo_zone_2
