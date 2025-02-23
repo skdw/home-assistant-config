@@ -30,11 +30,12 @@ automation manual: !include_dir_merge_list automations/
 
 script: !include scripts.yaml
 
-scene ui: !include scenes.yaml
+#scene ui: !include scenes.yaml
 scene manual: !include_dir_merge_list scenes/
 
 homeassistant:
   external_url: !secret external_url
+  customize: !include configuration/customize.yaml
 
 http:
   use_x_forwarded_for: true
@@ -68,6 +69,7 @@ input_select:
       - "Radio FM"
       - "Network"
       - "Bluetooth"
+      - "TV"
 #  pc_power_mode:
 #    name: "PC power mode"
 #    options:

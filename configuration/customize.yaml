@@ -1,0 +1,28 @@
+# Add an entry for each entity that you want to overwrite
+light.bedroom_ceiling:
+  icon: 'mdi:ceiling-light'
+light.balcony_bamboo:
+  icon: 'mdi:lamp'
+#light.hall_wardrobe_tmp:
+light.living_room_sofa:
+  icon: 'mdi:ceiling-light'
+light.living_room_table:
+  icon: 'mdi:ceiling-light'
+light.kitchen_countertop:
+  icon: 'mdi:led-strip'
+light.bathroom_ceiling:
+  icon: 'mdi:wall-sconce-flat'
+light.bathroom_mirror:
+  icon: 'mdi:spotlight'
+light.balcony_ceiling:
+  icon: 'mdi:wall-sconce-flat'
+light.bedroom_reading_left:
+  icon: 'mdi:track-light'
+light.bedroom_reading_right:
+  icon: 'mdi:track-light'
+light.wardrobe_ceiling:
+  icon: 'mdi:wall-sconce-flat'
+light.wardrobe_clothes:
+  icon: 'mdi:led-strip'
+light.hall_entrance:
+  icon: 'mdi:wall-sconce-flat'

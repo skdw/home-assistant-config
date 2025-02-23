@@ -1,9 +1,9 @@
-- id: 'lights-tripleclick-scenes'
-  alias: YAML lights scenes on triple click
-  description: "Automates lights scenes triggered on switch triple-click"
+- id: 'light-tripleclick'
+  alias: YAML actions on light switch triple click
+  description: "Automates actions triggered on light switch triple-click"
   variables:
     switches: !include ../entities/light_tripleclick_switches.yaml
-    scenes: !include ../entities/light_tripleclick_scenes.yaml
+    actions: !include ../entities/light_tripleclick_scenes.yaml # TODO rename to actions
   trigger:
     - platform: state
       entity_id: !include ../entities/light_tripleclick_switches.yaml
@@ -18,8 +18,8 @@
       continue_on_timeout: false
     - delay:
         milliseconds: 500
-    - service: scene.turn_on
+    - action: "{{ actions[switches.index(trigger.entity_id)]['action'] }}"
       target:
-        entity_id: "{{ scenes[switches.index(trigger.entity_id)] }}"
+        entity_id: "{{ actions[switches.index(trigger.entity_id)]['target'] }}"
   mode: single
   max_exceeded: silent
