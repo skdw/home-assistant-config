@@ -3,7 +3,7 @@
   description: "Automates actions triggered on light switch triple-click"
   variables:
     switches: !include ../entities/light_tripleclick_switches.yaml
-    actions: !include ../entities/light_tripleclick_scenes.yaml # TODO rename to actions
+    actions: !include ../entities/light_tripleclick_actions.yaml
   trigger:
     - platform: state
       entity_id: !include ../entities/light_tripleclick_switches.yaml

@@ -2,16 +2,6 @@ title: Media
 path: media
 type: sidebar
 icon: mdi:play-box
-badges:
-  - entity: media_player.pioneer
-    name: 'Living room'
-    show_name: true
-    state_content: 'volume_level'
-  - entity: media_player.pioneer_onkyo_zone_2
-    icon: 'mdi:speaker-wireless'
-    name: 'Bathroom'
-    show_name: true
-    state_content: 'volume_level'
 cards:
   - !include 'card_grid_media.yaml'
 

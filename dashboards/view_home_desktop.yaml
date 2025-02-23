@@ -52,6 +52,11 @@ cards:
     cards:
       - !include 'card_grid_media.yaml'
       - !include 'card_hstack_scenes.yaml'
+      - type: tile
+        entity: cover.curtains
+        features:
+          - type: cover-open-close
+          - type: cover-position
       - initial_view: dayGridDay
         type: calendar
         entities:
