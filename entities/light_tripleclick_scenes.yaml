@@ -1,6 +1,14 @@
-- scene.lights_on
-- scene.lights_focus
-- scene.lights_cooking
-- scene.lights_dinner
-- scene.lights_evening
-- scene.lights_off
+- action: scene.turn_on
+  target: scene.lights_on
+- action: scene.turn_on
+  target: scene.lights_focus
+- action: scene.turn_on
+  target: scene.lights_cooking
+- action: scene.turn_on
+  target: scene.lights_dinner
+- action: scene.turn_on
+  target: scene.lights_evening
+- action: scene.turn_on
+  target: scene.lights_off
+- action: cover.toggle
+  target: cover.curtains

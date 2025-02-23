@@ -11,6 +11,8 @@
   condition:
   - condition: template # automate only if initial light and switch states match
     value_template: "{{ states(lights[switches.index(trigger.entity_id)]) == trigger.from_state.state }}"
+  - condition: template # keep only on/off states, drop unavailable and unknown
+    value_template: "{{ trigger.to_state.state == 'on' or trigger.to_state.state == 'off' }}"
   action:
   - service: "{{ 'light.turn_on' if(trigger.to_state.state == 'on') else 'light.turn_off' }}"
     target:
@@ -28,6 +30,8 @@
   condition:
   - condition: template # automate only if initial switch and light states match
     value_template: "{{ states(switches[lights.index(trigger.entity_id)]) == trigger.from_state.state }}"
+  - condition: template # keep only on/off states, drop unavailable and unknown
+    value_template: "{{ trigger.to_state.state == 'on' or trigger.to_state.state == 'off' }}"
   action:
   - service: "{{ 'switch.turn_on' if(trigger.to_state.state == 'on') else 'switch.turn_off' }}"
     target:
