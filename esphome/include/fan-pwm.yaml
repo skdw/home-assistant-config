@@ -1,7 +1,7 @@
-light:
-  - platform: status_led
-    name: "ESP LED"
-    pin: GPIO4
+# light:
+#   - platform: status_led
+#     name: "ESP LED"
+#     pin: GPIO4
 
 # PWM Fan
 output:
@@ -21,16 +21,16 @@ fan:
     output: ventilation_fan_pwm
     name: "Fan Speed"
 
-sensor:
-  - platform: pulse_counter
-    pin: GPIO21
-    name: PWM Fan RPM
-    id: fan_pulse
-    unit_of_measurement: 'RPM'
-    filters:
-      - multiply: 0.5
-    count_mode:
-      rising_edge: INCREMENT
-      falling_edge: DISABLE
-    update_interval: 3s
+#sensor:
+#  - platform: pulse_counter
+#    pin: GPIO21
+#    name: PWM Fan RPM
+#    id: fan_pulse
+#    unit_of_measurement: 'RPM'
+#    filters:
+#      - multiply: 0.5
+#    count_mode:
+#      rising_edge: INCREMENT
+#      falling_edge: DISABLE
+#    update_interval: 3s
 
