@@ -9,7 +9,7 @@ cards:
     square: false
     columns: 2
     cards:
-      - entity: light.hall_rail_entrance
+      - entity: light.hall_entrance
         type: tile
         features:
           - type: light-brightness

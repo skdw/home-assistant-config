@@ -87,7 +87,6 @@ elements:
           left: 65%
   - type: state-icon # PC
     entity: binary_sensor.pc_is_active
-    icon: mdi:desktop-tower-monitor
     style:
       top: 87.4%
       left: 71.5%
@@ -134,6 +133,18 @@ elements:
       top: 34%
       left: 55.8%
   - type: state-icon # Curtains
+    entity: cover.curtain_desk
+    style:
+      top: 79%
+      left: 85.5%
+      '--paper-item-icon-color': '#556'
+  - type: state-icon
+    entity: cover.curtain_table
+    style:
+      top: 40%
+      left: 85.5%
+      '--paper-item-icon-color': '#556'
+  - type: state-icon
     entity: cover.curtain_bedroom
     style:
       top: 75%
@@ -216,13 +227,13 @@ elements:
       top: 70%
       left: 83%
   - type: state-icon # Sensors door opened
-    entity: binary_sensor.door_hall_entrance
+    entity: binary_sensor.hall_entrance_contact
     style:
       top: 18%
       left: 16%
       '--paper-item-icon-color': '#445'
   - type: state-icon
-    entity: binary_sensor.door_hall_wardrobe
+    entity: binary_sensor.hall_wardrobe_door
     style:
       top: 10%
       left: 40.5%
@@ -301,13 +312,13 @@ elements:
       left: 66%
       '--paper-item-icon-color': '#445'
   - type: state-icon
-    entity: light.hall_rail_entrance
+    entity: light.hall_entrance
     style:
       top: 18%
       left: 21%
       '--paper-item-icon-color': '#445'
   - type: state-icon # Lights kitchen
-    entity: light.kitchen_spot
+    entity: light.kitchen_spots
     style:
       top: 37%
       left: 78%
