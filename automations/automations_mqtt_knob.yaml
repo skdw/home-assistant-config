@@ -1,0 +1,62 @@
+- id: 'mqtt_knob'
+  alias: MQTT knob
+  mode: queued
+  triggers:
+  - topic: zigbee2mqtt/Remote Bathroom audio knob
+    trigger: mqtt
+  - topic: zigbee2mqtt/Remote Bedroom audio knob
+    trigger: mqtt
+  conditions:
+  - condition: template
+    value_template: '{{ ''action'' in trigger.payload_json }}'
+  actions:
+  - variables:
+      media_player_entity: '{{ ''media_player.pioneer_onkyo_zone_2'' if (trigger.id
+        == ''0'') else ''media_player.pioneer_onkyo_zone_3'' }}'
+      command: '{{ trigger.payload_json.action  }}'
+      step_size: '{{ trigger.payload_json.action_step_size }}'
+      step_percent: '{% if is_number(step_size) %} {{ (step_size * 0.0005 ) | float
+        }} {% else %} {{ 0 }} {% endif %}'
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ command == ''toggle'' }}'
+      sequence:
+      - if:
+        - condition: template
+          value_template: '{{ states(media_player_entity) == "on" }}'
+        then:
+        - target:
+            entity_id: '{{ media_player_entity }}'
+          data: {}
+          action: media_player.turn_off
+        else:
+        - target:
+            entity_id: '{{ media_player_entity }}'
+          data: {}
+          action: media_player.turn_on
+        enabled: true
+    - conditions:
+      - condition: template
+        value_template: '{{ states(media_player_entity) == "on" }}'
+      - condition: template
+        value_template: '{{ command == ''brightness_step_down'' }}'
+      sequence:
+      - target:
+          entity_id: '{{ media_player_entity }}'
+        data:
+          volume_level: '{{ state_attr(media_player_entity, ''volume_level'') - step_percent
+            }}'
+        action: media_player.volume_set
+    - conditions:
+      - condition: template
+        value_template: '{{ states(media_player_entity) == "on" }}'
+      - condition: template
+        value_template: '{{ command == ''brightness_step_up'' }}'
+      sequence:
+      - target:
+          entity_id: '{{ media_player_entity }}'
+        data:
+          volume_level: '{{ state_attr(media_player_entity, ''volume_level'') + step_percent
+            }}'
+        action: media_player.volume_set
