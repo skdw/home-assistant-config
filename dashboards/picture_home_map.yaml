@@ -38,7 +38,7 @@ elements:
     entity: sensor.outlet_desk_1_power
     style:
       top: 88.7%
-      left: 83%
+      left: 85.7%
   - type: state-label
     entity: sensor.outlet_subwoofer_power
     style:
@@ -58,6 +58,14 @@ elements:
     style:
       top: 18%
       left: 68%
+      '--paper-item-icon-color': '#556'
+      '--state-media_player-active-color': white
+  - type: state-icon
+    entity: media_player.pioneer_onkyo_zone_3
+    icon: mdi:speaker-wireless
+    style:
+      top: 51%
+      left: 38%
       '--paper-item-icon-color': '#556'
       '--state-media_player-active-color': white
   - type: conditional
@@ -89,7 +97,7 @@ elements:
     entity: binary_sensor.pc_is_active
     style:
       top: 87.4%
-      left: 71.5%
+      left: 71%
       '--paper-item-icon-color': '#445'
       '--paper-item-icon-active-color': white
   - type: conditional
@@ -119,11 +127,11 @@ elements:
       '--paper-item-icon-active-color': white
   - type: conditional # Kitchen oven
     conditions:
-      - entity: sensor.oven_temperature_measurement
+      - entity: sensor.oven_temperature
         state_not: '0'
     elements:
       - type: state-label
-        entity: sensor.oven_temperature_measurement
+        entity: sensor.oven_temperature
         style:
           top: 37%
           left: 55.8%
@@ -236,7 +244,7 @@ elements:
     entity: binary_sensor.hall_wardrobe_door
     style:
       top: 10%
-      left: 40.5%
+      left: 39%
       '--paper-item-icon-color': '#445'
   - type: state-icon # Sensors water leakage
     entity: binary_sensor.kitchen_leakage
@@ -302,20 +310,32 @@ elements:
   - type: state-icon
     entity: light.living_room_sofa
     style:
-      top: 78.3%
+      top: 79%
       left: 66%
       '--paper-item-icon-color': '#445'
   - type: state-icon
-    entity: light.living_room_desk
+    entity: light.living_room_desk_screen
     style:
-      top: 87%
+      top: 87.4%
       left: 66%
+      '--paper-item-icon-color': '#445'
+  - type: state-icon
+    entity: light.living_room_desk_ambilight
+    style:
+      top: 87.4%
+      left: 76%
       '--paper-item-icon-color': '#445'
   - type: state-icon
     entity: light.hall_entrance
     style:
       top: 18%
       left: 21%
+      '--paper-item-icon-color': '#445'
+  - type: state-icon
+    entity: light.hall_wardrobe_tmp
+    style:
+      top: 10%
+      left: 42.5%
       '--paper-item-icon-color': '#445'
   - type: state-icon # Lights kitchen
     entity: light.kitchen_spots

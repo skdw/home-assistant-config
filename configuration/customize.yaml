@@ -26,3 +26,9 @@ light.wardrobe_clothes:
   icon: 'mdi:led-strip'
 light.hall_entrance:
   icon: 'mdi:wall-sconce-flat'
+media_player.pioneer_onkyo_zone_2:
+  friendly_name: 'Bathroom Zone'
+  icon: 'mdi:speaker-wireless'
+media_player.pioneer_onkyo_zone_3:
+  friendly_name: 'Bedroom Zone'
+  icon: 'mdi:speaker-wireless'
