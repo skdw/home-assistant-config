@@ -2,7 +2,6 @@ spotify_transfer:
   alias: Spotify Transfer
   sequence:
   - service: media_player.select_source
-    metadata: {}
     data:
       source: '{{ target_source }}'
     target:
@@ -19,60 +18,74 @@ spotify_transfer:
       required: true
 amp_play:
   alias: AMP Play
-  icon: 'mdi:speaker-play'
+  icon: mdi:speaker-play
   sequence:
   - service: script.spotify_transfer
     data:
-      target_source: 'Pioneer (Kamil)'
+      target_source: Pioneer (Kamil)
     continue_on_error: true
   - delay:
-      seconds: 2
-  - service: media_player.media_play
-    target:
-      entity_id: media_player.spotify
+      seconds: 1
+  - if: '{{ is_state_attr(''media_player.spotify'', ''supported_features'', ''media_play'')
+      }}'
+    then:
+      service: media_player.media_play
+      target:
+        entity_id: media_player.spotify
 amp_stop:
   alias: AMP Stop
-  icon: 'mdi:speaker-stop'
+  icon: mdi:speaker-stop
   sequence:
-  - service: script.spotify_transfer
-    data:
-      target_source: 'iPhone'
+  - data:
+      target_source: iPhone
     continue_on_error: true
+    action: script.spotify_transfer
   - delay:
-      seconds: 2
-  - service: media_player.media_pause
-    target:
-      entity_id: media_player.spotify
+      seconds: 1
+  - if:
+    - condition: template
+      value_template: '{{ state_attr(''media_player.spotify'', ''supported_features'')
+        | int | bitwise_and(1) == 1 }}'
+    then:
+      target:
+        entity_id: media_player.spotify
+      action: media_player.media_pause
     continue_on_error: true
-  - service: media_player.turn_off
-    target:
+  - target:
       entity_id: media_player.pioneer
+    action: media_player.turn_off
+  - target:
+      entity_id: media_player.pioneer_onkyo_zone_2
+    action: media_player.turn_off
+  - target:
+      entity_id: media_player.pioneer_onkyo_zone_3
+    action: media_player.turn_off
 home_welcome:
   alias: Welcome Home
-  icon: 'mdi:human-greeting'
+  icon: mdi:human-greeting
   sequence:
-  - action: script.turn_on # non-blocking call
+  - action: script.turn_on
     target:
       entity_id: script.amp_play
   - choose:
-    - conditions: "{{ not '05:00' < states('sensor.time') < '21:00' }}"
+    - conditions: '{{ not ''05:00'' < states(''sensor.time'') < ''21:00'' }}'
       sequence:
       - action: scene.turn_on
-        target: # IF evening - late time
+        target:
           entity_id: scene.lights_evening
-    - conditions: "{{ state_attr('sun.sun', 'elevation') < 5 }}"
+    - conditions: '{{ state_attr(''sun.sun'', ''elevation'') < 5 }}'
       sequence:
       - action: scene.turn_on
-        target: # ELIF evening - sun-based
+        target:
           entity_id: scene.lights_dinner
   - action: light.turn_on
     target:
       entity_id: light.wardrobe
 home_leave:
   alias: Leave Home
-  icon: 'mdi:exit-run'
+  icon: mdi:exit-run
   sequence:
-  - action: script.turn_on # non-blocking call
+  - action: script.turn_on
     target:
       entity_id: script.amp_stop
   - action: scene.turn_on

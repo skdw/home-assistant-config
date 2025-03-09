@@ -149,3 +149,32 @@ cards:
         - volume_level
       icon_tap_action:
         action: toggle
+  - type: conditional
+    conditions:
+      - condition: state
+        entity: media_player.pioneer_onkyo_zone_3
+        state: 'off'
+    card:
+      type: tile
+      entity: media_player.pioneer_onkyo_zone_3
+      vertical: false
+      show_entity_picture: true
+      icon_tap_action:
+        action: toggle
+  - type: conditional
+    conditions:
+      - condition: state
+        entity: media_player.pioneer_onkyo_zone_3
+        state_not: 'off'
+    card:
+      type: tile
+      entity: media_player.pioneer_onkyo_zone_3
+      vertical: false
+      show_entity_picture: true
+      features:
+        - type: media-player-volume-slider
+      state_content:
+        - state
+        - volume_level
+      icon_tap_action:
+        action: toggle

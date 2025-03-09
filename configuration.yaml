@@ -12,11 +12,11 @@ lovelace:
       mode: yaml
       title: Skynet
       icon: mdi:view-dashboard
-      show_in_sidebar: true
+      show_in_sidebar: false
       filename: dashboards/skynet.yaml
     skynet-mobile:
       mode: yaml
-      title: Skynet Mobile
+      title: Mobile
       icon: mdi:view-compact
       show_in_sidebar: true
       filename: dashboards/skynet_mobile.yaml
