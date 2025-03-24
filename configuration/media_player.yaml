@@ -146,4 +146,55 @@
     sound_mode_list: input_select.sound_mode|options
   browse_media_entity: media_player.pioneer_dlna
   device_class: receiver
-
+- platform: universal # sound mode assigned as source for Apple Home exposure
+  name: Pioneer Sound Mode
+  unique_id: pioneer_sound_mode
+  children:
+    - media_player.pioneer_onkyo
+  active_child_template: media_player.pioneer_onkyo
+  commands:
+    turn_on:
+      service: media_player.turn_on
+      target:
+        entity_id: media_player.pioneer_onkyo
+    turn_off:
+      service: media_player.turn_off
+      target:
+        entity_id: media_player.pioneer_onkyo
+    toggle:
+      service: media_player.toggle
+      target:
+        entity_id: media_player.pioneer_dlna
+    volume_up:
+      service: media_player.volume_up
+      target:
+        entity_id: media_player.pioneer_onkyo
+    volume_down:
+      service: media_player.volume_down
+      target:
+        entity_id: media_player.pioneer_onkyo
+    volume_set:
+      service: media_player.volume_set
+      target:
+        entity_id: media_player.pioneer_onkyo
+      data:
+        volume_level: "{{ volume_level }}"
+    volume_mute:
+      service: media_player.volume_mute
+      target:
+        entity_id: media_player.pioneer_onkyo
+      data:
+        is_volume_muted: "{{ is_volume_muted }}"
+    select_source:
+      action: input_select.select_option
+      target:
+        entity_id: input_select.sound_mode
+      data:
+        option: "{{ source }}"
+  attributes:
+    state: media_player.pioneer_onkyo
+    source_list: input_select.sound_mode|options
+    source: input_select.sound_mode
+    volume_level: media_player.pioneer_onkyo|volume_level
+    is_volume_muted: media_player.pioneer_onkyo|is_volume_muted
+  device_class: receiver
