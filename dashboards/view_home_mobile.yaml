@@ -27,6 +27,10 @@ badges:
   tap_action:
     action: navigate
     navigation_path: media
+- type: entity
+  entity: sensor.bus_home_metro
+  name: Bus
+  display_type: complete
 cards:
   - type: markdown
     content: |-
