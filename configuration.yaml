@@ -122,12 +122,5 @@ sensor:
     source: sensor.shower_humidity
     name: Shower humidity derivative
 
-#  - platform: rest
-#    resource: http://ip.jsontest.com
-#    name: External IP
-#    value_template: "{{ value_json.ip }}"
-
-#rest: !include configuration/rest_transport.yaml
-
 template: !include configuration/template.yaml
 

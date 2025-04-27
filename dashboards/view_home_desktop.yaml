@@ -17,6 +17,7 @@ cards:
           - entity: person.kamil_gorzynski
           - entity: sensor.iphone_kamil_battery_level
           - entity: sensor.iphone_kamil_distance
+          - entity: sensor.bus_home_metro
         state_color: true
       - graph: line
         type: sensor
