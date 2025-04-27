@@ -12,3 +12,7 @@
   target: scene.lights_off
 - action: cover.toggle
   target: cover.curtains
+- action: scene.turn_on
+  target: scene.lights_off
+- action: cover.toggle
+  target: cover.curtains
