@@ -66,10 +66,10 @@ input_select:
       - "Google TV"
       - "DVB-T2"
       - "PC"
+      - "Front AUX"
+      - "Projector"
       - "Radio FM"
       - "Network"
-      - "Bluetooth"
-      - "TV"
 #  pc_power_mode:
 #    name: "PC power mode"
 #    options:
