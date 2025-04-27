@@ -11,6 +11,19 @@ cards:
   cards:
   - type: markdown
     content: !include secret_join_wifi.yaml
-  - type: picture
-    image: /local/qr_wifi.png
-    alt_text: QR code - Wi-Fi
+  - type: markdown
+    content: !include secret_join_wifi_qr.yaml
+  - type: markdown
+    content: !include secret_webapp.yaml
+  - type: markdown
+    content: !include secret_webapp_qr.yaml
+  - type: markdown
+    content: |-
+        ### Home repository
+        **GitHub** skdw:
+          [home-assistant-config](https://github.com/skdw/home-assistant-config)
+
+        #### [Household guide](https://github.com/skdw/home-assistant-config?tab=readme-ov-file#household-guide)
+  - type: markdown
+    content: |-
+      <ha-qr-code data="https://github.com/skdw/home-assistant-config" scale="8" margin="0" width="150"></ha-qr-code>
