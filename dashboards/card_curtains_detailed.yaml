@@ -1,0 +1,35 @@
+type: horizontal-stack
+cards:
+  - features:
+      - type: cover-position
+    type: tile
+    entity: cover.curtain_bedroom
+    features_position: bottom
+    vertical: false
+    show_entity_picture: false
+    hide_state: true
+    name: Bedroom
+    icon_tap_action:
+      action: toggle
+  - features:
+      - type: cover-position
+    type: tile
+    entity: cover.curtain_desk
+    features_position: bottom
+    vertical: false
+    show_entity_picture: false
+    hide_state: true
+    name: Desk
+    icon_tap_action:
+      action: toggle
+  - features:
+      - type: cover-position
+    type: tile
+    entity: cover.curtain_table
+    features_position: bottom
+    vertical: false
+    show_entity_picture: false
+    hide_state: true
+    name: Table
+    icon_tap_action:
+      action: toggle

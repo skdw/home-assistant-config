@@ -1,0 +1,4 @@
+type: tile
+entity: cover.curtains
+features:
+  - type: cover-open-close
