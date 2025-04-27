@@ -4,11 +4,8 @@ icon: "mdi:solar-power"
 badges: []
 type: sidebar
 cards:
-- type: tile
-  entity: cover.curtains
-  features:
-    - type: cover-open-close
-    - type: cover-position
+- !include "card_curtains_simple.yaml"
+- !include "card_curtains_detailed.yaml"
 - !include "card_hstack_energy_co2.yaml"
 - type: horizontal-stack
   title: Sun light
