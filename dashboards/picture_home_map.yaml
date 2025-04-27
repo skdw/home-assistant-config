@@ -332,11 +332,17 @@ elements:
       left: 21%
       '--paper-item-icon-color': '#445'
   - type: state-icon
-    entity: light.hall_wardrobe_tmp
+    entity: light.hall_wardrobe
     style:
       top: 10%
       left: 42.5%
       '--paper-item-icon-color': '#445'
+  - type: state-icon
+    entity: light.top_strip
+    style:
+      top: 61%
+      left: 85.5%
+      '--paper-item-icon-color': '#556'
   - type: state-icon # Lights kitchen
     entity: light.kitchen_spots
     style:

@@ -2,8 +2,8 @@
 - light.kitchen_spots
 - light.kitchen_countertop
 - light.living_room_table
-- light.living_room_sofa
-- light.living_room_desk
+- light.living_room_top
+- light.ambient
 - light.bathroom_ceiling
 - light.bathroom_mirror
 - light.bedroom_ceiling

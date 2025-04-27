@@ -16,6 +16,8 @@
       state: 'on'
     light.living_room_desk:
       state: 'on'
+    light.top_strip:
+      state: 'on'
     light.bathroom_ceiling:
       state: 'on'
     light.bathroom_mirror:
@@ -52,6 +54,10 @@
       brightness: 150
       color_temp_kelvin: 4500
     light.living_room_desk:
+      state: 'on'
+      brightness: 200
+      color_temp_kelvin: 4500
+    light.top_strip:
       state: 'on'
       brightness: 200
       color_temp_kelvin: 4500
@@ -119,6 +125,10 @@
       state: 'on'
       brightness: 4
       color_temp_kelvin: 2000
+    light.top_strip:
+      state: 'on'
+      brightness: 4
+      color_temp_kelvin: 2000
     light.bedroom_ceiling:
       state: 'on'
       brightness: 4
@@ -151,10 +161,14 @@
       state: 'off'
     light.living_room_sofa:
       state: 'off'
-    light.living_room_desk:
+    light.living_room_desk_screen:
       state: 'on'
       brightness: 4
       color_temp_kelvin: 2000
+    light.living_room_desk_ambilight:
+      state: 'on'
+      brightness: 3
+      rgb_color: [255, 109, 61]
     light.bedroom_ceiling:
       state: 'off'
     light.bedroom_reading_left:
@@ -165,6 +179,10 @@
       state: 'on'
       brightness: 4
       color_temp_kelvin: 2000
+    light.top_strip:
+      state: 'on'
+      brightness: 3
+      rgb_color: [255, 102, 26]
     light.balcony_bamboo:
       state: 'on'
       brightness: 4
