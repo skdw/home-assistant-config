@@ -2,7 +2,7 @@
   alias: "YAML cooktop"
   trigger:
     - platform: state
-      entity_id: switch.cooktop
+      entity_id: binary_sensor.cooktop_power
       to: 'on'
     - platform: state
       entity_id: light.kitchen_countertop
@@ -25,7 +25,7 @@
            entity_id: switch.outlet_kitchen_hood
            state: 'on'
   action:
-    - service: "{{ 'switch.turn_on' if(trigger.entity_id == 'switch.cooktop') else 'switch.turn_off' }}"
+    - service: "{{ 'switch.turn_on' if(trigger.to_state.state == 'on') else 'switch.turn_off' }}"
       target:
         entity_id: switch.outlet_kitchen_hood
   mode: single

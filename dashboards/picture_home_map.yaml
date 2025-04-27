@@ -118,7 +118,7 @@ elements:
       '--paper-item-icon-color': '#445'
       '--paper-item-icon-active-color': white
   - type: state-icon # Kitchen cooktop
-    entity: switch.cooktop
+    entity: binary_sensor.cooktop_power
     icon: mdi:chef-hat
     style:
       top: 28.3%
