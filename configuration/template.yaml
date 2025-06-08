@@ -1,3 +1,4 @@
+# Define state-based template entities
 - sensor:
     - name: "Media source"
       unique_id: "media_source"
@@ -102,15 +103,79 @@
 - binary_sensor:
   - name: "Home active"
     unique_id: "home_active"
+    device_class: "presence"
     icon: 'mdi:human'
     state: >
       {{ states('counter.switches_enabled') | int > 0 }}
   - name: "PC is active"
     unique_id: "pc_is_active"
+    device_class: "power"
     state: >
       {{ states('sensor.pc_cpuload') != 'unavailable' and (now() - states.sensor.pc_cpuload.last_changed).total_seconds() < 300 }}
-     # {{ states('sensor.pc_kamil_active_ratio') | float(0) > 0 }}
-  #      - name: "Shower"
-  #        icon: "mdi:shower-head"
-  #        state: >
-  #          {{ states('sensor.environment_sensor_shower_humidity') | float(0) > 62 }}
+  - name: "Shower"
+    unique_id: "shower"
+    device_class: "occupancy"
+    icon: "mdi:shower-head"
+    state: >
+      {% if states('sensor.shower_humidity_derivative') | float(0) > 10 %}
+        on
+      {% elif states('sensor.shower_humidity_derivative') | float(0) < -1 %}
+        off
+      {% else %}
+        {{ this.state }}
+      {% endif %}
+# Define trigger-based template entities
+- triggers:
+  - trigger: state
+    entity_id:
+      - vacuum.s7
+    from: cleaning
+    to: returning
+  variables:
+    area: "{{ states('input_select.areas') | lower | replace(' ', '_') }}"
+    current_time: >
+      {% if trigger is defined %}
+        {{ now() }}
+      {% else %}
+        Never
+      {% endif %}
+  sensor:
+    - name: "Vacuum Cleaner Last Active"
+      state: "{{ current_time }}"
+      attributes:
+        living_room: >
+          {% if area == 'living_room' %}
+            {{ current_time }}
+          {% else %}
+            {{ this.attributes.living_room | default('Never') }}
+          {% endif %}
+        kitchen: >
+          {% if area == 'kitchen' %}
+            {{ current_time }}
+          {% else %}
+            {{ this.attributes.kitchen | default('Never') }}
+          {% endif %}
+        bedroom: >
+          {% if area == 'bedroom' %}
+            {{ current_time }}
+          {% else %}
+            {{ this.attributes.bedroom | default('Never') }}
+          {% endif %}
+        wardrobe: >
+          {% if area == 'wardrobe' %}
+            {{ current_time }}
+          {% else %}
+            {{ this.attributes.wardrobe | default('Never') }}
+          {% endif %}
+        hall: >
+          {% if area == 'hall' %}
+            {{ current_time }}
+          {% else %}
+            {{ this.attributes.hall | default('Never') }}
+          {% endif %}
+        bathroom: >
+          {% if area == 'bathroom' %}
+            {{ current_time }}
+          {% else %}
+            {{ this.attributes.bathroom | default('Never') }}
+          {% endif %}

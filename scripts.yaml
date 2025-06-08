@@ -91,3 +91,27 @@ home_leave:
   - action: scene.turn_on
     target:
       entity_id: scene.lights_off
+vacuum_clean_area:
+  sequence:
+  - variables:
+      area_codes:
+        Hall: 16
+        Bathroom: 17
+        Wardrobe: 18
+        Bedroom: 19
+        Living room: 20
+        Kitchen: 21
+  - variables:
+      area_code: '{{ area_codes[states(''input_select.areas'')] }}'
+  - action: vacuum.send_command
+    data:
+      command: app_segment_clean
+      params:
+      - segments:
+        - '{{ area_code }}'
+        repeat: 1
+    target:
+      entity_id: vacuum.s7
+    enabled: true
+  alias: Vacuum clean area
+  description: ''
