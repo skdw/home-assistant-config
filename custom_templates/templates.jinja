@@ -1,0 +1,4 @@
+{%- macro volume_to_db(volume_input) -%}
+  {%- set volume_float = volume_input | float(0) -%}
+  {{ (volume_float * 100) - 82 }}
+{%- endmacro -%}

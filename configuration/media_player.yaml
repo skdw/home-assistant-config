@@ -6,9 +6,7 @@
     - media_player.pioneer_dlna
   # - media_player.spotify
   active_child_template: >
-    {% if states('media_player.pioneer_dlna') == 'unavailable' %}
-       media_player.pioneer_onkyo
-    {% elif is_state_attr('media_player.pioneer_onkyo', 'source', 'Network') %}
+    {% if is_state_attr('media_player.pioneer_onkyo', 'source', 'Network') and states('media_player.pioneer_dlna') != 'unavailable' %}
        media_player.pioneer_dlna
     {% else %}
        media_player.pioneer_onkyo
@@ -108,7 +106,6 @@
       data:
         option: "{{ sound_mode }}"
   attributes:
-    state: media_player.pioneer_onkyo
     source_list: media_player.pioneer_onkyo|source_list
     volume_level: media_player.pioneer_onkyo|volume_level
     is_volume_muted: media_player.pioneer_onkyo|is_volume_muted
