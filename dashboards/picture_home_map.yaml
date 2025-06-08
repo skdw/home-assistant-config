@@ -7,7 +7,7 @@ elements:
     style:
       top: 84.5%
       left: 53%
-      '--paper-item-icon-color': '#445'
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-onblack)'
   - type: state-label
     entity: sensor.air_conditioner_temperature
     style:
@@ -23,7 +23,14 @@ elements:
     style:
       top: 71%
       left: 50.3%
-      '--paper-item-icon-color': '#445'
+      '--state-fan-active-color': 'var(--white-color)'
+      '--state-fan-inactive-color': 'var(--picture-map-icon-inactive-color-ongray)'
+  - type: state-icon # Vacuum cleaner
+    entity: vacuum.s7
+    style:
+      top: 18%
+      left: 46.5%
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-onblack)'
   - type: state-label # Power
     entity: sensor.outlet_audio_cabinet_power
     style:
@@ -37,11 +44,6 @@ elements:
   - type: state-label
     entity: sensor.outlet_desk_1_power
     style:
-      top: 88.7%
-      left: 85.7%
-  - type: state-label
-    entity: sensor.outlet_subwoofer_power
-    style:
       top: 83.2%
       left: 85.7%
   - type: state-icon # Pioneer
@@ -50,24 +52,24 @@ elements:
     style:
       top: 59%
       left: 50.3%
-      '--paper-item-icon-color': '#445'
-      '--state-media_player-active-color': white
+      '--state-media_player-active-color': 'var(--white-color)'
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-ongray)'
   - type: state-icon
     entity: media_player.pioneer_onkyo_zone_2
     icon: mdi:speaker-wireless
     style:
       top: 18%
       left: 68%
-      '--paper-item-icon-color': '#556'
-      '--state-media_player-active-color': white
+      '--state-media_player-active-color': 'var(--white-color)'
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-onblack)'
   - type: state-icon
     entity: media_player.pioneer_onkyo_zone_3
     icon: mdi:speaker-wireless
     style:
       top: 51%
       left: 38%
-      '--paper-item-icon-color': '#556'
-      '--state-media_player-active-color': white
+      '--state-media_player-active-color': 'var(--white-color)'
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-onblack)'
   - type: conditional
     conditions:
       - entity: media_player.pioneer_onkyo
@@ -97,9 +99,9 @@ elements:
     entity: binary_sensor.pc_is_active
     style:
       top: 87.4%
-      left: 71%
-      '--paper-item-icon-color': '#445'
-      '--paper-item-icon-active-color': white
+      left: 65%
+      '--state-binary_sensor-active-color': 'var(--picture-map-icon-active-color)'
+      '--state-binary_sensor-inactive-color': 'var(--picture-map-icon-inactive-color-ongray)'
   - type: conditional
     conditions:
       - entity: binary_sensor.pc_is_active
@@ -115,16 +117,15 @@ elements:
     style:
       top: 44.5%
       left: 16%
-      '--paper-item-icon-color': '#445'
-      '--paper-item-icon-active-color': white
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-ongray)'
   - type: state-icon # Kitchen cooktop
     entity: binary_sensor.cooktop_power
     icon: mdi:chef-hat
     style:
       top: 28.3%
       left: 55.8%
-      '--paper-item-icon-color': '#445'
-      '--paper-item-icon-active-color': white
+      '--state-binary_sensor-active-color': 'var(--picture-map-icon-active-color)'
+      '--state-binary_sensor-inactive-color': 'var(--picture-map-icon-inactive-color-ongray)'
   - type: conditional # Kitchen oven
     conditions:
       - entity: sensor.oven_temperature
@@ -145,33 +146,33 @@ elements:
     style:
       top: 79%
       left: 85.5%
-      '--paper-item-icon-color': '#556'
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-ongray)'
   - type: state-icon
     entity: cover.curtain_table
     style:
       top: 40%
       left: 85.5%
-      '--paper-item-icon-color': '#556'
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-onblack)'
   - type: state-icon
     entity: cover.curtain_bedroom
     style:
       top: 75%
       left: 38%
-      '--paper-item-icon-color': '#556'
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-onblack)'
   - type: state-icon # Sensors motion
-    entity: binary_sensor.motion_sink
+    entity: binary_sensor.bathroom_motion
     style:
       top: 18%
       left: 54%
-      '--paper-item-icon-color': '#556'
-      '--paper-item-icon-active-color': white
+      '--state-binary_sensor-active-color': 'var(--picture-map-icon-active-color)'
+      '--state-binary_sensor-off-color': 'var(--picture-map-icon-inactive-color-onblack)'
   - type: state-icon
-    entity: binary_sensor.motion_wardrobe
+    entity: binary_sensor.wardrobe_motion
     style:
       top: 37%
       left: 20%
-      '--paper-item-icon-color': '#556'
-      '--paper-item-icon-active-color': white
+      '--state-binary_sensor-active-color': 'var(--picture-map-icon-active-color)'
+      '--state-binary_sensor-off-color': 'var(--picture-map-icon-inactive-color-onblack)'
   - type: state-label # Sensors temperature
     entity: sensor.street_temperature
     style:
@@ -202,8 +203,8 @@ elements:
     style:
       top: 12.5%
       left: 83.9%
-      '--paper-item-icon-color': '#556'
-      '--paper-item-icon-active-color': white
+      '--state-binary_sensor-active-color': 'var(--picture-map-icon-active-color)'
+      '--state-binary_sensor-inactive-color': 'var(--picture-map-icon-inactive-color-onblack)'
   - type: state-label
     entity: sensor.shower_temperature
     style:
@@ -239,137 +240,154 @@ elements:
     style:
       top: 18%
       left: 16%
-      '--paper-item-icon-color': '#445'
+      '--state-binary_sensor-active-color': 'var(--picture-map-icon-active-color)'
+      '--state-binary_sensor-off-color': 'var(--picture-map-icon-inactive-color-onblack)'
   - type: state-icon
     entity: binary_sensor.hall_wardrobe_door
     style:
       top: 10%
       left: 39%
-      '--paper-item-icon-color': '#445'
+      '--state-binary_sensor-active-color': 'var(--picture-map-icon-active-color)'
+      '--state-binary_sensor-off-color': 'var(--picture-map-icon-inactive-color-ongray)'
   - type: state-icon # Sensors water leakage
     entity: binary_sensor.kitchen_leakage
     style:
       top: 28%
       left: 70.6%
-      '--paper-item-icon-color': '#445'
+      # active color = warning
+      '--state-binary_sensor-off-color': 'var(--picture-map-icon-inactive-color-ongray)'
   - type: state-icon
     entity: binary_sensor.air_cond_leakage
     style:
       top: 82.5%
       left: 40%
-      '--paper-item-icon-color': '#445'
+      # active color = warning
+      '--state-binary_sensor-off-color': 'var(--picture-map-icon-inactive-color-onblack)'
   - type: state-icon # Lights bedroom
     entity: light.bedroom_reading_left
     style:
       top: 51%
       left: 16%
-      '--paper-item-icon-color': '#556'
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-onblack)'
   - type: state-icon
     entity: light.bedroom_reading_right
     style:
       top: 72%
       left: 12%
       transform: scaleY(-1)
-      '--paper-item-icon-color': '#556'
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-onblack)'
   - type: state-icon
     entity: light.bedroom_ceiling
     style:
       top: 61.5%
       left: 26%
-      '--paper-item-icon-color': '#445'
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-ongray)'
   - type: state-icon # Lights bathroom
     entity: light.bathroom_ceiling
     style:
       top: 18%
       left: 61%
-      '--paper-item-icon-color': '#445'
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-onblack)'
   - type: state-icon
     entity: light.bathroom_mirror
     style:
       top: 10%
       left: 54.6%
-      '--paper-item-icon-color': '#445'
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-ongray)'
   - type: state-icon # Lights wardrobe
     entity: light.wardrobe_clothes
     style:
       top: 30%
       left: 16%
-      '--paper-item-icon-color': '#445'
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-ongray)'
   - type: state-icon
     entity: light.wardrobe_ceiling
     style:
       top: 37%
       left: 25%
-      '--paper-item-icon-color': '#445'
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-onblack)'
   - type: state-icon # Lights living room
     entity: light.living_room_table
     style:
       top: 48.3%
       left: 77%
-      '--paper-item-icon-color': '#445'
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-ongray)'
   - type: state-icon
     entity: light.living_room_sofa
     style:
       top: 79%
       left: 66%
-      '--paper-item-icon-color': '#445'
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-onblack)'
   - type: state-icon
     entity: light.living_room_desk_screen
     style:
       top: 87.4%
-      left: 66%
-      '--paper-item-icon-color': '#445'
+      left: 70%
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-ongray)'
   - type: state-icon
     entity: light.living_room_desk_ambilight
     style:
       top: 87.4%
-      left: 76%
-      '--paper-item-icon-color': '#445'
+      left: 75%
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-ongray)'
+  - type: state-icon
+    entity: light.living_room_desk_back
+    style:
+      top: 87.4%
+      left: 80%
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-ongray)'
+  - type: state-icon
+    entity: light.living_room_plant
+    style:
+      top: 87.4%
+      left: 85%
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-ongray)'
   - type: state-icon
     entity: light.hall_entrance
     style:
       top: 18%
       left: 21%
-      '--paper-item-icon-color': '#445'
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-onblack)'
   - type: state-icon
     entity: light.hall_wardrobe
     style:
       top: 10%
       left: 42.5%
-      '--paper-item-icon-color': '#445'
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-ongray)'
   - type: state-icon
     entity: light.top_strip
     style:
       top: 61%
       left: 85.5%
-      '--paper-item-icon-color': '#556'
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-ongray)'
   - type: state-icon # Lights kitchen
     entity: light.kitchen_spots
     style:
       top: 37%
       left: 78%
-      '--paper-item-icon-color': '#445'
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-onblack)'
   - type: state-icon
     entity: switch.outlet_kitchen_hood
     style:
       top: 28%
       left: 63.5%
-      '--paper-item-icon-color': '#445'
+      '--state-switch-on-color': 'var(--white-color)'
+      '--state-switch-off-color': 'var(--picture-map-icon-inactive-color-ongray)'
   - type: state-icon
     entity: light.kitchen_countertop
     style:
       top: 28%
       left: 78%
-      '--paper-item-icon-color': '#445'
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-ongray)'
   - type: state-icon # Lights balcony
     entity: light.balcony_ceiling
     style:
       top: 83%
       left: 21%
-      '--paper-item-icon-color': '#445'
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-onblack)'
   - type: state-icon
     entity: light.balcony_bamboo
     style:
       top: 83%
       left: 14%
-      '--paper-item-icon-color': '#445'
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-onblack)'
