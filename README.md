@@ -25,11 +25,12 @@ Dashboards are optimized for desktop browser, mobile app and wall panel display.
   - Wall light switches
   - Remote light switches, audio knobs
   - [Aqara C3](https://www.aqara.com/en/product/curtain-controller-c3/) curtains
-  - [Bseed](https://www.bseed.com/products/bseed-zigbee-eu-wall-sockets-power-outlets-with-energy-monitoring-kids-protection) Energy monitoring power outlets
+  - [Bseed](https://www.bseed.com/products/bseed-zigbee-eu-wall-sockets-power-outlets-with-energy-monitoring-kids-protection) - energy monitoring power outlets
 - [SmartThings](https://www.home-assistant.io/integrations/smartthings/) - home appliances
   - Air conditioner
   - Oven
   - Cooktop
+- [Roborock](https://www.home-assistant.io/integrations/roborock/) - robot vacuum cleaner
 - [Onkyo](https://www.home-assistant.io/integrations/onkyo/) - Pioneer home cinema (5.1 + Zone 2 + Zone 3)
 - [Spotify](https://www.home-assistant.io/integrations/spotify/)
 - [Android TV](https://www.home-assistant.io/integrations/androidtv/)
@@ -43,7 +44,7 @@ Dashboards are optimized for desktop browser, mobile app and wall panel display.
 - [Strava](https://github.com/craibo/ha_strava) - exercises tracking
 - [Electricity Maps](https://www.home-assistant.io/integrations/co2signal/) - CO2 intensity of home energy
 - [GIOŚ](https://www.home-assistant.io/integrations/gios/) - air quality index
-- [RESTful sensor](https://www.home-assistant.io/integrations/sensor.rest/) - Warsaw public transport live tracking
+- [ZTM Warsaw](https://github.com/solarssk/ztm_warsaw) - real-time public transport departures from ZTM Warsaw
 - [InfluxDB](https://www.home-assistant.io/integrations/influxdb/) - history logging
 - [Cloudflared](https://github.com/brenner-tobias/addon-cloudflared) - DNS tunnel for remote access
 - [ESPHome](https://www.home-assistant.io/integrations/esphome/) - PWM-controlled fans
@@ -54,7 +55,7 @@ Dashboards are optimized for desktop browser, mobile app and wall panel display.
 
 Quick actions offer a simple way to execute routines at home. They are displayed as a card with buttons, available in both the full desktop home view and the compact mobile wall panel.
 
-The card is illustrated in the image: ![screenshot_card_scenes](image/screenshot_card_scenes.png)
+The card is illustrated in the image: ![screenshot\_card\_scenes](image/screenshot_card_scenes.png)
 
 #### Entering and leaving home
 
@@ -73,7 +74,7 @@ Actions are designed to be triggered manually by the user upon entering or leavi
   - Transfers media playback to the mobile device, allowing the continuation of the track outside the home
   - Turns the media player off
 
-\* Enabled switches counter tracks states of the entities listed in [entities/home_presence.yaml](entities/home_presence.yaml). The list includes selected light switches and media players. If at least one entity is active, we infer home presence. Hall lights are intentionally excluded from the list as they are on both upon entering and leaving the home.
+\* Enabled switches counter tracks states of the entities listed in [entities/home\_presence.yaml](entities/home_presence.yaml). The list includes selected light switches and media players. If at least one entity is active, we infer home presence. Hall lights are intentionally excluded from the list as they are on both upon entering and leaving the home.
 
 #### Lights scenes
 
@@ -112,8 +113,11 @@ The final part of the interface provides controls for lighting automation in roo
 
 ## Setup
 
-### Overwrite core integrations
-Perform `home-assistant-core` repo sparse checkout (instead of full submodule init)
+## Overwriting Core Integrations
+
+This project includes customizations to selected core Home Assistant integrations. The modified modules are available in a forked repository: [github.com/skdw/home-assistant-core/tree/skynet](https://github.com/skdw/home-assistant-core/tree/skynet).
+
+To efficiently obtain these customized integrations, perform a sparse checkout of the `skdw/home-assistant-core` repository instead of a full submodule initialization. This method downloads only the necessary files, optimizing the cloning process.
 ```
 cd repos
 

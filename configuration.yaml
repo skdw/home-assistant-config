@@ -84,7 +84,7 @@ light: !include configuration/light.yaml
 
 counter:
   switches_enabled:
-    name: "Count enabled switches"
+    name: Count enabled switches
     minimum: 0
 
 input_boolean:
@@ -106,9 +106,6 @@ input_boolean:
   presence_stand_up:
     name: Presence Stand Up
     icon: "mdi:human-handsup"
-  shower:
-    name: Shower
-    icon: "mdi:shower-head"
   fan_audio_cabinet_auto:
     name: Fan Audio Cabinet - auto speed
     icon: "mdi:fan-auto"
