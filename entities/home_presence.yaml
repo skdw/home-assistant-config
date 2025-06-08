@@ -12,5 +12,6 @@
 - switch.bedroom_ceiling
 - switch.bedroom_reading_left
 - switch.bedroom_reading_right
+- switch.outlet_kitchen_hood
 - media_player.pioneer_onkyo
 - media_player.pioneer_onkyo_zone_2

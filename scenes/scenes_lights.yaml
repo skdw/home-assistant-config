@@ -53,14 +53,25 @@
       state: 'on'
       brightness: 150
       color_temp_kelvin: 4500
-    light.living_room_desk:
+    light.living_room_desk_screen:
       state: 'on'
-      brightness: 200
-      color_temp_kelvin: 4500
+      brightness: 255
+      color_temp_kelvin: 2000
+    light.living_room_desk_ambilight:
+      state: 'on'
+      brightness: 255
+      rgb_color: [255, 109, 61]
+    light.living_room_desk_back:
+      state: 'on'
+      brightness: 255
+      rgb_color: [255, 120, 50]
+    light.living_room_plant:
+      state: 'on'
+      brightness: 5
     light.top_strip:
       state: 'on'
-      brightness: 200
-      color_temp_kelvin: 4500
+      brightness: 255
+      rgb_color: [255, 163, 94]
     light.bedroom_ceiling:
       state: 'on'
       brightness: 80
@@ -96,10 +107,25 @@
       state: 'on'
       brightness: 40
       color_temp_kelvin: 2500
-    light.living_room_desk:
+    light.living_room_desk_screen:
+      state: 'on'
+      brightness: 4
+      color_temp_kelvin: 2000
+    light.living_room_desk_ambilight:
       state: 'on'
       brightness: 40
-      color_temp_kelvin: 2000
+      rgb_color: [255, 109, 61]
+    light.living_room_desk_back:
+      state: 'on'
+      brightness: 50
+      rgb_color: [255, 120, 0]
+    light.living_room_plant:
+      state: 'on'
+      brightness: 5
+    light.top_strip:
+      state: 'on'
+      brightness: 30
+      rgb_color: [255, 100, 40]
     switch.outlet_kitchen_hood:
       state: 'on'
 - id: 'yaml_lights_dinner'
@@ -121,14 +147,25 @@
       state: 'on'
       brightness: 10
       color_temp_kelvin: 2000
-    light.living_room_desk:
+    light.living_room_desk_screen:
       state: 'on'
       brightness: 4
       color_temp_kelvin: 2000
+    light.living_room_desk_ambilight:
+      state: 'on'
+      brightness: 65
+      rgb_color: [208, 255, 99]
+    light.living_room_desk_back:
+      state: 'on'
+      brightness: 50
+      rgb_color: [165, 255, 97]
+    light.living_room_plant:
+      state: 'on'
+      brightness: 5
     light.top_strip:
       state: 'on'
-      brightness: 4
-      color_temp_kelvin: 2000
+      brightness: 30
+      rgb_color: [255, 157, 55]
     light.bedroom_ceiling:
       state: 'on'
       brightness: 4
@@ -169,6 +206,13 @@
       state: 'on'
       brightness: 3
       rgb_color: [255, 109, 61]
+    light.living_room_desk_back:
+      state: 'on'
+      brightness: 10
+      rgb_color: [255, 120, 0]
+    light.living_room_plant:
+      state: 'on'
+      brightness: 5
     light.bedroom_ceiling:
       state: 'off'
     light.bedroom_reading_left:

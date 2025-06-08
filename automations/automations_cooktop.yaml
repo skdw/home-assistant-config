@@ -1,16 +1,25 @@
-- id: 'cooktop'
-  alias: "YAML cooktop"
+- id: 'kitchen_hood'
+  alias: 'YAML Kitchen Hood Control'
+  description: 'Automatically manages the kitchen hood state based on whether the cooktop is on or off and the status of the countertop lights.'
   trigger:
     - platform: state
       entity_id: binary_sensor.cooktop_power
       to: 'on'
+      alias: 'When cooktop turned ON'
+    - platform: state
+      entity_id: binary_sensor.cooktop_power
+      to: 'off'
+      alias: 'When cooktop turned OFF'
     - platform: state
       entity_id: light.kitchen_countertop
       to: 'off'
-  condition: 
+      alias: 'When countertop turned OFF'
+  condition:
+   alias: 'Conditions per trigger'
    condition: or
    conditions:
      - condition: and
+       alias: 'When cooktop turned ON and outlet is OFF'
        conditions:
          - condition: trigger
            id: 0
@@ -18,14 +27,27 @@
            entity_id: switch.outlet_kitchen_hood
            state: 'off'
      - condition: and
+       alias: 'When cooktop turned OFF and outlet is ON and countertop is OFF'
        conditions:
          - condition: trigger
            id: 1
          - condition: state
            entity_id: switch.outlet_kitchen_hood
            state: 'on'
+         - condition: state
+           entity_id: light.kitchen_countertop
+           state: 'off'
+     - condition: and
+       alias: 'When countertop turned ON and outlet is ON'
+       conditions:
+         - condition: trigger
+           id: 2
+         - condition: state
+           entity_id: switch.outlet_kitchen_hood
+           state: 'on'
   action:
     - service: "{{ 'switch.turn_on' if(trigger.to_state.state == 'on') else 'switch.turn_off' }}"
+      alias: 'Toggle the hood outlet'
       target:
         entity_id: switch.outlet_kitchen_hood
   mode: single
