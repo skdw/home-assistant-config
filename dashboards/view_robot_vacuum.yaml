@@ -1,0 +1,65 @@
+type: sections
+max-columns: 2
+title: Robot vacuum cleaner
+path: robot-vacuum
+icon: "mdi:robot-vacuum"
+sections:
+  - type: grid
+    cards:
+      - type: heading
+        heading: 🤖 Robot vacuum cleaner
+        heading_style: title
+      - features:
+          - type: select-options
+        type: tile
+        name: Cleaning area
+        entity: input_select.areas
+        features_position: bottom
+        vertical: false
+        hide_state: true
+        grid_options:
+          columns: 6
+          rows: 2
+        tap_action:
+          action: none
+        icon_tap_action:
+          action: none
+      - type: tile
+        entity: vacuum.s7
+        features_position: inline
+        vertical: false
+        show_entity_picture: false
+      - show_name: true
+        show_icon: false
+        type: button
+        name: Clean
+        entity: binary_sensor.s7_cleaning
+        grid_options:
+          columns: 6
+          rows: 1
+        show_state: false
+        tap_action:
+          action: perform-action
+          perform_action: script.vacuum_clean_area
+          target: {}
+      - type: picture
+        image_entity: image.s7_home
+        tap_action:
+          action: none
+        grid_options:
+          columns: full
+    column_span: 1
+  - type: grid
+    cards:
+      - type: heading
+        heading: 🧹 Last cleaning
+        heading_style: title
+      - type: markdown
+        content: |-
+          {% set areas_list = states.input_select.areas.attributes.options %}
+          {% for area in areas_list -%}
+             {% set area_key = area | replace(' ', '_') | lower -%}
+             {% set area_attr = state_attr('sensor.vacuum_cleaner_last_active', area_key) -%}
+             {% set elapsed_time_str = relative_time(strptime(area_attr, '%Y-%m-%d %H:%M:%S.%f%z'))+" ago" if area_attr != "TODO" else area_attr -%}
+             {{ area }}: **{{ elapsed_time_str }}**
+          {% endfor -%}

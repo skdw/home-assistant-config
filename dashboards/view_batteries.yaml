@@ -1,0 +1,53 @@
+path: batteries
+dense_section_placement: true
+type: sections
+title: Batteries
+icon: "mdi:battery"
+sections:
+  - type: grid
+    cards:
+      - type: heading
+        heading: Batteries devices
+      - type: entities
+        entities:
+          - entity: sensor.iphone_kamil_battery_level
+          - entity: sensor.iphone_kamil_watch_battery
+          - entity: sensor.nspanel_pro_battery_level
+  - type: grid
+    cards:
+      - type: heading
+        heading: Batteries sensors AAA
+      - type: entities
+        entities:
+          - entity: sensor.audio_cabinet_battery
+  - type: grid
+    cards:
+      - type: heading
+        heading: Batteries sensors CR2032
+      - type: entities
+        entities:
+          - entity: sensor.shower_battery
+          - entity: sensor.street_battery
+          - entity: sensor.kitchen_leakage_battery
+          - entity: sensor.hall_entrance_battery
+          - entity: sensor.hall_wardrobe_battery
+          - entity: sensor.hall_wardrobe_remote_battery
+          - entity: sensor.balcony_battery
+          - entity: sensor.air_cond_leakage_battery
+  - type: grid
+    cards:
+      - type: heading
+        heading: Batteries sensors CR2450
+      - type: entities
+        entities:
+          - entity: sensor.wardrobe_motion_battery
+          - entity: sensor.bathroom_motion_battery
+  - type: grid
+    cards:
+      - type: heading
+        heading: Batteries remotes
+      - type: entities
+        entities:
+          - entity: sensor.bathroom_mirror_remote_battery
+          - entity: sensor.remote_bathroom_audio_knob_battery
+          - entity: sensor.remote_bedroom_audio_knob_battery
