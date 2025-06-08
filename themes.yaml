@@ -5,7 +5,8 @@ skynet:
 
   # Main colors
   primary-color: '#82be5a'                            # Header
-  accent-color: '#f06330'                             # Accent color
+  accent-color: 'var(--white-color)'                  # Accent color
+  #accent-color: '#f06330'                            # Accent color alt
   dark-primary-color: 'var(--accent-color)'           # Hyperlinks                     
   light-primary-color: 'var(--accent-color)'          # Horizontal line in about
                                        
@@ -17,13 +18,20 @@ skynet:
   # State colors
   state-icon-color: 'var(--primary-color)'
   state-icon-active-color: 'var(--primary-color)'
-  state-icon-unavailable-color: 'rgba(var(--primary-color), 0.6)'
+  state-icon-unavailable-color: 'var(--warning-color)'
+  #state-unavailable-color: 'var(--state-icon-error-color)'
   state-active-color: 'var(--primary-color)'
-  state-inactive-color: 'rgba(var(--primary-color), 0.6)'
+  state-binary_sensor-inactive-color: 'var(--disabled-text-color)'
+  state-binary_sensor-active-color: 'var(--primary-color)'
+  #state-cover-inactive-color: 'var(--disabled-text-color)'
+  #state-cover-active-color: 'var(--primary-color)'
+  state-input_boolean-inactive-color: 'var(--disabled-text-color)'
   state-media_player-active-color: 'var(--primary-color)'
-  state-input_boolean-off-color: 'var(--disabled-text-color)'
-  paper-item-icon-color: 'var(--primary-color)' #'#556' for home map
-  paper-item-icon-active-color: 'white'
+
+  # Picture map colors
+  picture-map-icon-inactive-color-onblack: '#556'
+  picture-map-icon-inactive-color-ongray: '#445'
+  picture-map-icon-active-color: 'var(--accent-color)'
 
   # Material Design icons
   mdc-theme-secondary: 'var(--accent-color)'
