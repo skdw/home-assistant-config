@@ -1,0 +1,75 @@
+type: grid
+cards:
+  - type: heading
+    heading: 🖲️ Media remote control
+    heading_style: title
+  - type: tile
+    features_position: bottom
+    vertical: false
+    entity: script.remote_control
+    name: Volume Up
+    tap_action:
+      action: perform-action
+      perform_action: script.remote_control
+      target: {}
+      data:
+        button_pressed: Volume Up
+    icon: mdi:volume-plus
+    hide_state: true
+  - type: tile
+    features_position: bottom
+    vertical: false
+    entity: script.remote_control
+    name: Volume Down
+    tap_action:
+      action: perform-action
+      perform_action: script.remote_control
+      target: {}
+      data:
+        button_pressed: Volume Down
+    icon: mdi:volume-minus
+    hide_state: true
+  - type: tile
+    features_position: bottom
+    vertical: false
+    entity: script.remote_control
+    name: Power
+    tap_action:
+      action: perform-action
+      perform_action: script.remote_control
+      target: {}
+      data:
+        button_pressed: Power
+    icon: mdi:power
+    hide_state: true
+  - type: tile
+    features_position: bottom
+    vertical: false
+    entity: script.remote_control
+    name: Input
+    tap_action:
+      action: perform-action
+      perform_action: script.remote_control
+      target: {}
+      data:
+        button_pressed: Input
+    icon: mdi:import
+    hide_state: true
+  - type: heading
+    heading: 🎚️ Current menu level
+    heading_style: title
+  - type: tile
+    entity: input_number.remote_menu_level
+    features_position: bottom
+    vertical: false
+  - type: tile
+    entity: input_number.remote_submenu_selection
+    features_position: bottom
+    vertical: false
+  - type: heading
+    heading: 📠 Rendered menu text
+    heading_style: title
+  - type: markdown
+    content: |-
+      ## {{ states('sensor.remote_menu_line_1') }}
+      ## {{ states('sensor.remote_menu_line_2') }}
