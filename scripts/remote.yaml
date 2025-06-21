@@ -1,0 +1,99 @@
+remote_control:
+  alias: IR remote control YAML
+  description: ""
+  fields:
+    button_pressed:
+      selector:
+        select:
+          options:
+            - Volume Up
+            - Volume Down
+            - Power
+            - Input
+      required: true
+      name: Button pressed
+  sequence:
+    - data:
+        entity_id: input_datetime.remote_last_button_press
+        timestamp: "{{ now().timestamp() }}"
+      action: input_datetime.set_datetime
+    - variables:
+        remote: !include ../entities/remote.yaml
+        current_menu_level: "{{ states('input_number.remote_menu_level') | int }}"
+        current_submenu_selection: "{{ states('input_number.remote_submenu_selection') | int }}"
+        current_menu: "{{ remote[current_menu_level] }}"
+        current_submenu: "{{ current_menu['submenu'][current_submenu_selection] }}"
+        max_menu_options: "{{ remote | length }}"
+        max_submenu_options: "{{ current_menu['submenu'] | length }}"
+    - choose:
+        - conditions: "{{ button_pressed == 'Volume Up' }}"
+          alias: "Button: Volume Up"
+          sequence:
+            - choose:
+                - conditions: "{{ current_menu_level <= 2 }}"
+                  sequence:
+                    - action: input_number.set_value
+                      data:
+                        value: 2
+                      target:
+                        entity_id: input_number.remote_menu_level
+                    - target:
+                        entity_id: media_player.pioneer
+                      action: media_player.volume_up
+                      data: {}
+                - conditions: "{{ current_menu_level > 2 }}"
+                  sequence:
+                    - data:
+                        entity_id: input_number.remote_submenu_selection
+                        value: >-
+                          {{ (current_submenu_selection + 1) % max_submenu_options }}
+                      action: input_number.set_value
+        - conditions: "{{ button_pressed == 'Volume Down' }}"
+          alias: "Button: Volume Down"
+          sequence:
+            - choose:
+                - conditions: "{{ current_menu_level <= 2 }}"
+                  sequence:
+                    - action: input_number.set_value
+                      data:
+                        value: 2
+                      target:
+                        entity_id: input_number.remote_menu_level
+                    - target:
+                        entity_id: media_player.pioneer
+                      action: media_player.volume_down
+                      data: {}
+                - conditions: "{{ current_menu_level > 2 }}"
+                  sequence:
+                    - action: input_number.set_value
+                      data:
+                        entity_id: input_number.remote_submenu_selection
+                        value: >
+                          {% set prev_selection = current_submenu_selection - 1 %}
+                          {% if prev_selection < 0 %}
+                            {{ max_submenu_options - 1 }}
+                          {% else %}
+                            {{ prev_selection }}
+                          {% endif %}
+        - conditions: "{{ button_pressed == 'Power' }}"
+          alias: "Button: Power"
+          sequence:
+          - repeat:
+              for_each: "{{ current_submenu.on_press }}"
+              sequence:
+              - action: "{{ repeat.item.action }}"
+                target: "{{ repeat.item.target }}"
+                data: "{{ repeat.item.data }}"
+        - conditions: "{{ button_pressed == 'Input' }}"
+          alias: "Button: Input"
+          sequence:
+            - action: input_number.set_value
+              data:
+                entity_id: input_number.remote_menu_level
+                value: >
+                  {%- set next_level = (current_menu_level + 1) % max_menu_options -%}
+                  {{ next_level }}
+            - action: input_number.set_value
+              data:
+                entity_id: input_number.remote_submenu_selection
+                value: 0

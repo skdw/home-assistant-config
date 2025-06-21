@@ -28,7 +28,8 @@ tts:
 automation ui: !include automations.yaml
 automation manual: !include_dir_merge_list automations/
 
-script: !include scripts.yaml
+script ui: !include scripts.yaml
+script manual: !include_dir_merge_named scripts/
 
 #scene ui: !include scenes.yaml
 scene manual: !include_dir_merge_list scenes/
@@ -118,6 +119,26 @@ sensor:
   - platform: derivative
     source: sensor.shower_humidity
     name: Shower humidity derivative
+
+input_number:
+  remote_menu_level:
+    name: Remote Menu Level
+    min: 0
+    max: 5 # 0-5 for the main menus
+    step: 1
+    initial: 0
+  remote_submenu_selection:
+    name: Remote Submenu Selection
+    min: 0
+    max: 10 # Adjust max based on the largest number of sub-options in any menu
+    step: 1
+    initial: 0
+
+input_datetime:
+  remote_last_button_press:
+    name: Remote Last Button Press
+    has_date: true
+    has_time: true
 
 template: !include configuration/template.yaml
 

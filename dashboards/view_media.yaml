@@ -1,7 +1,10 @@
 title: Media
 path: media
-type: sidebar
+type: sections
 icon: mdi:play-box
-cards:
-  - !include 'card_grid_media.yaml'
-
+max_columns: 2
+sections:
+- type: grid
+  cards: # TODO: refactor yaml cards into sections
+    - !include 'card_grid_media.yaml'
+- !include 'section_media_remote.yaml'

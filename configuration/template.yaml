@@ -179,3 +179,18 @@
           {% else %}
             {{ this.attributes.bathroom | default('Never') }}
           {% endif %}
+- triggers:
+  - trigger: state
+    entity_id:
+      - input_datetime.remote_last_button_press
+      - input_number.remote_menu_level
+      - input_number.remote_submenu_selection
+  variables:
+    remote: !include ../entities/remote.yaml
+    current_menu_level: "{{ states('input_number.remote_menu_level') | int }}"
+    current_submenu_selection: "{{ states('input_number.remote_submenu_selection') | int }}"
+  sensor:
+    - name: "Remote Menu Line 1"
+      state: "{{ remote[current_menu_level]['menu_name'] }}"
+    - name: "Remote Menu Line 2"
+      state: "{{ remote[current_menu_level]['submenu'][current_submenu_selection]['name'] }}"
