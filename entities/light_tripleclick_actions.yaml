@@ -14,5 +14,5 @@
   target: cover.curtains
 - action: scene.turn_on
   target: scene.lights_off
-- action: cover.toggle
+- action: "{{ 'cover.open_cover' if states('cover.curtain_bedroom') == 'closed' else 'cover.close_cover' }}"
   target: cover.curtains

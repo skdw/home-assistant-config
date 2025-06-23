@@ -4,6 +4,7 @@ views:
   - !include "view_home_mobile.yaml"
   - !include "view_lights_desktop.yaml"
   - !include "view_lights_mobile.yaml"
+  - !include "view_lights_scenes.yaml"
   - !include "view_lights_living_room.yaml"
   - !include "view_lights_bathroom.yaml"
   - !include "view_lights_bedroom.yaml"
