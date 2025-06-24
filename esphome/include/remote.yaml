@@ -1,0 +1,41 @@
+globals:
+  - id: remoteButton
+    type: std::string
+    restore_value: no
+    initial_value: ''
+
+remote_receiver:
+- pin: # --- IR remote ---
+    number: GPIO17
+    inverted: true
+    mode:
+      input: true
+      pullup: true
+  #dump: samsung
+  #dump: all
+  on_samsung:
+    then:
+    - logger.log:
+        format: "Received remote code 0x%08X"
+        args: ['x.data']
+    - lambda: |-
+        const std::map<uint32_t, std::string> remoteButtons = {
+          { 0xE0E0E01F, "Volume Up" },
+          { 0xE0E0D02F, "Volume Down" },
+          { 0xE0E040BF, "Power" },
+          { 0xE0E0807F, "Input" }
+        };
+        auto it = remoteButtons.find(x.data);
+        if(it != remoteButtons.end()) {
+          id(remoteButton) = it->second;
+        }
+        else {
+          id(remoteButton) = "";
+          ESP_LOGD("IR Remote", "Unknown command, sending empty message");
+        }
+    - homeassistant.action:
+        action: script.remote_control
+        data:
+          button_pressed: !lambda 'return id(remoteButton).c_str();'
+    - lambda: |-
+        ESP_LOGD("IR Remote", "Executed action: %s", id(remoteButton).c_str());
