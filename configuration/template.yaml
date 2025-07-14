@@ -3,12 +3,16 @@
     - name: "Media source"
       unique_id: "media_source"
       icon: "mdi:multimedia"
+      variables:
+        radio_net_stations: !include ../entities/media_radio_net_stations.yaml
+        radio_net_stations_urls: "{{ radio_net_stations | map(attribute='url') | list }}"
       state: >
         {% set src = state_attr('media_player.pioneer_onkyo', 'source') %}
         {% set dlna_src = state_attr('media_player.pioneer_dlna', 'media_content_id') %}
         {% if (src == "Network" and dlna_src == "spotify://") %}  {{ "Spotify" }}
         {% elif (src == "Network" and dlna_src == "airplay://") %}  {{ "Airplay" }}
-        {% elif (src == "Network" and dlna_src is not none and 'radioparadise' in dlna_src ) %}  {{ "Radio Paradise TODO YAML" }}
+        {% elif (src == "Network" and dlna_src in radio_net_stations_urls) %}
+          {{ radio_net_stations | selectattr('url', 'eq', dlna_src) | map(attribute='name') | first }}
         {% elif (src == "Network") %}  {{ dlna_src }}
         {% elif (src == "Google TV"  and state_attr('media_player.chromecast_pioneer', 'app_name') is not none) %}
           {{ state_attr('media_player.chromecast_pioneer', 'app_name') }}
