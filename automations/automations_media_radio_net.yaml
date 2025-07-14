@@ -1,0 +1,20 @@
+- id: "media-radio-net"
+  alias: YAML Media - Play Radio NET
+  mode: single
+  triggers:
+    - trigger: state
+      entity_id: input_select.media_radio_net
+  variables:
+    stations: !include ../entities/media_radio_net_stations.yaml
+  conditions:
+  actions:
+    - alias: Get the NET radio station
+      variables:
+        station: "{{ stations | selectattr('name', 'eq', trigger.to_state.state) | first }}"
+    - alias: Play NET media
+      action: media_player.play_media
+      target:
+        entity_id: media_player.pioneer_dlna
+      data:
+        media_content_id: "{{ station['url'] }}"
+        media_content_type: audio/aac

@@ -1,0 +1,12 @@
+- name: Radio Paradise
+  url: https://stream-uk1.radioparadise.com/aac-320
+- name: BBC World
+  url: http://stream.live.vc.bbcmedia.co.uk/bbc_world_service
+- name: Radio Nowy Świat
+  url: https://go-audio.toya.net.pl/63214
+- name: Kol Chai Music Israel
+  url: https://live.kcm.fm/livemusic
+- name: Radio 357
+  url: https://go-audio.toya.net.pl/63225
+- name: NTS Radio
+  url: https://stream-relay-geo.ntslive.net/stream
