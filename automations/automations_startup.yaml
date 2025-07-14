@@ -1,0 +1,23 @@
+- id: 'on-startup'
+  alias: On Startup
+  mode: single
+  triggers:
+    - trigger: homeassistant
+      event: start
+  conditions:
+  actions:
+    - alias: Populate input_select.media_radio_net options
+      sequence:
+        - variables:
+            stations: !include ../entities/media_radio_net_stations.yaml
+            stations_names: "{{ stations | map(attribute='name') | list }}"
+        - service: input_select.set_options
+          target:
+            entity_id: input_select.media_radio_net
+          data:
+            options: "{{ stations_names }}"
+    - action: frontend.set_theme
+      metadata: {}
+      data:
+        mode: dark # TODO white theme support
+        name: skynet

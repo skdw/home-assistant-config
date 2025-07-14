@@ -77,7 +77,7 @@ cards:
             - entity: input_select.pioneer_source
               state: Network
           row:
-            entity: input_select.radio_net
+            entity: input_select.media_radio_net
         - type: conditional
           conditions:
             - entity: media_player.pioneer
