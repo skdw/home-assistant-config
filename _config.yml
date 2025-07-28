@@ -1,0 +1,12 @@
+# Jekyll configuration
+#exclude:
+#  - custom_components/
+#  - repos/
+exclude:
+  - '**/*'
+
+include:
+  - '_config.yml'
+  - 'README.md'
+  - 'entities/*'
+  - 'image/*'
