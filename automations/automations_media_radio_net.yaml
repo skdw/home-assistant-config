@@ -6,8 +6,13 @@
       entity_id: input_select.media_radio_net
   variables:
     stations: !include ../entities/media_radio_net_stations.yaml
-  conditions:
   actions:
+    - alias: Check the media player availability
+      if:
+        - condition: template
+          value_template: "{{ has_value('media_player.pioneer_dlna') == False }}"
+      then:
+        - stop: "Target media_player.pioneer_dlna is not available"
     - alias: Get the NET radio station
       variables:
         station: "{{ stations | selectattr('name', 'eq', trigger.to_state.state) | first }}"
@@ -18,3 +23,21 @@
       data:
         media_content_id: "{{ station['url'] }}"
         media_content_type: audio/aac
+- id: "media-radio-net-select-return"
+  alias: YAML Media - Radio NET selector reset to 'Other'
+  mode: single
+  triggers:
+    - trigger: state
+      entity_id: media_player.pioneer_dlna
+      attribute: media_content_id
+  variables:
+    radio_net_stations: !include ../entities/media_radio_net_stations.yaml
+    radio_net_stations_urls: "{{ radio_net_stations | map(attribute='url') | list }}"
+  conditions:
+    - "{{ trigger.to_state.state not in radio_net_stations_urls }}"
+  actions:
+    - action: input_select.select_option
+      target:
+        entity_id: input_select.media_radio_net
+      data:
+        option: Other

@@ -74,7 +74,7 @@ input_select:
   media_radio_net:
     name: Radio NET
     options: # Populate options dynamically on startup from `entities/media_radio_net_stations.yaml`
-      - "Initializing..."
+      - "Other"
     icon: "mdi:music-box"
 #  pc_power_mode:
 #    name: "PC power mode"
