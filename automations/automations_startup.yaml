@@ -10,7 +10,7 @@
       sequence:
         - variables:
             stations: !include ../entities/media_radio_net_stations.yaml
-            stations_names: "{{ stations | map(attribute='name') | list }}"
+            stations_names: "{{ (stations | map(attribute='name') | list) + ['Other'] }}"
         - service: input_select.set_options
           target:
             entity_id: input_select.media_radio_net
