@@ -189,6 +189,10 @@
       - input_datetime.remote_last_button_press
       - input_number.remote_menu_level
       - input_number.remote_submenu_selection
+      - sensor.volume_pioneer
+      - sensor.media_title
+      - media_player.pioneer
+    to: # ignore attribute changes
   variables:
     remote: !include ../entities/remote.yaml
     current_menu_level: "{{ states('input_number.remote_menu_level') | int }}"
@@ -197,4 +201,34 @@
     - name: "Remote Menu Line 1"
       state: "{{ remote[current_menu_level]['menu_name'] }}"
     - name: "Remote Menu Line 2"
-      state: "{{ remote[current_menu_level]['submenu'][current_submenu_selection]['name'] }}"
+      state: >
+        {% set current_submenu = remote[current_menu_level]['submenu'][current_submenu_selection]  %}
+        {% if 'name' in current_submenu %}
+          {{ current_submenu['name'] }}
+        {% else %}
+          {{ "" }}
+        {% endif %}
+    - name: "Remote Menu Line 3"
+      state: >
+        {% set current_submenu = remote[current_menu_level]['submenu'][current_submenu_selection]  %}
+        {% if 'line3' in current_submenu %}
+          {{ current_submenu['line3'] }}
+        {% else %}
+          {{ "" }}
+        {% endif %}
+    - name: "Remote Menu Line 4"
+      state: >
+        {% set current_submenu = remote[current_menu_level]['submenu'][current_submenu_selection]  %}
+        {% if 'line4' in current_submenu %}
+          {{ current_submenu['line4'] }}
+        {% else %}
+          {{ "" }}
+        {% endif %}
+    - name: "Remote Menu Line 5"
+      state: >
+        {% set current_submenu = remote[current_menu_level]['submenu'][current_submenu_selection]  %}
+        {% if 'line5' in current_submenu %}
+          {{ current_submenu['line5'] }}
+        {% else %}
+          {{ "" }}
+        {% endif %}

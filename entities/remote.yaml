@@ -13,6 +13,9 @@
   submenu:
     - submenu_selection: 0
       name: "{{ states('sensor.media_title') | replace('unknown', '') }}"
+      line3: "{{ states('sensor.media_album') | replace('unknown', '') }}"
+      line4: "{{ states('sensor.media_artist') | replace('unknown', '') }}"
+      line5: "{{ states('sensor.media_source') | replace('unknown', '') }}"
       on_press:
         - action: input_number.set_value
           data:
@@ -46,7 +49,7 @@
   menu_name: "Media source: {{ state_attr('media_player.pioneer', 'source') }}"
   submenu:
     - submenu_selection: 0
-      name: '← Network →'
+      name: '< Network >'
       on_press:
         - target:
             entity_id: media_player.pioneer
@@ -54,7 +57,7 @@
             source: Network
           action: media_player.select_source
     - submenu_selection: 1
-      name: '← Google TV →'
+      name: '< Google TV >'
       on_press:
         - target:
             entity_id: media_player.pioneer
@@ -62,7 +65,7 @@
             source: Google TV
           action: media_player.select_source
     - submenu_selection: 2
-      name: '← PC →'
+      name: '< PC >'
       on_press:
         - target:
             entity_id: media_player.pioneer
@@ -70,7 +73,7 @@
             source: PC
           action: media_player.select_source
     - submenu_selection: 3
-      name: '← Radio FM →'
+      name: '< Radio FM >'
       on_press:
         - target:
             entity_id: media_player.pioneer
@@ -81,7 +84,7 @@
   menu_name: "Sound mode: {{ state_attr('media_player.pioneer', 'sound_mode') }}"
   submenu:
     - submenu_selection: 0
-      name: '← Auto →'
+      name: '< Auto >'
       on_press:
         - target:
             entity_id: media_player.pioneer
@@ -89,7 +92,7 @@
             sound_mode: Auto
           action: media_player.select_sound_mode
     - submenu_selection: 1
-      name: '← Surround →'
+      name: '< Surround >'
       on_press:
         - target:
             entity_id: media_player.pioneer
@@ -97,7 +100,7 @@
             sound_mode: Surround
           action: media_player.select_sound_mode
     - submenu_selection: 2
-      name: '← Extended →'
+      name: '< Extended >'
       on_press:
         - target:
             entity_id: media_player.pioneer
@@ -105,7 +108,7 @@
             sound_mode: Extended
           action: media_player.select_sound_mode
     - submenu_selection: 3
-      name: '← Desk →'
+      name: '< Desk >'
       on_press:
         - target:
             entity_id: media_player.pioneer
