@@ -32,14 +32,9 @@ remote_control:
             - choose:
                 - conditions: "{{ current_menu_level <= 2 }}"
                   sequence:
-                    - action: input_number.set_value
-                      data:
-                        value: 2
-                      target:
-                        entity_id: input_number.remote_menu_level
                     - target:
                         entity_id: media_player.pioneer
-                      action: media_player.volume_up
+                      action: media_player.volume_up # remote menu will change with a separate automation
                       data: {}
                 - conditions: "{{ current_menu_level > 2 }}"
                   sequence:
@@ -54,14 +49,9 @@ remote_control:
             - choose:
                 - conditions: "{{ current_menu_level <= 2 }}"
                   sequence:
-                    - action: input_number.set_value
-                      data:
-                        value: 2
-                      target:
-                        entity_id: input_number.remote_menu_level
                     - target:
                         entity_id: media_player.pioneer
-                      action: media_player.volume_down
+                      action: media_player.volume_down # remote menu will change with a separate automation
                       data: {}
                 - conditions: "{{ current_menu_level > 2 }}"
                   sequence:
