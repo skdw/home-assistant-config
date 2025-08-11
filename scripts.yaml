@@ -94,15 +94,14 @@ home_leave:
 vacuum_clean_area:
   sequence:
   - variables:
-      area_codes:
+      vacuum_area_codes:
         Hall: 16
         Bathroom: 17
-        Wardrobe: 18
+        Kitchen: 18
         Bedroom: 19
         Living room: 20
-        Kitchen: 21
   - variables:
-      area_code: '{{ area_codes[states(''input_select.areas'')] }}'
+      area_code: '{{ vacuum_area_codes[states(''input_select.areas'')] }}'
   - action: vacuum.send_command
     data:
       command: app_segment_clean

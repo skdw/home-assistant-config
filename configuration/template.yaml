@@ -115,7 +115,7 @@
     unique_id: "pc_is_active"
     device_class: "power"
     state: >
-      {{ states('sensor.pc_cpuload') != 'unavailable' and (now() - states.sensor.pc_cpuload.last_changed).total_seconds() < 300 }}
+      {{ states('sensor.pc_cpuload') != 'unavailable' and (now() - states.sensor.pc_cpuload.last_changed).total_seconds() < 1000 }}
   - name: "Shower"
     unique_id: "shower"
     device_class: "occupancy"

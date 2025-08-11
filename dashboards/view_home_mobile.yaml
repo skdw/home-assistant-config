@@ -33,8 +33,9 @@ badges:
     action: navigate
     navigation_path: media
 - type: entity
-  entity: sensor.bus_home_metro
-  name: Bus
+  entity: !secret sensor_bus
+  show_icon: false
+  name: 🚍 Bus
   display_type: complete
 sections:
   - type: grid
