@@ -124,6 +124,7 @@ sensor:
   - platform: derivative
     source: sensor.shower_humidity
     name: Shower humidity derivative
+    time_window: "00:15:00"
 
 input_number:
   remote_menu_level:

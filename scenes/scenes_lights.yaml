@@ -266,3 +266,5 @@
       state: 'off'
     switch.outlet_kitchen_hood:
       state: 'off'
+    light.hall_wardrobe:
+      state: 'off'

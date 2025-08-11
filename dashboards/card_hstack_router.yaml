@@ -3,10 +3,8 @@ cards:
   - graph: line
     type: sensor
     detail: 1
-    entity: sensor.orange_funbox_6_kib_s_received
-    name: Router received
+    entity: sensor.orange_funbox_6_download_speed
   - graph: line
     type: sensor
     detail: 1
-    entity: sensor.orange_funbox_6_kib_s_sent
-    name: Router sent
+    entity: sensor.orange_funbox_6_upload_speed

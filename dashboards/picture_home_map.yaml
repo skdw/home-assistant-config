@@ -1,5 +1,5 @@
 type: picture-elements
-image: /local/floor_plan_dark.png
+image: /local/floor_plan.png
 elements:
   - type: state-icon # Air conditioner
     icon: mdi:air-conditioner
@@ -176,13 +176,23 @@ elements:
   - type: state-label # Sensors temperature
     entity: sensor.street_temperature
     style:
-      top: 38%
-      left: 96.5%
+      top: 47.1%
+      left: 96%
   - type: state-label
     entity: sensor.street_humidity
     style:
-      top: 40.5%
-      left: 96.5%
+      top: 49.6%
+      left: 96%
+  - type: state-label
+    entity: sensor.bedroom_temperature
+    style:
+      top: 60.0%
+      left: 18%
+  - type: state-label
+    entity: sensor.bedroom_humidity
+    style:
+      top: 62.5%
+      left: 18%
   - type: state-label
     entity: sensor.balcony_temperature
     style:
@@ -218,15 +228,10 @@ elements:
   - type: state-label # Sensors air quality
     entity: sensor.home_air_quality_index
     style:
-      top: 85.8%
-      left: 33%
-  - type: state-label
-    entity: sensor.home_pm2_5
-    style:
       top: 88.3%
       left: 33%
   - type: state-label
-    entity: sensor.home_pm10
+    entity: sensor.home_pm2_5
     style:
       top: 90.8%
       left: 33%
