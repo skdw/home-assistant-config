@@ -1,6 +1,7 @@
 # home-assistant-config
 
 ![Check config](https://github.com/skdw/home-assistant-config/actions/workflows/ci.yml/badge.svg)
+![Jekyll](https://github.com/skdw/home-assistant-config/actions/workflows/jekyll-gh-pages.yml/badge.svg)
 
 My [Home Assistant](http://home-assistant.io) configuration. The system is running live on Raspberry Pi 4 with Home Assistant OS.
 
@@ -22,10 +23,16 @@ Dashboards are optimized for desktop browser, mobile app and wall panel display.
     - Human presence sensor
     - Light level sensor
 - [Zigbee2MQTT](https://www.zigbee2mqtt.io/)
-  - Wall light switches
-  - Remote light switches, audio knobs
-  - [Aqara C3](https://www.aqara.com/en/product/curtain-controller-c3/) curtains
-  - [Bseed](https://www.bseed.com/products/bseed-zigbee-eu-wall-sockets-power-outlets-with-energy-monitoring-kids-protection) - energy monitoring power outlets
+  - [BSEED](https://www.bseed.com/products/bseed-zigbee-1-2-3gang-1-2-3way-switch-wall-smart-light-switch-for-staircase) [TS0001](https://www.zigbee2mqtt.io/devices/TS0001.html) - wall light switches (with neutral, relays cannot cut off smart bulbs power)
+  - [BSEED](https://www.bseed.com/products/bseed-zigbee-eu-wall-sockets-power-outlets-with-energy-monitoring-kids-protection) [TS011F](https://www.zigbee2mqtt.io/devices/TS011F_plug_1.html) - energy monitoring power outlets
+  - [IKEA E1743](https://www.zigbee2mqtt.io/devices/E1743.html) - remote light switches
+  - [Tuya ERS-10TZBVK-AA](https://www.zigbee2mqtt.io/devices/ERS-10TZBVK-AA.html) - audio knobs
+  - [COOLO CS-201Z](https://www.zigbee2mqtt.io/devices/CS-201Z.html) - soil moisture sensors
+  - [Aqara C3](https://www.aqara.com/en/product/curtain-controller-c3/) [ZNCLDJ01LM](https://www.zigbee2mqtt.io/devices/ZNCLDJ01LM.html) - curtains
+- [MQTT](https://www.home-assistant.io/integrations/mqtt/) - [publishing](https://www.home-assistant.io/integrations/mqtt/#publish--dump-actions) home media states for the pixel display
+  - Hardware - board: [AdaFruit MatrixPortal S3](https://learn.adafruit.com/adafruit-matrixportal-s3/)
+  - Hardware - display: HUB75 [RGB-Matrix-P2-64x64](https://www.waveshare.com/wiki/RGB-Matrix-P2-64x64), four panels chained
+  - OS - [CircuitPython](https://www.adafruit.com/circuitpython)
 - [SmartThings](https://www.home-assistant.io/integrations/smartthings/) - home appliances
   - Air conditioner
   - Oven
@@ -34,7 +41,6 @@ Dashboards are optimized for desktop browser, mobile app and wall panel display.
 - [Onkyo](https://www.home-assistant.io/integrations/onkyo/) - Pioneer home cinema (5.1 + Zone 2 + Zone 3)
 - [Spotify](https://www.home-assistant.io/integrations/spotify/)
 - [Android TV](https://www.home-assistant.io/integrations/androidtv/)
-- [System Bridge](https://www.home-assistant.io/integrations/system_bridge/) - Windows PC
 - [HomeKit Bridge](https://www.home-assistant.io/integrations/homekit/) - HASS entities exposed to Apple Home (complements the Matter service)
   - Pioneer home cinema, as Apple media player accessory
   - Curtains
@@ -48,6 +54,13 @@ Dashboards are optimized for desktop browser, mobile app and wall panel display.
 - [InfluxDB](https://www.home-assistant.io/integrations/influxdb/) - history logging
 - [Cloudflared](https://github.com/brenner-tobias/addon-cloudflared) - DNS tunnel for remote access
 - [ESPHome](https://www.home-assistant.io/integrations/esphome/) - PWM-controlled fans
+
+## Applications
+- Web UI (local & remote)
+- [Home Assistant Companion](https://companion.home-assistant.io/) 
+  - macOS, iOS, watchOS
+  - [Sonoff NSPanel Pro](https://sonoff.tech/en-eu/products/sonoff-nspanel-pro-smart-home-control-panel-86-type) [WebView](https://blakadder.com/android-panel-webview/) [GUIDE](https://www.youtube.com/watch?v=c1Dqdz8yHD) - wall control panel
+- [Hass.Agent](https://github.com/hass-agent/hass.agent) - Windows PC
 
 ## Household guide
 
