@@ -9,6 +9,80 @@ Dashboards are optimized for desktop browser, mobile app and wall panel display.
 
 ## Integrations
 
+```mermaid
+graph TD
+    %% Define styles for different device types
+    classDef server fill:#f96,stroke:#333,stroke-width:4px;
+    classDef coordinator fill:#9CF,stroke:#333,stroke-width:2px;
+    classDef zigbee_device fill:#FFC,stroke:#333,stroke-width:2px;
+    classDef integration fill:#EFE,stroke:#333,stroke-width:2px;
+
+    %% --- Node Definitions ---
+    S(Home Assistant Server)
+
+
+    %% --- Connections to Coordinators/Devices ---
+    subgraph "Zigbee Network 1"
+      Dirigera
+      Lights --Zigbee--> Dirigera
+      Sensors --Zigbee--> Dirigera
+    end
+    subgraph "Zigbee Network 2"
+      Curtains --Zigbee--> CC2652P
+      WS["Wall Switches"] --Zigbee--> CC2652P
+    end
+    
+    IR["IR remote"] --GPIO--> ESP32
+    ESP32 --PWM--> Fans
+    ESP32 --BLE--> Pr
+    IR --BLE--> GTV
+ 
+    %% --- Media connections ---
+    subgraph "Media"
+      GTV["Google TV"] --HDMI--> Onkyo
+      PC["PC"] --HDMI--> Onkyo
+      Spotify --native--> Onkyo
+      iOS --AirPlay--> Onkyo
+      Onkyo --passive--> SP["3-zone speakers"]
+      Onkyo --HDMI--> Pr["Projector"]
+    end
+
+    %% --- Connections to SmartThings ---
+    subgraph "Home Appliances"
+      AC["Air Conditioner"] --Wi-Fi--> SM
+      Oven --Wi-Fi--> SM
+      Cooktop --Wi-Fi--> SM
+    end   
+
+    %% --- Connections to Server ---
+    Dirigera --Matter_Bridge--> S
+    CC2652P --USB_Zigbee2MQTT--> S
+    ESP32 --WiFi_ESPHome--> S
+    SM["SmartThings"] --Cloud_API--> S
+    Onkyo["Pioneer Amplifier"] --TCP_IP--> S
+    
+    %% --- Connections from Server ---
+    S --LAN_Bridge--> AH["Apple HomeKit"]
+    S --Cloudflare_Tunnel--> I["External domain"]
+    S --MQTT--> MP["Adafruit MatrixPortal S3"]
+    
+    %% Output
+    Dirigera --LAN_Bridge--> AH
+    MP --HUB75--> RGB["RGB Matrix Display"]
+    S --HTTP--> CA["Companion App (Web + Mobile + Wall Panel)"]
+    I --HTTPS--> CA
+
+    %% Apply Styles
+    class S server;
+    class Dirigera,CC2652P coordinator;
+    class Lights,Sensors,Curtains,WS zigbee_device;
+    class SM,Onkyo,ESP32,AH,MP,I integration;
+
+    %% Add a clickable link to the server node
+    %% click S "[https://www.home-assistant.io/](https://www.home-assistant.io/)" "Visit the Home Assistant Website"
+
+```
+
 - [Matter](https://www.home-assistant.io/integrations/matter)
   - IKEA Dirigera Hub
     - Zigbee lights (IKEA, Philips)
