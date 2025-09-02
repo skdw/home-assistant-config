@@ -142,7 +142,7 @@ graph TD
 
 Quick actions offer a simple way to execute routines at home. They are displayed as a card with buttons, available in both the full desktop home view and the compact mobile wall panel.
 
-The card is illustrated in the image: ![screenshot\_card\_scenes](image/screenshot_card_scenes.png)
+The card is illustrated in the image: <img src="image/screenshot_card_scenes.png" alt="A screenshot of scenes card">
 
 #### Entering and leaving home
 
