@@ -13,6 +13,12 @@ cards:
       - type: entity
         entity: media_player.google_tv
         state_color: true
+      - type: entity
+        entity: media_player.chromecast_google_tv
+        state_color: true
+      - type: entity
+        entity: switch.projector
+        state_color: true
   - type: conditional
     conditions:
       - condition: state

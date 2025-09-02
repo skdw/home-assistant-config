@@ -14,8 +14,8 @@
         {% elif (src == "Network" and dlna_src in radio_net_stations_urls) %}
           {{ radio_net_stations | selectattr('url', 'eq', dlna_src) | map(attribute='name') | first }}
         {% elif (src == "Network") %}  {{ dlna_src }}
-        {% elif (src == "Google TV"  and state_attr('media_player.chromecast_pioneer', 'app_name') is not none) %}
-          {{ state_attr('media_player.chromecast_pioneer', 'app_name') }}
+        {% elif (src == "Google TV"  and state_attr('media_player.chromecast_google_tv', 'app_name') is not none) %}
+          {{ state_attr('media_player.chromecast_google_tv', 'app_name') }}
         {% elif (src is not none) %} {{ src }}
         {% else %} {{ "" }}
         {% endif %}
@@ -24,8 +24,8 @@
       icon: "mdi:music"
       state: >
         {% set src = state_attr('media_player.pioneer_onkyo', 'source') %}
-        {% if (src == "Google TV" and state_attr('media_player.chromecast_pioneer', 'media_title') is not none) %}
-          {{ state_attr('media_player.chromecast_pioneer', 'media_title') }}
+        {% if (src == "Google TV" and state_attr('media_player.chromecast_google_tv', 'media_title') is not none) %}
+          {{ state_attr('media_player.chromecast_google_tv', 'media_title') }}
         {% elif(src == "Radio FM") %}
           {{ states('input_select.radio_fm') }}
         {% else %} {{ state_attr('media_player.pioneer_onkyo', 'media_title') }}
@@ -35,8 +35,8 @@
       icon: "mdi:album"
       state: >
         {% set src = state_attr('media_player.pioneer_onkyo', 'source') %}
-        {% if (src == "Google TV" and state_attr('media_player.chromecast_pioneer', 'media_album_name') is not none) %}
-          {{ state_attr('media_player.chromecast_pioneer', 'media_album_name') }}
+        {% if (src == "Google TV" and state_attr('media_player.chromecast_google_tv', 'media_album_name') is not none) %}
+          {{ state_attr('media_player.chromecast_google_tv', 'media_album_name') }}
         {% else %} {{ state_attr('media_player.pioneer_onkyo', 'media_album_name') }}
         {% endif %}
     - name: "Media artist"
@@ -44,8 +44,8 @@
       icon: "mdi:account-music"
       state: >
         {% set src = state_attr('media_player.pioneer_onkyo', 'source') %}
-        {% if (src == "Google TV" and state_attr('media_player.chromecast_pioneer', 'media_artist') is not none) %}
-          {{ state_attr('media_player.chromecast_pioneer', 'media_artist') }}
+        {% if (src == "Google TV" and state_attr('media_player.chromecast_google_tv', 'media_artist') is not none) %}
+          {{ state_attr('media_player.chromecast_google_tv', 'media_artist') }}
         {% else %} {{ state_attr('media_player.pioneer_onkyo', 'media_artist') }}
         {% endif %}
     - name: "Volume Pioneer"
@@ -121,13 +121,21 @@
     device_class: "occupancy"
     icon: "mdi:shower-head"
     state: >
-      {% if states('sensor.shower_humidity_derivative') | float(0) > 10 %}
+      {% if states('sensor.shower_humidity_derivative') | float(0) > 6 %}
         on
       {% elif states('sensor.shower_humidity_derivative') | float(0) < -1 %}
         off
       {% else %}
         {{ this.state }}
       {% endif %}
+- switch:
+  - name: "Projector"
+    unique_id: "projector"
+    state: "{{ is_state('binary_sensor.projector_power', 'on') }}"
+    turn_on:
+      action: script.projector_turn_on
+    turn_off:
+      action: script.projector_turn_off
 # Define trigger-based template entities
 - triggers:
   - trigger: state
