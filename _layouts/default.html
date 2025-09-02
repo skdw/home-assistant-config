@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title | default: "Home Assistant Docs" }}</title>
+
+    <!-- 1. Link to the github-markdown-css stylesheet from a CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.8.1/github-markdown.min.css">
+
+    <!-- 2. Add some simple styles to recreate the centered, fixed-width layout -->
+    <style>
+      body {
+        box-sizing: border-box;
+        min-width: 200px;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 45px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      }
+
+      pre.highlight {
+        overflow: auto;
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      /* Adjust for mobile screens */
+      @media (max-width: 767px) {
+        body {
+          padding: 15px;
+        }
+      }
+    </style>
+</head>
+<body>
+
+    {{ content }}
+
+    <!-- ========================================================= -->
+    <!--  MERMAID.JS SCRIPT WITH FIX FOR JEKYLL'S CODE BLOCKS      -->
+    <!-- ========================================================= -->
+
+    <!-- 1. Include the Mermaid.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+
+    <!-- 2. Find Jekyll's code blocks and convert them for Mermaid -->
+    <script>
+        // Find all the code blocks that Jekyll has processed for Mermaid
+        const mermaidCodeBlocks = document.querySelectorAll('pre code.language-mermaid');
+
+        mermaidCodeBlocks.forEach(codeBlock => {
+            // Create a new div element that Mermaid can process
+            const mermaidContainer = document.createElement('div');
+            mermaidContainer.classList.add('mermaid');
+
+            // Get the raw Mermaid syntax from the code block
+            mermaidContainer.textContent = codeBlock.textContent;
+
+            // The <pre> tag is the parent of the <code> tag.
+            // We replace the entire <pre> element with our new div.
+            const preElement = codeBlock.parentNode;
+            preElement.parentNode.replaceChild(mermaidContainer, preElement);
+        });
+
+        // 3. Initialize Mermaid to render the graphs in our new divs
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+
+</body>
+</html>

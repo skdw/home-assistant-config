@@ -3,10 +3,20 @@
 #  - custom_components/
 #  - repos/
 exclude:
-  - '**/*'
+  - '.github/*'
+  - 'automations/*'
+  - 'configuration/*'
+  - 'custom_components/*'
+  - 'custom_templates/*'
+  - 'dashboards/*'
+  - 'esphome/*'
+  - 'mocks_ci/*'
+  - 'repos/*'
+  - 'scenes/*'
+  - 'scripts/*'
 
 include:
   - '_config.yml'
   - 'README.md'
   - 'entities/*'
-  - 'image/*'
+  - 'image/screenshot_card_scenes.png'
