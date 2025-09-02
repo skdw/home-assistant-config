@@ -25,6 +25,10 @@ remote_control:
         current_submenu: "{{ current_menu['submenu'][current_submenu_selection] }}"
         max_menu_options: "{{ remote | length }}"
         max_submenu_options: "{{ current_menu['submenu'] | length }}"
+        last_reported_elapsed: "{{ (as_datetime(now()) - as_datetime(this.last_reported)).total_seconds() }}"
+    - if: "{{ current_menu_level > 2 and last_reported_elapsed < 0.2 }}"
+      then:
+        stop: "Burst press locked"
     - choose:
         - conditions: "{{ button_pressed == 'Volume Up' }}"
           alias: "Button: Volume Up"
@@ -72,8 +76,8 @@ remote_control:
               for_each: "{{ current_submenu.on_press }}"
               sequence:
               - action: "{{ repeat.item.action }}"
-                target: "{{ repeat.item.target }}"
-                data: "{{ repeat.item.data }}"
+                target: "{{ repeat.item.target | default('') }}"
+                data: "{{ repeat.item.data | default('') }}"
         - conditions: "{{ button_pressed == 'Input' }}"
           alias: "Button: Input"
           sequence:
@@ -81,8 +85,10 @@ remote_control:
               data:
                 entity_id: input_number.remote_menu_level
                 value: >
-                  {%- set next_level = (current_menu_level + 1) % max_menu_options -%}
+                  {%- set next_level = (current_menu_level - 1) % (max_menu_options - 2) + 2 -%}
                   {{ next_level }}
+              #  iterate from level=2, skip prev pages
+              #    {%- set next_level = (current_menu_level + 1) % max_menu_options -%}
             - action: input_number.set_value
               data:
                 entity_id: input_number.remote_submenu_selection

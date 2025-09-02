@@ -114,3 +114,11 @@ vacuum_clean_area:
     enabled: true
   alias: Vacuum clean area
   description: ''
+do_nothing:
+  alias: Do nothing
+  sequence:
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 0
+      milliseconds: 1

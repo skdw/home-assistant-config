@@ -70,6 +70,12 @@ elements:
       left: 38%
       '--state-media_player-active-color': 'var(--white-color)'
       '--state-icon-color': 'var(--picture-map-icon-inactive-color-onblack)'
+  - type: state-icon
+    entity: switch.projector
+    style:
+      top: 61%
+      left: 81%
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-ongray)'
   - type: conditional
     conditions:
       - entity: media_player.pioneer_onkyo

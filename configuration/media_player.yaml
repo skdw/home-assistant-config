@@ -4,10 +4,13 @@
   children:
     - media_player.pioneer_onkyo
     - media_player.pioneer_dlna # may need to rename from pioneer_kamil
+    - media_player.chromecast_google_tv
   # - media_player.spotify
   active_child_template: >
-    {% if is_state_attr('media_player.pioneer_onkyo', 'source', 'Network') and states('media_player.pioneer_dlna') != 'unavailable' %}
+    {% if is_state_attr('media_player.pioneer_onkyo', 'source', 'Network') and has_value('media_player.pioneer_dlna') %}
        media_player.pioneer_dlna
+    {% elif is_state_attr('media_player.pioneer_onkyo', 'source', 'Google TV') and has_value('media_player.chromecast_google_tv') %}
+       media_player.chromecast_google_tv
     {% else %}
        media_player.pioneer_onkyo
     {% endif %}

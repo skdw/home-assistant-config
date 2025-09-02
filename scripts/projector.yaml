@@ -1,0 +1,49 @@
+projector_turn_on:
+  alias: Projector turn ON
+  sequence:
+  - action: media_player.onkyo_message
+    data:
+      entity_id: media_player.pioneer_onkyo
+      iscp_message: CTVPWRON
+    alias: Projector Power ON
+    enabled: true
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 40
+      milliseconds: 0
+    enabled: true
+  - action: media_player.select_source
+    metadata: {}
+    data:
+      source: Google TV
+    target:
+      entity_id: media_player.pioneer_onkyo
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+      milliseconds: 0
+  - action: remote.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: remote.google_tv
+projector_turn_off:
+  alias: Projector turn OFF
+  sequence:
+  - action: button.press
+    metadata: {}
+    data: {}
+    target:
+      entity_id: button.esp4_mi_remote_power
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - action: button.press
+    metadata: {}
+    data: {}
+    target:
+      entity_id: button.esp4_mi_remote_power

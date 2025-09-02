@@ -9,7 +9,7 @@
             entity_id: input_number.remote_menu_level
             value: 3
 - menu_level: 1 # Media player status
-  menu_name: "Pioneer: {{ states('media_player.pioneer') }}"
+  menu_name: "Media {{ states('media_player.pioneer') }} Proj {{ states('switch.projector') }}"
   submenu:
     - submenu_selection: 0
       name: "{{ states('sensor.media_title') | replace('unknown', '') }}"
@@ -32,10 +32,10 @@
             entity_id: input_number.remote_menu_level
             value: 3
 - menu_level: 3
-  menu_name: "Pioneer: {{ states('media_player.pioneer') }}"
+  menu_name: "Media {{ states('media_player.pioneer') }} Proj {{ states('switch.projector') }}"
   submenu:
     - submenu_selection: 0
-      name: "Turn {{ 'on' if states('media_player.pioneer') == 'off' else 'off' }}"
+      name: "Turn {{ 'on' if (states('media_player.pioneer') == 'off' and states('switch.projector') == 'off') else 'off' }}"
       on_press:
         - action: "{{ 'media_player.turn_on' if states('media_player.pioneer') == 'off' else 'media_player.turn_off' }}"
           target:
