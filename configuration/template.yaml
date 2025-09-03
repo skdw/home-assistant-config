@@ -129,6 +129,18 @@
         {{ this.state }}
       {% endif %}
 - switch:
+  - name: "PC"
+    unique_id: "pc"
+    icon: "mdi:desktop-tower"
+    state: "{{ is_state('binary_sensor.pc_is_active', 'on') }}"
+    turn_on:
+      action: button.press
+      target:
+        entity_id: button.wake_on_lan_pc
+      data: {}
+    turn_off:
+      action: shell_command.pc_hibernate
+      data: {}
   - name: "Projector"
     unique_id: "projector"
     state: "{{ is_state('binary_sensor.projector_power', 'on') }}"
