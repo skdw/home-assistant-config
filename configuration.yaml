@@ -146,5 +146,13 @@ input_datetime:
     has_date: true
     has_time: true
 
+# Shell commands require manual ssh config as they work in a separate hass core docker container (shared volume)
+shell_command:
+  nspanel_pwd: 'ssh -F /config/.ssh/config nspanel "pwd"'
+  nspanel_home: 'ssh -F /config/.ssh/config nspanel "ANDROID_DATA=/data input keyevent 3"'
+  nspanel_screen: 'ssh -F /config/.ssh/config nspanel "ANDROID_DATA=/data input keyevent 26"'
+  pc_win32: 'ssh -F /config/.ssh/config pc "Get-CimInstance win32_operatingsystem"'
+  pc_hibernate: 'ssh -F /config/.ssh/config pc "shutdown /h"'
+
 template: !include configuration/template.yaml
 

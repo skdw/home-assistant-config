@@ -102,12 +102,12 @@ elements:
           top: 76%
           left: 65%
   - type: state-icon # PC
-    entity: binary_sensor.pc_is_active
+    entity: switch.pc
     style:
       top: 87.4%
       left: 65%
-      '--state-binary_sensor-active-color': 'var(--picture-map-icon-active-color)'
-      '--state-binary_sensor-inactive-color': 'var(--picture-map-icon-inactive-color-ongray)'
+      '--state-switch-active-color': 'var(--picture-map-icon-active-color)'
+      '--state-switch-inactive-color': 'var(--picture-map-icon-inactive-color-ongray)'
   - type: conditional
     conditions:
       - entity: binary_sensor.pc_is_active
