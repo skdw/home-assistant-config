@@ -130,7 +130,7 @@ input_number:
   remote_menu_level:
     name: Remote Menu Level
     min: 0
-    max: 5 # 0-5 for the main menus
+    max: 7 # 0-7 for the main menus
     step: 1
     initial: 0
   remote_submenu_selection:
@@ -151,8 +151,13 @@ shell_command:
   nspanel_pwd: 'ssh -F /config/.ssh/config nspanel "pwd"'
   nspanel_home: 'ssh -F /config/.ssh/config nspanel "ANDROID_DATA=/data input keyevent 3"'
   nspanel_screen: 'ssh -F /config/.ssh/config nspanel "ANDROID_DATA=/data input keyevent 26"'
-  pc_win32: 'ssh -F /config/.ssh/config pc "Get-CimInstance win32_operatingsystem"'
-  pc_hibernate: 'ssh -F /config/.ssh/config pc "shutdown /h"'
+  nspanel_ps: 'ssh -F /config/.ssh/config nspanel "ps -A | grep homeassistant"'
+  pc_win32: 'ssh -F /config/.ssh/config pc "wmic os get caption"'
+  pc_hibernate: 'ssh -f -F /config/.ssh/config pc "shutdown /h"'
+
+timer:
+  pc_countdown:
+    name: PC countdown until power OFF
 
 template: !include configuration/template.yaml
 

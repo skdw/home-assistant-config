@@ -32,7 +32,7 @@ graph TD
       WS["Wall Switches"] --Zigbee--> CC2652P
     end
     
-    IR["IR remote"] --GPIO--> ESP32
+    IR["GTV remote"] --IR_GPIO--> ESP32
     ESP32 --PWM--> Fans
     ESP32 --BLE--> Pr
     IR --BLE--> GTV
@@ -200,7 +200,7 @@ The final part of the interface provides controls for lighting automation in roo
 
 ## Setup
 
-## Overwriting Core Integrations
+### Overwriting Core Integrations
 
 This project includes customizations to selected core Home Assistant integrations. The modified modules are available in a forked repository: [github.com/skdw/home-assistant-core/tree/skynet](https://github.com/skdw/home-assistant-core/tree/skynet).
 

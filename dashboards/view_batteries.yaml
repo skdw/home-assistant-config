@@ -1,12 +1,92 @@
-path: batteries
+path: diagnostics
 dense_section_placement: true
 type: sections
-title: Batteries
-icon: "mdi:battery"
+title: Diagnostics
+icon: "mdi:tools"
+header:
+  card:
+    type: markdown
+    content: "### 🛠️ Diagnostics"
+    text_only: true
 sections:
   - type: grid
     cards:
       - type: heading
+        icon: mdi:electric-switch
+        heading: Outlets - Auto Control
+        heading_style: subtitle
+      - features:
+          - type: toggle
+        type: tile
+        features_position: inline
+        vertical: false
+        entity: switch.outlet_media_5v
+        hide_state: false
+        state_content: last_changed
+      - features:
+          - type: toggle
+        type: tile
+        features_position: inline
+        vertical: false
+        entity: switch.outlet_subwoofer_1
+        hide_state: false
+        state_content: last_changed
+      - features:
+          - type: toggle
+        type: tile
+        features_position: inline
+        vertical: false
+        entity: fan.audio_cabinet
+        hide_state: false
+        state_content: last_changed
+  - type: grid
+    cards:
+      - type: heading
+        heading_style: subtitle
+        heading: NSPanel
+        icon: mdi:view-dashboard
+      - type: tile
+        entity: sensor.nspanel_pro_battery_state
+        features_position: bottom
+        vertical: false
+      - type: tile
+        features_position: bottom
+        vertical: false
+        tap_action:
+          action: perform-action
+          perform_action: shell_command.nspanel_home
+          target: {}
+        entity: device_tracker.nspanel_pro
+        hide_state: true
+        name: Home
+        icon: mdi:home
+      - type: tile
+        features_position: bottom
+        vertical: false
+        tap_action:
+          action: perform-action
+          perform_action: shell_command.nspanel_screen
+          target: {}
+        entity: device_tracker.nspanel_pro
+        hide_state: true
+        name: Screen
+        icon: mdi:tablet-dashboard
+      - type: tile
+        features_position: bottom
+        vertical: false
+        tap_action:
+          action: perform-action
+          perform_action: shell_command.nspanel_pwd
+          target: {}
+        entity: device_tracker.nspanel_pro
+        hide_state: true
+        name: PWD
+        icon: mdi:directions
+  - !include "section_pc.yaml"
+  - type: grid
+    cards:
+      - type: heading
+        heading_style: subtitle
         heading: Batteries devices
       - type: entities
         entities:
@@ -16,6 +96,7 @@ sections:
   - type: grid
     cards:
       - type: heading
+        heading_style: subtitle
         heading: Batteries sensors AAA
       - type: entities
         entities:
@@ -23,6 +104,7 @@ sections:
   - type: grid
     cards:
       - type: heading
+        heading_style: subtitle
         heading: Batteries sensors CR2032
       - type: entities
         entities:
@@ -37,6 +119,7 @@ sections:
   - type: grid
     cards:
       - type: heading
+        heading_style: subtitle
         heading: Batteries sensors CR2450
       - type: entities
         entities:
@@ -45,6 +128,7 @@ sections:
   - type: grid
     cards:
       - type: heading
+        heading_style: subtitle
         heading: Batteries remotes
       - type: entities
         entities:

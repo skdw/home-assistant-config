@@ -9,7 +9,7 @@
             entity_id: input_number.remote_menu_level
             value: 3
 - menu_level: 1 # Media player status
-  menu_name: "Media {{ states('media_player.pioneer') }} Proj {{ states('switch.projector') }}"
+  menu_name: "Media {{ states('media_player.pioneer') }}          Projector {{ states('switch.projector') }}"
   submenu:
     - submenu_selection: 0
       name: "{{ states('sensor.media_title') | replace('unknown', '') }}"
@@ -32,19 +32,23 @@
             entity_id: input_number.remote_menu_level
             value: 3
 - menu_level: 3
-  menu_name: "Media {{ states('media_player.pioneer') }} Proj {{ states('switch.projector') }}"
+  menu_name: "Media {{ states('media_player.pioneer') }}          Projector {{ states('switch.projector') }}"
   submenu:
     - submenu_selection: 0
-      name: "Turn {{ 'on' if (states('media_player.pioneer') == 'off' and states('switch.projector') == 'off') else 'off' }}"
+      name: "Turn {{ 'on' if (states('media_player.pioneer') == 'off') else 'off' }}"
+      # name: "Turn {{ 'on' if (states('media_player.pioneer') == 'off' and states('switch.projector') == 'off') else 'off' }}"
       on_press:
         - action: "{{ 'media_player.turn_on' if states('media_player.pioneer') == 'off' else 'media_player.turn_off' }}"
+          # action: "{{ 'switch.turn_on' if (states('media_player.pioneer') == 'off' and states('switch.projector') == 'off') else 'media_player.turn_off' }}"
           target:
             entity_id: media_player.pioneer
+            # entity_id: "{{ 'switch.projector' if (states('media_player.pioneer') == 'off' and states('switch.projector') == 'off') else 'media_player.pioneer' }}"
           data: {}
         - action: input_number.set_value
           data:
             entity_id: input_number.remote_menu_level
             value: 1
+   # - action: "{{ 'media_player.turn_on' if states('media_player.pioneer') == 'off' else 'media_player.turn_off' }}"
 - menu_level: 4
   menu_name: "Media source: {{ state_attr('media_player.pioneer', 'source') }}"
   submenu:
@@ -115,3 +119,76 @@
           data:
             sound_mode: Desk
           action: media_player.select_sound_mode
+- menu_level: 6
+  menu_name: "Lights scene"
+  submenu:
+    - submenu_selection: 0
+      name: '< Off >'
+      on_press:
+        - target:
+            entity_id: scene.lights_off
+          data: {}
+          action: scene.turn_on
+    - submenu_selection: 1
+      name: '< Evening >'
+      on_press:
+        - target:
+            entity_id: scene.lights_evening
+          data: {}
+          action: scene.turn_on
+    - submenu_selection: 2
+      name: '< Dinner >'
+      on_press:
+        - target:
+            entity_id: scene.lights_dinner
+          data: {}
+          action: scene.turn_on
+    - submenu_selection: 3
+      name: '< Cooking >'
+      on_press:
+        - target:
+            entity_id: scene.lights_cooking
+          data: {}
+          action: scene.turn_on
+    - submenu_selection: 4
+      name: '< Focus >'
+      on_press:
+        - target:
+            entity_id: scene.lights_focus
+          data: {}
+          action: scene.turn_on
+- menu_level: 7
+  menu_name: "Air conditioning"
+  submenu:
+    - submenu_selection: 0
+      name: '< Off >'
+      on_press:
+        - target:
+            entity_id: climate.air_conditioner
+          data:
+            hvac_mode: 'off'
+          action: climate.set_hvac_mode
+    - submenu_selection: 1
+      name: '< Auto >'
+      on_press:
+        - target:
+            entity_id: climate.air_conditioner
+          data:
+            hvac_mode: auto
+          action: climate.set_hvac_mode
+    - submenu_selection: 2
+      name: '< Cool >'
+      on_press:
+        - target:
+            entity_id: climate.air_conditioner
+          data:
+            hvac_mode: cool
+          action: climate.set_hvac_mode
+    - submenu_selection: 3
+      name: '< Heat >'
+      on_press:
+        - target:
+            entity_id: climate.air_conditioner
+          data:
+            hvac_mode: heat
+          action: climate.set_hvac_mode

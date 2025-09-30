@@ -1,0 +1,82 @@
+type: grid
+cards:
+  - type: heading
+    heading: PC
+    heading_style: subtitle
+    icon: mdi:desktop-classic
+    badges:
+      - type: entity
+        entity: switch.pc
+  - features:
+      - type: toggle
+    type: tile
+    entity: switch.pc
+    features_position: inline
+    vertical: false
+    hide_state: true
+  - type: tile
+    entity: timer.pc_countdown
+    features_position: bottom
+    vertical: false
+    grid_options:
+      columns: 12
+      rows: 1
+    tap_action:
+      action: perform-action
+      perform_action: script.pc_countdown_until_power_off_action
+      target: {}
+    hold_action:
+      action: perform-action
+      perform_action: timer.cancel
+      target:
+        entity_id: timer.pc_countdown
+      data: {}
+    visibility:
+      - condition: state
+        entity: switch.pc
+        state: "on"
+    name: Countdown until power OFF
+  - features:
+      - type: trend-graph
+    type: tile
+    entity: sensor.outlet_desk_1_power
+    features_position: inline
+    vertical: false
+    show_entity_picture: false
+    hide_state: false
+    name: Power
+  - features:
+      - type: trend-graph
+    type: tile
+    entity: sensor.pc_cpuload
+    features_position: inline
+    vertical: false
+    hide_state: false
+    name: CPU
+    visibility:
+      - condition: state
+        entity: sensor.pc_cpuload
+        state_not: unavailable
+  - type: tile
+    entity: sensor.pc_gputemperature
+    features_position: inline
+    vertical: false
+    name: GPU Temperature
+    features:
+      - type: trend-graph
+    visibility:
+      - condition: state
+        entity: sensor.pc_gputemperature
+        state_not: unavailable
+  - type: tile
+    features_position: bottom
+    vertical: false
+    entity: media_player.pc
+    grid_options:
+      columns: 12
+      rows: 1
+    name: Media
+    visibility:
+      - condition: state
+        entity: media_player.pc
+        state_not: unavailable

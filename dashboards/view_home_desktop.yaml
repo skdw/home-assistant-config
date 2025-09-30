@@ -38,15 +38,13 @@ cards:
             name: Index
           - entity: sensor.home_pm2_5
             name: PM2.5
-          - entity: sensor.home_pm10
-            name: PM10
           - entity: sensor.home_nitrogen_dioxide
             name: NO₂
           - entity: sensor.home_ozone
             name: O₃
           - entity: sensor.home_sulphur_dioxide
             name: SO₂
-        columns: 6
+        columns: 5
   - square: false
     type: grid
     columns: 1
