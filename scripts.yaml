@@ -122,3 +122,31 @@ do_nothing:
       minutes: 0
       seconds: 0
       milliseconds: 1
+pc_countdown_until_power_off_action:
+  sequence:
+  - if:
+    - condition: state
+      entity_id: timer.pc_countdown
+      state: active
+    then:
+    - action: timer.change
+      metadata: {}
+      data:
+        duration: '3600'
+      target:
+        entity_id: timer.pc_countdown
+    else:
+    - action: timer.start
+      metadata: {}
+      data:
+        duration: '360000'
+      target:
+        entity_id: timer.pc_countdown
+    - action: timer.change
+      metadata: {}
+      data:
+        duration: '-356400'
+      target:
+        entity_id: timer.pc_countdown
+  alias: PC countdown until power OFF
+  description: ''

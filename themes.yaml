@@ -2,19 +2,33 @@ skynet:
   modes:
     dark:
       secondary-text-color: slategray
+      primary-color: "#8fc66b" # A slightly lighter green often works better in dark mode
 
   # Main colors
   primary-color: '#82be5a'                            # Header
-  accent-color: 'var(--white-color)'                  # Accent color
+  accent-color: 'var(--primary-color)' # 'var(--white-color)'                  # Accent color
   #accent-color: '#f06330'                            # Accent color alt
   dark-primary-color: 'var(--accent-color)'           # Hyperlinks                     
   light-primary-color: 'var(--accent-color)'          # Horizontal line in about
-                                       
-  # Text colors                                  
+
+  # Generated primary color gamut based on the lightness scale of the default theme
+  ha-color-primary-05: "#10160b"   # Lightness: 7%
+  ha-color-primary-10: "#1c2814"   # Lightness: 12%
+  ha-color-primary-20: "#283b1d"   # Lightness: 17%
+  ha-color-primary-30: "#3f5c2d"   # Lightness: 26%
+  ha-color-primary-40: "#5f8b44"   # Lightness: 39%
+  ha-color-primary-50: "#79b452"   # Lightness: 52%
+  ha-color-primary-60: "#8fc66b"   # Lightness: 60%
+  ha-color-primary-70: "#b2dc99"   # Lightness: 73%
+  ha-color-primary-80: "#d6eecb"   # Lightness: 85%
+  ha-color-primary-90: "#eaf6e3"   # Lightness: 93%
+  ha-color-primary-95: "#f6faf2"   # Lightness: 97%
+
+  # Text colors
   #primary-text-color: '#FFFFFF'                           # Primary text colour, here is referencing dark-primary-color
   #text-primary-color: 'var(--primary-text-color)'         # Primary text colour
   #secondary-text-color: '#5294E2'                         # For secondary titles in
-  
+
   # State colors
   state-icon-color: 'var(--primary-color)'
   state-icon-active-color: 'var(--primary-color)'
