@@ -1,39 +1,46 @@
 - id: 'lights_switch2light'
   alias: YAML Lights - On switch toggle light
-  variables:
-    lights: !include ../entities/lights.yaml
-    switches: !include ../entities/switches.yaml
+  trigger_variables:
+    lights: &Lights !include ../entities/lights.yaml
+    switches: &Switches !include ../entities/switches.yaml
   mode: parallel
   max: 20
-  trigger:
-  - platform: state
-    entity_id: !include ../entities/switches.yaml
+  triggers:
+  - alias: Switch state changed
+    trigger: state
+    entity_id: *Switches
   condition:
-  - condition: template # automate only if initial light and switch states match
+  - alias: Initial light and switch states match
+    condition: template
     value_template: "{{ states(lights[switches.index(trigger.entity_id)]) == trigger.from_state.state }}"
-  - condition: template # keep only on/off states, drop unavailable and unknown
-    value_template: "{{ trigger.to_state.state == 'on' or trigger.to_state.state == 'off' }}"
+  - alias: Target state is defined
+    condition: template
+    value_template: "{{ trigger.to_state.state in ['on', 'off'] }}"
   action:
-  - service: "{{ 'light.turn_on' if(trigger.to_state.state == 'on') else 'light.turn_off' }}"
+  - alias: Toggle light
+    service: "light.turn_{{ trigger.to_state.state }}"
     target:
       entity_id: "{{ lights[switches.index(trigger.entity_id)] }}"
 - id: 'lights_light2switch'
   alias: YAML Lights - On light toggle switch
-  variables:
-    lights: !include ../entities/lights.yaml
-    switches: !include ../entities/switches.yaml
+  trigger_variables:
+    lights: *Lights
+    switches: *Switches
   mode: parallel
   max: 20
-  trigger:
-  - platform: state
-    entity_id: !include ../entities/lights.yaml
+  triggers:
+  - alias: Light state changed
+    trigger: state
+    entity_id: *Lights
   condition:
-  - condition: template # automate only if initial switch and light states match
+  - alias: Initial switch and light states match
+    condition: template
     value_template: "{{ states(switches[lights.index(trigger.entity_id)]) == trigger.from_state.state }}"
-  - condition: template # keep only on/off states, drop unavailable and unknown
-    value_template: "{{ trigger.to_state.state == 'on' or trigger.to_state.state == 'off' }}"
+  - alias: Target state is defined
+    condition: template
+    value_template: "{{ trigger.to_state.state in ['on', 'off'] }}"
   action:
-  - service: "{{ 'switch.turn_on' if(trigger.to_state.state == 'on') else 'switch.turn_off' }}"
+  - alias: Toggle switch
+    service: "switch.turn_{{ trigger.to_state.state }}"
     target:
       entity_id: "{{ switches[lights.index(trigger.entity_id)] }}"
-
