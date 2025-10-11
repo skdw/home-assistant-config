@@ -1,0 +1,12 @@
+- id: 'leak_kitchen'
+  alias: "YAML alert on kitchen water leakage"
+  mode: single
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.kitchen_leakage_water_leak
+      to: "on"
+  action:
+    - action: script.home_alert
+      data:
+        level: 100
+        message: Water leakage has been detected in the kitchen

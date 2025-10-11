@@ -150,3 +150,22 @@ pc_countdown_until_power_off_action:
         entity_id: timer.pc_countdown
   alias: PC countdown until power OFF
   description: ''
+home_alert:
+  sequence:
+  - action: notify.mobile_app_iphone_kamil
+    metadata: {}
+    data:
+      message: '{{ message }}'
+  fields:
+    message:
+      selector:
+        text:
+      name: Alert message
+    level:
+      selector:
+        number:
+          min: 1
+          max: 100
+      name: Alert level
+  alias: Home Alert
+  description: ''
