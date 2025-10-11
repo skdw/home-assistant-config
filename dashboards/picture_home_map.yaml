@@ -173,7 +173,7 @@ elements:
       '--state-binary_sensor-active-color': 'var(--picture-map-icon-active-color)'
       '--state-binary_sensor-off-color': 'var(--picture-map-icon-inactive-color-onblack)'
   - type: state-icon
-    entity: binary_sensor.wardrobe_motion
+    entity: binary_sensor.wardrobe_motion_occupancy
     style:
       top: 37%
       left: 20%
@@ -261,14 +261,14 @@ elements:
       '--state-binary_sensor-active-color': 'var(--picture-map-icon-active-color)'
       '--state-binary_sensor-off-color': 'var(--picture-map-icon-inactive-color-ongray)'
   - type: state-icon # Sensors water leakage
-    entity: binary_sensor.kitchen_leakage
+    entity: binary_sensor.kitchen_leakage_water_leak
     style:
       top: 28%
       left: 70.6%
       # active color = warning
       '--state-binary_sensor-off-color': 'var(--picture-map-icon-inactive-color-ongray)'
   - type: state-icon
-    entity: binary_sensor.air_cond_leakage
+    entity: binary_sensor.balcony_leakage_water_leak
     style:
       top: 82.5%
       left: 40%

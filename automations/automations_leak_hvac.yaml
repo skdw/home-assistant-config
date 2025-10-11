@@ -1,21 +1,23 @@
-- id: 'hvac_turn_off'
+- id: 'leak_hvac_turn_off'
   alias: "YAML HVAC turn off on leak sensor"
+  mode: single
   trigger:
     - platform: state
-      entity_id: binary_sensor.air_cond_leakage
+      entity_id: binary_sensor.balcony_leakage_water_leak
       to: "on"
-  condition:
-    not:
-     - condition: state
-       entity_id: climate.air_conditioner
-       state: "off"
+  conditions:
+    - alias: Air conditioner is not already off
+      not:
+       - condition: state
+         entity_id: climate.air_conditioner
+         state: "off"
   action:
     - service: climate.set_hvac_mode
       target:
         entity_id: climate.air_conditioner
       data:
         hvac_mode: "off"
-    - service: notify.mobile_app_iphone_kamil
+    - action: script.home_alert
       data:
+        level: 10
         message: "Air conditioner turned off - the water container is full"
-  mode: single

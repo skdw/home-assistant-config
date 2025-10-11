@@ -115,7 +115,7 @@ sections:
           - entity: sensor.hall_wardrobe_battery
           - entity: sensor.hall_wardrobe_remote_battery
           - entity: sensor.balcony_battery
-          - entity: sensor.air_cond_leakage_battery
+          - entity: sensor.balcony_leakage_battery
   - type: grid
     cards:
       - type: heading

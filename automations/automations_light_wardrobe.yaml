@@ -1,0 +1,36 @@
+- id: 'light_wardrobe_motion'
+  alias: Wardrobe on motion turn lights on
+  description: 'Turns on wardrobe lights on detected motion. Sets params to 28% 3600K during the day, and 1% 2000K at night.'
+  mode: single
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.wardrobe_motion_occupancy
+    to: 'on'
+  conditions:
+  - condition: state
+    entity_id: input_boolean.lights_motion
+    state: 'on'
+  variables:
+    dim: "{{ states('input_boolean.lights_dim') == 'on' }}"
+    data_light:
+      brightness_pct: 28
+      color_temp_kelvin: 3600
+    data_dark:
+      brightness_pct: 1
+      color_temp_kelvin: 2000
+    data: "{{ data_light if dim else data_dark }}"
+  actions:
+  - action: switch.turn_on
+    alias: Turn on the wardrobe switch
+    data: {}
+    metadata: {}
+    target:
+      entity_id: switch.wardrobe
+  - action: light.turn_on
+    alias: Turn on wardrobe lights
+    data: "{{ data }}"
+    metadata: {}
+    target:
+      entity_id:
+      - light.wardrobe_ceiling
+      - light.wardrobe_clothes

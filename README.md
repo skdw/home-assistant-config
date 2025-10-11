@@ -13,8 +13,6 @@ Dashboards are optimized for desktop browser, mobile app and wall panel display.
 graph TD
     %% Define styles for different device types
     classDef server fill:#f96,stroke:#333,stroke-width:4px;
-    classDef coordinator fill:#9CF,stroke:#333,stroke-width:2px;
-    classDef zigbee_device fill:#FFC,stroke:#333,stroke-width:2px;
     classDef integration fill:#EFE,stroke:#333,stroke-width:2px;
 
     %% --- Node Definitions ---
@@ -28,8 +26,12 @@ graph TD
       Sensors --Zigbee--> Dirigera
     end
     subgraph "Zigbee Network 2"
+      CC2652P
       Curtains --Zigbee--> CC2652P
       WS["Wall Switches"] --Zigbee--> CC2652P
+      PO["Power Outlets"] --Zigbee--> CC2652P
+      KN["Knobs"] --Zigbee--> CC2652P
+      S1["Sensors"] --Zigbee--> CC2652P
     end
     
     IR["GTV remote"] --IR_GPIO--> ESP32
@@ -74,9 +76,7 @@ graph TD
 
     %% Apply Styles
     class S server;
-    class Dirigera,CC2652P coordinator;
-    class Lights,Sensors,Curtains,WS zigbee_device;
-    class SM,Onkyo,ESP32,AH,MP,I integration;
+    class Dirigera,CC2652P,SM,Onkyo,ESP32,AH,MP,I integration;
 
     %% Add a clickable link to the server node
     %% click S "[https://www.home-assistant.io/](https://www.home-assistant.io/)" "Visit the Home Assistant Website"
@@ -90,9 +90,6 @@ graph TD
     - Door sensors
   - Apple Home ([multi fabric](https://www.home-assistant.io/integrations/matter#multi-fabric-join-to-multiple-controllers) provides an independent Dirigera <-> iOS connection)
 - [HomeKit Device](https://www.home-assistant.io/integrations/homekit_controller)
-  - IKEA Dirigera Hub (not yet fully Matter enabled)
-    - Motion sensors
-    - Water leakage sensors
   - [Aqara FP2](https://www.aqara.com/eu/product/presence-sensor-fp2/)
     - Human presence sensor
     - Light level sensor
@@ -101,6 +98,8 @@ graph TD
   - [BSEED](https://www.bseed.com/products/bseed-zigbee-eu-wall-sockets-power-outlets-with-energy-monitoring-kids-protection) [TS011F](https://www.zigbee2mqtt.io/devices/TS011F_plug_1.html) - energy monitoring power outlets
   - [IKEA E1743](https://www.zigbee2mqtt.io/devices/E1743.html) - remote light switches
   - [Tuya ERS-10TZBVK-AA](https://www.zigbee2mqtt.io/devices/ERS-10TZBVK-AA.html) - audio knobs
+  - [Tuya 809ZWT](https://www.zigbee2mqtt.io/devices/809WZT.html) - motion sensors
+  - [Tuya TS0207](https://www.zigbee2mqtt.io/devices/TS0207_water_leak_detector_1.html) - water leakage detectors
   - [COOLO CS-201Z](https://www.zigbee2mqtt.io/devices/CS-201Z.html) - soil moisture sensors
   - [Aqara C3](https://www.aqara.com/en/product/curtain-controller-c3/) [ZNCLDJ01LM](https://www.zigbee2mqtt.io/devices/ZNCLDJ01LM.html) - curtains
 - [MQTT](https://www.home-assistant.io/integrations/mqtt/) - [publishing](https://www.home-assistant.io/integrations/mqtt/#publish--dump-actions) home media states for the pixel display
