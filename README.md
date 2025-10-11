@@ -190,14 +190,72 @@ The middle section of the card lists the available home lighting scenes, arrange
 
 #### Lighting automation
 
-The final part of the interface provides controls for lighting automation in rooms without natural light, such as the bathroom and walk-in closet. This feature is available exclusively on the full desktop panel.
+The final part of the interface provides controls for lighting automation in rooms without natural light, such as the bathroom and walk-in closet.
 
 - **Lights dim**
   - Dims lights at night, between 10 PM and 6:30 AM
+  - Automatic morning/evening lights mode switch: [automations/automations\_light\_dim.yaml](automations/automations_light_dim.yaml)
 - **Lights motion**
   - Activates lights on motion detection
+  - Wardrobe reaction on detected motion: [automations/automations\_light\_wardrobe.yaml](automations/automations_light_wardrobe.yaml)
 
-## Setup
+### Remote Control
+
+This section outlines the setup and functionality of the custom IR remote control system. The apartment is equipped with a Google TV, which comes with a hybrid remote control that uses both Bluetooth for primary functions and Infrared (IR) for universal remote capabilities. The IR functionality of the Google TV remote has been paired with a custom ESP32-based receiver, allowing its button presses to be captured and reprogrammed to control a wide range of devices and automations within Home Assistant. The logic for the remote control is handled by a combination of a Home Assistant script and an entity file that defines the menu structure.
+
+#### [scripts/remote.yaml](scripts/remote.yaml)
+
+This file contains the `remote_control` script, which is the central processing unit for all remote control actions. The script is triggered when a button is pressed on the IR remote and performs actions based on the `button_pressed` input and the current state of the remote's menu.
+
+The script handles the following button presses:
+
+* **Volume Up**: Increases the volume of the media player or navigates up in a submenu.
+* **Volume Down**: Decreases the volume of the media player or navigates down in a submenu.
+* **Power**: Executes the primary action for the currently selected submenu item.
+* **Input**: Cycles through the different menu levels of the remote.
+
+#### [entities/remote.yaml](entities/remote.yaml)
+
+This file defines the hierarchical menu structure for the remote control, including the names of menus, submenus, and the actions to be performed. The file is a list of menu levels, each with a `menu_name` and a `submenu`. Each `submenu` item contains a `name` and an `on_press` action that specifies what should happen when the "Power" button is pressed on that menu item.
+
+#### Remote Control Logic
+
+The remote control operates on a system of menu levels and submenu selections, which are stored in `input_number.remote_menu_level` and `input_number.remote_submenu_selection` respectively. The `remote_control` script uses these values to determine the current context and execute the appropriate actions.
+
+```mermaid
+graph TD
+    A[Button Press] --> B{What button?};
+    B -->|Volume Up| C{Menu Level <= 2?};
+    B -->|Volume Down| D{Menu Level <= 2?};
+    B -->|Power| E[Execute on_press action];
+    B -->|Input| F[Increment Menu Level];
+
+    C -->|Yes| G[Volume Up on Pioneer];
+    C -->|No| H[Increment Submenu Selection];
+    D -->|Yes| I[Volume Down on Pioneer];
+    D -->|No| J[Decrement Submenu Selection];
+```
+
+#### Remote Control Menu Structure
+
+The [entities/remote.yaml](entities/remote.yaml) file defines the following menu structure:
+
+| Menu Level | Menu Name | Submenu Options and Actions |
+| :--- | :--- | :--- |
+| 0 | Standby | Wakes up the display. |
+| 1 | Media Status | Displays the current media title, album, artist, and source. |
+| 2 | Volume Control | Displays the current volume in dB. |
+| 3 | Media & Projector | Toggles the power for the media player and projector. |
+| 4 | Media Source | `< Network >`, `< Google TV >`, `< PC >`, `< Radio FM >` |
+| 5 | Sound Mode | `< Auto >`, `< Surround >`, `< Extended >`, `< Desk >` |
+| 6 | Lights Scene | `< Off >`, `< Evening >`, `< Dinner >`, `< Cooking >`, `< Focus >` |
+| 7 | Air Conditioning | `< Off >`, `< Auto >`, `< Cool >`, `< Heat >` |
+
+## Solution setup
+
+### Restore system backup
+
+The up-to-date backups of Home Assistant database are stored on [Google Drive](https://www.home-assistant.io/integrations/google_drive/).
 
 ### Overwriting Core Integrations
 
