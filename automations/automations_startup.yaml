@@ -21,3 +21,6 @@
       data:
         mode: dark # TODO white theme support
         name: skynet
+    - service: notify.mobile_app_iphone_kamil
+      data:
+        message: Home Assistant server has started # TODO deduct if the current start is clean

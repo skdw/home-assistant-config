@@ -121,6 +121,7 @@ venv.bak/
 ## Ignore HASS database and logs
 home-assistant_v2.db*
 home-assistant.log*
+.ha_run.lock
 
 ## Ensure these YAML files are ignored, otherwise your secret data/credentials will leak.
 ip_bans.yaml
