@@ -1,0 +1,25 @@
+- id: 'light_switches_sync'
+  alias: 'YAML Lights - Sync balcony switches pairs'
+  trigger_variables:
+    switches_pairs:
+    - &Pair1
+      - switch.balcony_l1
+      - switch.balcony_2_l1
+    - &Pair2
+      - switch.balcony_l2
+      - switch.balcony_2_l2
+  triggers:
+    - trigger: state
+      entity_id: *Pair1
+    - trigger: state
+      entity_id: *Pair2
+  variables:
+    switches_pair: "{{ switches_pairs[(trigger.id | int)] }}"
+    trigger_id_sub: "{{ switches_pair.index(trigger.entity_id) }}"
+    target_id_sub: "{{ 1 - trigger_id_sub }}"
+    target_switch: "{{ switches_pair[target_id_sub] }}"
+  conditions: "{{ trigger.to_state.state != states(target_switch) and trigger.to_state.state in ['on', 'off'] }}"
+  actions:
+  - action: "switch.turn_{{ trigger.to_state.state }}"
+    target:
+      entity_id: "{{ target_switch }}"
