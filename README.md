@@ -250,6 +250,7 @@ The [entities/remote.yaml](entities/remote.yaml) file defines the following menu
 | 5 | Sound Mode | `< Auto >`, `< Surround >`, `< Extended >`, `< Desk >` |
 | 6 | Lights Scene | `< Off >`, `< Evening >`, `< Dinner >`, `< Cooking >`, `< Focus >` |
 | 7 | Air Conditioning | `< Off >`, `< Auto >`, `< Cool >`, `< Heat >` |
+| 8 | Curtains | `< Morning >`, `< Afternoon >`, `< Night >` |
 
 ## Solution setup
 

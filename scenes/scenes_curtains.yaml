@@ -1,0 +1,39 @@
+- id: 'yaml_curtains_morning'
+  name: Curtains Morning # / Cover Desk
+  icon: mdi:curtains
+  entities:
+    cover.curtain_bedroom:
+      state: closed
+      current_position: 0
+    cover.curtain_desk:
+      state: open
+      current_position: 70
+    cover.curtain_table:
+      state: closed
+      current_position: 0
+- id: 'yaml_curtains_afternoon'
+  name: Curtains Afternoon # / Daylight
+  icon: mdi:curtains
+  entities:
+    cover.curtain_bedroom:
+      current_position: 0
+      state: closed
+    cover.curtain_desk:
+      state: open
+      current_position: 30
+    cover.curtain_table:
+      state: closed
+      current_position: 0
+- id: 'yaml_curtains_night'
+  name: Curtains Night # / Fully Cover
+  icon: mdi:curtains
+  entities:
+    cover.curtain_bedroom:
+      state: open
+      current_position: 100
+    cover.curtain_desk:
+      state: open
+      current_position: 100
+    cover.curtain_table:
+      state: open
+      current_position: 100
