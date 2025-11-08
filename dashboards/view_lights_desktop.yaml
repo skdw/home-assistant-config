@@ -1,30 +1,134 @@
 title: Lights
-path: lights-desktop
+path: lights
+type: sections
 icon: mdi:lightbulb
 badges: []
-cards:
-  - !include 'card_hstack_scenes.yaml'
-  - type: area
-    area: living_room
-    navigation_path: lights-living-room
-    aspect_ratio: '20:9'
-  - type: area
-    area: kitchen
-    navigation_path: lights-hall-kitchen
-    aspect_ratio: '20:9'
-  - type: area
-    area: bathroom
-    navigation_path: lights-bathroom
-    aspect_ratio: '20:9'
-  - type: area
-    area: bedroom
-    navigation_path: lights-bedroom
-    aspect_ratio: '20:9'
-  - type: area
-    area: wardrobe
-    navigation_path: lights-wardrobe
-    aspect_ratio: '20:9'
-  - type: area
-    area: balcony
-    navigation_path: lights-balcony
-    aspect_ratio: '20:9'
+# header:
+#   card:
+#     type: markdown
+#     content: "### 💡 Lights"
+#     text_only: true
+sections:
+  - type: grid
+    cards:
+    - type: heading
+      heading_style: subtitle
+      heading: "Light scenes [docs]"
+      icon: "mdi:lightbulb"
+      tap_action:
+        action: url # TODO page navigation in docs
+        url_path: "https://docs.sky-kg.net"
+    - !include 'card_hstack_scenes.yaml'
+  - type: grid
+    column_span: 2
+    cards:
+    - type: heading
+      heading_style: subtitle
+      heading: "Areas"
+      icon: "mdi:map-marker"
+    - type: area
+      area: living_room
+      navigation_path: /dashboard-areas/areas-living_room
+      aspect_ratio: '20:9'
+      features:
+      - type: area-controls
+        controls:
+          - light
+          - cover-curtain
+      features_position: bottom
+      color: ""
+      vertical: false
+      alert_classes:
+        - motion
+        - moisture
+      sensor_classes:
+        - temperature
+        - humidity
+    - type: area
+      area: kitchen
+      navigation_path: /dashboard-areas/areas-kitchen
+      aspect_ratio: '20:9'
+      features:
+      - type: area-controls
+        controls:
+          - light
+          - fan
+          - cover-curtain
+      features_position: bottom
+      color: ""
+      vertical: false
+      alert_classes:
+        - motion
+        - moisture
+      sensor_classes:
+        - temperature
+        - humidity
+    - type: area
+      area: bathroom
+      navigation_path: /dashboard-areas/areas-bathroom
+      aspect_ratio: '20:9'
+      features:
+      - type: area-controls
+        controls:
+          - light
+      features_position: bottom
+      color: ""
+      vertical: false
+      alert_classes:
+        - motion
+        - moisture
+      sensor_classes:
+        - temperature
+        - humidity
+    - type: area
+      area: bedroom
+      navigation_path: /dashboard-areas/areas-bedroom
+      aspect_ratio: '20:9'
+      features:
+      - type: area-controls
+        controls:
+          - light
+          - cover-curtain
+      features_position: bottom
+      color: ""
+      vertical: false
+      alert_classes:
+        - motion
+        - moisture
+      sensor_classes:
+        - temperature
+        - humidity
+    - type: area
+      area: balcony
+      navigation_path: /dashboard-areas/areas-balcony
+      aspect_ratio: '20:9'
+      features:
+      - type: area-controls
+        controls:
+          - light
+      features_position: bottom
+      color: ""
+      vertical: false
+      alert_classes:
+        - motion
+        - moisture
+      sensor_classes:
+        - temperature
+        - humidity
+    - type: area
+      area: wardrobe
+      navigation_path: /dashboard-areas/areas-wardrobe
+      aspect_ratio: '20:9'
+      features:
+      - type: area-controls
+        controls:
+          - light
+      features_position: bottom
+      color: ""
+      vertical: false
+      alert_classes:
+        - motion
+        - moisture
+      sensor_classes:
+        - temperature
+        - humidity

@@ -31,10 +31,6 @@ cards:
       target:
         entity_id: timer.pc_countdown
       data: {}
-    visibility:
-      - condition: state
-        entity: switch.pc
-        state: "on"
     name: Countdown until power OFF
   - features:
       - type: trend-graph
