@@ -35,20 +35,17 @@
   menu_name: "Media {{ states('media_player.pioneer') }}          Projector {{ states('switch.projector') }}"
   submenu:
     - submenu_selection: 0
-      name: "Turn {{ 'on' if (states('media_player.pioneer') == 'off') else 'off' }}"
-      # name: "Turn {{ 'on' if (states('media_player.pioneer') == 'off' and states('switch.projector') == 'off') else 'off' }}"
+      name: "Turn {{ 'on' if (states('switch.projector') == 'off') else 'off' }} projector"
+      line5: "Weather: {{ states('weather.forecast_home') }}, temp {{ states('sensor.weather_temperature') }} C   {{ states('sensor.air_conditioner_temperature') }} C"
       on_press:
-        - action: "{{ 'media_player.turn_on' if states('media_player.pioneer') == 'off' else 'media_player.turn_off' }}"
-          # action: "{{ 'switch.turn_on' if (states('media_player.pioneer') == 'off' and states('switch.projector') == 'off') else 'media_player.turn_off' }}"
+        - action: "{{ 'switch.turn_on' if states('switch.projector') == 'off' else 'switch.turn_off' }}"
           target:
-            entity_id: media_player.pioneer
-            # entity_id: "{{ 'switch.projector' if (states('media_player.pioneer') == 'off' and states('switch.projector') == 'off') else 'media_player.pioneer' }}"
+            entity_id: switch.projector
           data: {}
         - action: input_number.set_value
           data:
             entity_id: input_number.remote_menu_level
             value: 1
-   # - action: "{{ 'media_player.turn_on' if states('media_player.pioneer') == 'off' else 'media_player.turn_off' }}"
 - menu_level: 4
   menu_name: "Media source: {{ state_attr('media_player.pioneer', 'source') }}"
   submenu:
@@ -158,7 +155,7 @@
           data: {}
           action: scene.turn_on
 - menu_level: 7
-  menu_name: "Air conditioning"
+  menu_name: "Air conditioning: {{ states('climate.air_conditioner') }}"
   submenu:
     - submenu_selection: 0
       name: '< Off >'
@@ -192,3 +189,27 @@
           data:
             hvac_mode: heat
           action: climate.set_hvac_mode
+- menu_level: 8
+  menu_name: "Curtains: {{ states('cover.curtains') }}"
+  submenu:
+    - submenu_selection: 0
+      name: '< Morning / Cover Desk >'
+      on_press:
+        - target:
+            entity_id: scene.curtains_morning
+          data: {}
+          action: scene.turn_on
+    - submenu_selection: 1
+      name: '< Afternoon / Daylight >'
+      on_press:
+        - target:
+            entity_id: scene.curtains_afternoon
+          data: {}
+          action: scene.turn_on
+    - submenu_selection: 2
+      name: '< Night / Fully Cover >'
+      on_press:
+        - target:
+            entity_id: scene.curtains_night
+          data: {}
+          action: scene.turn_on
