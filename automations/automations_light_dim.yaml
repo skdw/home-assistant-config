@@ -32,26 +32,20 @@
           {{ entities | selectattr('previous_state', 'eq', 'off') |
           map(attribute='id') | list }}
   mode: single
-- id: 'lights_dim_on_morning'
-  alias: "YAML lights - dim on morning"
+- id: 'lights_dim_toggle'
+  alias: "YAML Lights - dim time-scheduled toggle"
+  description: Toggles lights dim mode on mornings and evenings
+  mode: single
   trigger:
     - platform: time
       at: "06:30:00"
-  action:
-    - service: input_boolean.turn_on
-      target:
-        entity_id:
-          - input_boolean.lights_dim
-  mode: single
-- id: 'lights_dim_on_evening'
-  alias: "YAML lights - dim on evening"
-  trigger:
+      variables:
+        action: input_boolean.turn_on
     - platform: time
       at: "22:00:00"
-  action:
-    - service: input_boolean.turn_off
+      variables:
+        action: input_boolean.turn_off
+  actions:
+    - action: "{{ action }}"
       target:
-        entity_id:
-          - input_boolean.lights_dim
-  mode: single
-  
+        entity_id: input_boolean.lights_dim

@@ -1,5 +1,5 @@
 - id: 'media_radio_fm_update'
-  alias: Radio FM station update
+  alias: YAML Media - Radio FM station update
   mode: single
   triggers:
     - entity_id: input_select.radio_fm
