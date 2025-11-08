@@ -1,16 +1,15 @@
 title: Skynet
 views:
   - !include "view_home_desktop.yaml"
-  - !include "view_home_mobile.yaml"
-  - !include "view_lights_desktop.yaml"
-  - !include "view_lights_mobile.yaml"
+  # - !include "view_home_mobile.yaml"
+  - !include "view_lights_desktop.yaml" # todo view_lights.yaml
   - !include "view_lights_scenes.yaml"
-  - !include "view_lights_living_room.yaml"
-  - !include "view_lights_bathroom.yaml"
-  - !include "view_lights_bedroom.yaml"
-  - !include "view_lights_hall_kitchen.yaml"
-  - !include "view_lights_wardrobe.yaml"
-  - !include "view_lights_balcony.yaml"
+  # - !include "view_lights_living_room.yaml" # todo remove, replaced by dashboard-areas, auto-created views
+  # - !include "view_lights_bathroom.yaml"
+  # - !include "view_lights_bedroom.yaml"
+  # - !include "view_lights_hall_kitchen.yaml"
+  # - !include "view_lights_wardrobe.yaml"
+  # - !include "view_lights_balcony.yaml"
   - !include "view_media.yaml"
   - !include "view_robot_vacuum.yaml"
   - !include "view_air_conditioning.yaml"
@@ -18,4 +17,3 @@ views:
   - !include "view_presence.yaml"
   - !include "view_diagnostics.yaml"
   - !include "view_qr_wifi.yaml"
-  - !include "view_strava.yaml"

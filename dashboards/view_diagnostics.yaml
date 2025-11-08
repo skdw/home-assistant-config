@@ -24,6 +24,15 @@ sections:
         hide_state: false
         state_content: last_changed
       - features:
+          - type: trend-graph
+        type: tile
+        entity: sensor.outlet_media_5v_power
+        features_position: inline
+        vertical: false
+        show_entity_picture: false
+        hide_state: false
+        name: Power Media 5V
+      - features:
           - type: toggle
         type: tile
         features_position: inline
@@ -31,6 +40,15 @@ sections:
         entity: switch.outlet_subwoofer_1
         hide_state: false
         state_content: last_changed
+      - features:
+          - type: trend-graph
+        type: tile
+        entity: sensor.outlet_subwoofer_1_power
+        features_position: inline
+        vertical: false
+        show_entity_picture: false
+        hide_state: false
+        name: Power Subwoofer 1
       - features:
           - type: toggle
         type: tile
@@ -101,6 +119,8 @@ sections:
       - type: entities
         entities:
           - entity: sensor.audio_cabinet_battery
+          - entity: sensor.living_room_table_battery
+          - entity: sensor.washing_machine_shake_battery
   - type: grid
     cards:
       - type: heading
