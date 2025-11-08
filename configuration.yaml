@@ -130,7 +130,7 @@ input_number:
   remote_menu_level:
     name: Remote Menu Level
     min: 0
-    max: 7 # 0-7 for the main menus
+    max: 8 # 0-8 for the main menus
     step: 1
     initial: 0
   remote_submenu_selection:
