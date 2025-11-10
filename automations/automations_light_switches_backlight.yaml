@@ -1,0 +1,16 @@
+- id: 'light_switches_backlight'
+  alias: 'YAML Lights - Switches Backlight Modes with Timeout'
+  description: 'Turns on backlight_modes and turns off after 1 min of inactivity'
+  mode: restart
+  trigger:
+    - platform: state
+      entity_id: !include ../entities/switches.yaml
+  action:
+    - service: switch.turn_on
+      target:
+        entity_id: switch.backlight_modes
+    - delay:
+        minutes: 1
+    - service: switch.turn_off
+      target:
+        entity_id: switch.backlight_modes

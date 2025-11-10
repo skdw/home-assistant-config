@@ -83,6 +83,14 @@ sections:
         vertical: false
         entity: input_boolean.lights_dim
       - type: heading
+        icon: mdi:led-on
+        heading_style: title
+        heading: Switches Backlight
+      - type: tile
+        features_position: bottom
+        vertical: false
+        entity: switch.backlight_modes
+      - type: heading
         icon: mdi:party-popper
         heading: "TODO call experiment scenes: stroboscope party animated etc"
         heading_style: title
