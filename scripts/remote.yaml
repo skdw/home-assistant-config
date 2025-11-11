@@ -1,5 +1,5 @@
 remote_control:
-  alias: IR remote control YAML
+  alias: YAML IR remote control
   description: ""
   fields:
     button_pressed:

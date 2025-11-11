@@ -1,0 +1,72 @@
+remote_menu_set_theme:
+  alias: YAML IR remote menu - set colors theme
+  description: 'Sets a color theme in IR remote menu'
+  fields:
+    theme:
+      selector:
+        select:
+          options:
+          - light
+          - dark
+      default: light
+      required: true
+  variables:
+    themes:
+      light: ['RED1', 'ORANGE1', 'ORANGE1', 'ORANGE1', 'RED1']
+      dark: ['RED3', 'RED3', 'RED3', 'RED3', 'RED3']
+  sequence:
+  - variables:
+      colors: "{{ themes[theme] }}"
+  - repeat:
+      for_each: "{{ colors }}"
+      sequence:
+        - service: script.remote_menu_set_color
+          data:
+            color_text: "{{ repeat.item }}"
+            line_id: "{{ repeat.index - 1 }}"
+remote_menu_set_color:
+  alias: YAML IR remote menu - set color
+  description: 'Sets a single color in IR remote menu'
+  sequence:
+  - action: mqtt.publish
+    metadata: {}
+    data:
+      evaluate_payload: false
+      qos: '1'
+      retain: false
+      topic: homeassistant/remote_menu/color/{{ line_id }}
+      payload: '{{ color_text }}'
+  fields:
+    line_id:
+      selector:
+        number:
+          min: 0
+          max: 4
+      default: 0
+    color_text:
+      selector:
+        select:
+          options:
+          - RED
+          - RED1
+          - RED2
+          - RED3
+          - ORANGE
+          - ORANGE1
+          - ORANGE2
+          - ORANGE3
+          - YELLOW
+          - GREEN
+          - GREEN1
+          - GREEN2
+          - GREEN3
+          - BLUE
+          - BLUE1
+          - BLUE2
+          - BLUE3
+          - PURPLE
+          - PURPLE1
+          - PURPLE2
+          - PURPLE3
+          - WHITE
+      default: RED
