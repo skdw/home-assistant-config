@@ -1,0 +1,206 @@
+type: sections
+max_columns: 4
+title: Climate
+path: climate
+icon: mdi:thermometer-lines
+dense_section_placement: false
+cards: []
+sections:
+  - type: grid
+    cards:
+      - type: heading
+        heading: Air Conditioning
+        heading_style: title
+        icon: mdi:air-conditioner
+        badges:
+          - type: entity
+            entity: climate.air_conditioner
+        grid_options:
+          columns: full
+          rows: 1
+      - type: tile
+        grid_options:
+          columns: full
+          rows: 6
+        entity: climate.air_conditioner
+        name:
+          type: area
+        show_entity_picture: false
+        hide_state: false
+        vertical: false
+        features:
+          - style: icons
+            type: climate-hvac-modes
+          - type: target-temperature
+          - style: dropdown
+            type: climate-fan-modes
+          - style: dropdown
+            type: climate-preset-modes
+          - style: dropdown
+            type: climate-swing-modes
+        features_position: bottom
+  - type: grid
+    cards:
+      - type: heading
+        heading: Climate Inside
+        heading_style: title
+        icon: mdi:home-thermometer
+      - type: heading
+        icon: mdi:table-furniture
+        heading: Living room (Table)
+        heading_style: subtitle
+        badges:
+          - type: entity
+            entity: sensor.living_room_table_battery
+      - type: tile
+        entity: sensor.living_room_table_temperature
+        name:
+          type: entity
+        vertical: false
+        features:
+          - type: trend-graph
+        features_position: bottom
+      - type: tile
+        entity: sensor.living_room_table_humidity
+        name:
+          type: entity
+        vertical: false
+        features:
+          - type: trend-graph
+        features_position: bottom
+      - type: heading
+        icon: mdi:shower-head
+        heading: Bathroom (Shower)
+        heading_style: subtitle
+        badges:
+          - type: entity
+            entity: sensor.shower_battery
+      - type: tile
+        entity: sensor.shower_temperature
+        name:
+          type: entity
+        vertical: false
+        features:
+          - type: trend-graph
+        features_position: bottom
+      - type: tile
+        entity: sensor.shower_humidity
+        name:
+          type: entity
+        vertical: false
+        features:
+          - type: trend-graph
+        features_position: bottom
+      - type: heading
+        icon: mdi:bed
+        heading: Bedroom
+        heading_style: subtitle
+        badges:
+          - type: entity
+            entity: sensor.ts0601_battery
+      - type: tile
+        entity: sensor.bedroom_temperature
+        name:
+          type: entity
+        vertical: false
+        features:
+          - type: trend-graph
+        features_position: bottom
+      - type: tile
+        entity: sensor.bedroom_humidity
+        name:
+          type: entity
+        vertical: false
+        features:
+          - type: trend-graph
+        features_position: bottom
+  - type: grid
+    cards:
+      - type: heading
+        heading: Climate Outside
+        heading_style: title
+        icon: mdi:city
+      - type: heading
+        icon: mdi:home-group
+        heading: Street (East)
+        heading_style: subtitle
+        badges:
+          - type: entity
+            entity: sensor.street_battery
+      - type: tile
+        entity: sensor.street_temperature
+        name:
+          type: entity
+        vertical: false
+        features:
+          - type: trend-graph
+        features_position: bottom
+      - type: tile
+        entity: sensor.street_humidity
+        name:
+          type: entity
+        vertical: false
+        features:
+          - type: trend-graph
+        features_position: bottom
+      - type: heading
+        icon: mdi:sunglasses
+        heading: Balcony (South)
+        heading_style: subtitle
+        badges:
+          - type: entity
+            entity: sensor.balcony_battery
+      - type: tile
+        entity: sensor.balcony_temperature
+        name:
+          type: entity
+        vertical: false
+        features:
+          - type: trend-graph
+        features_position: bottom
+      - type: tile
+        entity: sensor.balcony_humidity
+        name:
+          type: entity
+        vertical: false
+        features:
+          - type: trend-graph
+        features_position: bottom
+  - type: grid
+    cards:
+      - type: heading
+        heading: Plants
+        heading_style: title
+        icon: mdi:flower
+      - type: heading
+        icon: ""
+        heading: Olive Tree Soil Sensor
+        heading_style: subtitle
+        badges:
+          - type: entity
+            entity: sensor.soil_olive_battery
+      - type: tile
+        entity: sensor.soil_olive_temperature
+        name:
+          type: entity
+        state_content: state
+        vertical: false
+        features:
+          - type: trend-graph
+        features_position: bottom
+      - type: tile
+        entity: sensor.soil_olive_humidity
+        name:
+          type: entity
+        vertical: false
+        features:
+          - type: trend-graph
+        features_position: bottom
+      - type: tile
+        entity: sensor.soil_olive_soil_moisture
+        name:
+          type: entity
+        vertical: false
+        features:
+          - type: trend-graph
+        features_position: inline

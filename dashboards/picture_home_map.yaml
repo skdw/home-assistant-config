@@ -31,6 +31,12 @@ elements:
       top: 18%
       left: 46.5%
       '--state-icon-color': 'var(--picture-map-icon-inactive-color-onblack)'
+  - type: state-icon # Washing machine
+    entity: binary_sensor.washing_machine_shake_vibration
+    style:
+      top: 18%
+      left: 39.5%
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-onblack)'
   - type: state-label # Power
     entity: sensor.outlet_audio_cabinet_power
     style:

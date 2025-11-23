@@ -57,6 +57,12 @@ sections:
         entity: fan.audio_cabinet
         hide_state: false
         state_content: last_changed
+      - type: tile
+        entity: sensor.audio_cabinet_temperature
+        vertical: false
+        features:
+          - type: trend-graph
+        features_position: inline
   - type: grid
     cards:
       - type: heading
