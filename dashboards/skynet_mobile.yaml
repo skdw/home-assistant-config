@@ -4,7 +4,7 @@ views:
   - !include "view_lights.yaml"
   - !include "view_media.yaml"
   - !include "view_robot_vacuum.yaml"
-  - !include "view_air_conditioning.yaml"
+  - !include "view_climate.yaml"
   - !include "view_sun_energy.yaml"
   - !include "view_presence.yaml"
   - !include "view_diagnostics.yaml"
