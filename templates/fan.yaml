@@ -1,39 +1,38 @@
-- platform: template
-  fans:
-    audio_cabinet:
-      friendly_name: "Audio Cabinet Fan"
-      value_template: "{{ states('light.outlet_audio_cabinet_fan') }}"
-      percentage_template: "{{ state_attr('fan.esp3_fan_speed', 'percentage') if (is_state('light.outlet_audio_cabinet_fan', 'on') and state_attr('fan.esp3_fan_speed', 'percentage') is not none) else 0 }}"
-      turn_on:
-      - action: light.turn_on
+- fan:
+  - default_entity_id: fan.audio_cabinet
+    name: Audio Cabinet Fan
+    state: "{{ states('light.outlet_audio_cabinet_fan') }}"
+    percentage: "{{ state_attr('fan.esp3_fan_speed', 'percentage') if (is_state('light.outlet_audio_cabinet_fan', 'on') and state_attr('fan.esp3_fan_speed', 'percentage') is not none) else 0 }}"
+    turn_on:
+    - action: light.turn_on
+      target:
+        entity_id: light.outlet_audio_cabinet_fan
+    - action: fan.turn_on
+      target:
+        entity_id: fan.esp3_fan_speed
+    turn_off:
+    - action: light.turn_off
+      target:
+        entity_id: light.outlet_audio_cabinet_fan
+    - action: fan.turn_off
+      target:
+        entity_id: fan.esp3_fan_speed
+    set_percentage:
+    - if: "{{ percentage is not none }}"
+      then:
+      - action: "{{ 'light.turn_off' if(percentage == 0) else 'light.turn_on' }}"
         target:
           entity_id: light.outlet_audio_cabinet_fan
-      - action: fan.turn_on
+      - action: fan.set_percentage
         target:
           entity_id: fan.esp3_fan_speed
-      turn_off:
-      - action: light.turn_off
+        data:
+          percentage: "{{ percentage }}"
+    preset_modes:
+      - Manual
+      - Auto
+    preset_mode: "{{ 'Auto' if is_state('input_boolean.fan_audio_cabinet_auto', 'on') else 'Manual' }}"
+    set_preset_mode:
+      - action: "{{ 'input_boolean.turn_on' if(preset_mode == 'Auto') else 'input_boolean.turn_off' }}"
         target:
-          entity_id: light.outlet_audio_cabinet_fan
-      - action: fan.turn_off
-        target:
-          entity_id: fan.esp3_fan_speed
-      set_percentage:
-      - if: "{{ percentage is not none }}"
-        then:
-        - action: "{{ 'light.turn_off' if(percentage == 0) else 'light.turn_on' }}"
-          target:
-            entity_id: light.outlet_audio_cabinet_fan
-        - action: fan.set_percentage
-          target:
-            entity_id: fan.esp3_fan_speed
-          data:
-            percentage: "{{ percentage }}"
-      preset_modes:
-        - 'Manual'
-        - 'Auto'
-      preset_mode_template: "{{ 'Auto' if is_state('input_boolean.fan_audio_cabinet_auto', 'on') else 'Manual' }}"
-      set_preset_mode:
-        - action: "{{ 'input_boolean.turn_on' if(preset_mode == 'Auto') else 'input_boolean.turn_off' }}"
-          target:
-            entity_id: input_boolean.fan_audio_cabinet_auto
+          entity_id: input_boolean.fan_audio_cabinet_auto
