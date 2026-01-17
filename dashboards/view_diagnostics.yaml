@@ -124,9 +124,11 @@ sections:
         heading: Batteries sensors AAA
       - type: entities
         entities:
-          - entity: sensor.audio_cabinet_battery
           - entity: sensor.living_room_table_battery
+          - entity: sensor.audio_cabinet_battery
           - entity: sensor.washing_machine_shake_battery
+          - entity: sensor.street_battery
+          - entity: sensor.balcony_battery
   - type: grid
     cards:
       - type: heading
@@ -135,12 +137,10 @@ sections:
       - type: entities
         entities:
           - entity: sensor.shower_battery
-          - entity: sensor.street_battery
           - entity: sensor.kitchen_leakage_battery
           - entity: sensor.hall_entrance_battery
           - entity: sensor.hall_wardrobe_battery
           - entity: sensor.hall_wardrobe_remote_battery
-          - entity: sensor.balcony_battery
           - entity: sensor.balcony_leakage_battery
   - type: grid
     cards:
