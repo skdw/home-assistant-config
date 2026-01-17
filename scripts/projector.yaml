@@ -7,28 +7,40 @@ projector_turn_on:
       iscp_message: CTVPWRON
     alias: Projector Power ON
     enabled: true
+  - action: script.remote_menu_publish
+    data:
+      topic: text/1
+      payload: Projector is starting...
   - delay:
       hours: 0
       minutes: 0
-      seconds: 40
+      seconds: 25
       milliseconds: 0
     enabled: true
+  - action: switch.turn_off
+    data: {}
+    target:
+      entity_id: switch.outlet_media_5v
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 3
+      milliseconds: 0
+  - action: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.outlet_media_5v
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 7
+      milliseconds: 0
   - action: media_player.select_source
     metadata: {}
     data:
       source: Google TV
     target:
       entity_id: media_player.pioneer_onkyo
-  - delay:
-      hours: 0
-      minutes: 0
-      seconds: 2
-      milliseconds: 0
-  - action: remote.turn_on
-    metadata: {}
-    data: {}
-    target:
-      entity_id: remote.google_tv
 projector_turn_off:
   alias: Projector turn OFF
   sequence:
