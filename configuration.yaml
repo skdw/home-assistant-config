@@ -57,7 +57,7 @@ influxdb:
   default_measurement: state
   exclude: !include configuration/exclude.yaml
 
-fan: !include configuration/fan.yaml
+fan: !include templates/fan.yaml # TODO update
 
 input_select:
   pioneer_source:
@@ -86,7 +86,7 @@ input_select:
 
 media_player: !include configuration/media_player.yaml
 
-light: !include configuration/light.yaml
+light: !include templates/light.yaml # TODO update
 
 counter:
   switches_enabled:
@@ -159,5 +159,6 @@ timer:
   pc_countdown:
     name: PC countdown until power OFF
 
-template: !include configuration/template.yaml
+template: !include templates/sensor.yaml # TODO update
+# template: !include_dir_merge_list templates/
 
