@@ -196,6 +196,16 @@ elements:
       top: 49.6%
       left: 96%
   - type: state-label
+    entity: sensor.living_room_table_temperature
+    style:
+      top: 47.1%
+      left: 61%
+  - type: state-label
+    entity: sensor.living_room_table_humidity
+    style:
+      top: 49.6%
+      left: 61%
+  - type: state-label
     entity: sensor.bedroom_temperature
     style:
       top: 60.0%

@@ -55,11 +55,11 @@
       color_temp_kelvin: 4500
     light.living_room_desk_screen:
       state: 'on'
-      brightness: 255
+      brightness: 150
       color_temp_kelvin: 2000
     light.living_room_desk_ambilight:
       state: 'on'
-      brightness: 255
+      brightness: 40
       rgb_color: [255, 109, 61]
     light.living_room_desk_back:
       state: 'on'
@@ -113,7 +113,7 @@
       color_temp_kelvin: 2000
     light.living_room_desk_ambilight:
       state: 'on'
-      brightness: 40
+      brightness: 20
       rgb_color: [255, 109, 61]
     light.living_room_desk_back:
       state: 'on'
@@ -153,7 +153,7 @@
       color_temp_kelvin: 2000
     light.living_room_desk_ambilight:
       state: 'on'
-      brightness: 65
+      brightness: 20
       rgb_color: [208, 255, 99]
     light.living_room_desk_back:
       state: 'on'

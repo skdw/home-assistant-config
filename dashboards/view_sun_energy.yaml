@@ -2,21 +2,47 @@ title: Sun / Energy
 path: sun-energy
 icon: "mdi:sun-angle"
 badges: []
-type: sidebar
-cards:
-- !include "card_curtains_simple.yaml"
-- !include "card_curtains_detailed.yaml"
-- !include "card_hstack_energy_co2.yaml"
-- type: horizontal-stack
-  title: Sun light
-  cards:
-    - graph: line
-      type: sensor
-      detail: 1
-      entity: sensor.sun_solar_elevation
-      name: Sun elevation
-    - graph: line
-      type: sensor
-      detail: 1
-      entity: sensor.presence_light_level
-      name: Room light
+type: sections
+cards: []
+dense_section_placement: false
+sections:
+  - type: grid
+    cards:
+    - type: heading
+      heading: Curtains
+      heading_style: title
+      icon: mdi:curtains
+    - !include "card_curtains_simple.yaml"
+    - !include "card_curtains_detailed.yaml"
+  - type: grid
+    cards:
+    - type: heading
+      heading: Energy
+      heading_style: title
+      icon: mdi:lightning-bolt
+    - type: tile
+      entity: input_number.energy_grid_consumption
+      vertical: false
+      features_position: bottom
+      grid_options:
+        columns: 12
+        rows: 1
+    - !include "card_hstack_energy_co2.yaml"
+  - type: grid
+    cards:
+      - type: heading
+        heading: Sun
+        heading_style: title
+        icon: mdi:weather-sunny
+      - type: tile
+        entity: sensor.presence_light_level
+        vertical: false
+        features_position: inline
+        features:
+          - type: trend-graph
+      - type: tile
+        entity: sensor.sun_solar_elevation
+        vertical: false
+        features_position: inline
+        features:
+          - type: trend-graph
