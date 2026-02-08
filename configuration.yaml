@@ -6,13 +6,13 @@ frontend:
   themes: !include themes.yaml
 
 lovelace:
-  mode: yaml
+  resource_mode: yaml
   dashboards:
     skynet-board:
       mode: yaml
       title: Skynet
       icon: mdi:view-dashboard
-      show_in_sidebar: false
+      show_in_sidebar: true
       filename: dashboards/skynet.yaml
     skynet-mobile:
       mode: yaml
