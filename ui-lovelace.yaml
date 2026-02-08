@@ -1,3 +1,0 @@
-!include "dashboards/skynet.yaml"
-#title: Skynet
-#views: !include "dashboards/skynet_views.yaml"
