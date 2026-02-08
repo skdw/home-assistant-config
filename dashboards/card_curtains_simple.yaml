@@ -1,4 +1,9 @@
 type: tile
+grid_options:
+  columns: full
+  rows: 1
 entity: cover.curtains
+vertical: false
 features:
   - type: cover-open-close
+features_position: inline
