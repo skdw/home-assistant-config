@@ -66,6 +66,7 @@ sections:
       - type: entities
         entities:
           - entity: scene.lights_focus
+          - entity: scene.lights_webinar
           - entity: scene.lights_cooking
           - entity: scene.lights_dinner
           - entity: scene.lights_evening

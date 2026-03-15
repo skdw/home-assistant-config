@@ -4,10 +4,10 @@
     switches_pairs:
     - &Pair1
       - switch.balcony_l1
-      - switch.balcony_2_l1
+      - switch.balcony_2_relay_left
     - &Pair2
       - switch.balcony_l2
-      - switch.balcony_2_l2
+      - switch.balcony_2_relay_right
   triggers:
     - trigger: state
       entity_id: *Pair1

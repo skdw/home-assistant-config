@@ -272,6 +272,16 @@
         {% set hours_passed = (now() - start_date.astimezone()).total_seconds() / 3600 %}
         {% set hourly_rate = 148 / 8760 %}
         {{ (hours_passed * hourly_rate) | round(2) }}
+    - name: "Lights Energy"
+      unit_of_measurement: "kWh"
+      device_class: energy
+      state_class: total_increasing
+      icon: "mdi:lightbulb-group"
+      state: >
+        {% set start_date = strptime("2023-01-01", "%Y-%m-%d") %}
+        {% set hours_passed = (now() - start_date.astimezone()).total_seconds() / 3600 %}
+        {% set hourly_rate = 26.3 / 1000 %}
+        {{ (hours_passed * hourly_rate) | round(2) }}
 - triggers:
   - trigger: state
     entity_id: sensor.oven_machine_state
@@ -282,7 +292,7 @@
       state_class: measurement
       state: >
         {% set running = is_state('sensor.oven_machine_state', 'running')  %}
-        {{ 1000.0 if running else 0.0 }}
+        {{ 1000.0 if running else 2.0 }}
 - triggers:
   - trigger: state
     entity_id:
@@ -296,7 +306,7 @@
       device_class: power
       state_class: measurement
       state: >
-        {% set ns = namespace(sum=0) -%}
+        {% set ns = namespace(sum=2.0) -%}
         {% for i in range(1, 5) -%}
         {% set state = states("sensor.cooktop_burner_" ~ i ~ "_level") | int(0) -%}
          {% set power = 2200 * (state / 15) ** 2 -%}

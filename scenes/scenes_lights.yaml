@@ -88,6 +88,15 @@
       brightness: 40
     switch.outlet_kitchen_hood:
       state: 'on'
+- id: 'yaml_lights_webinar'
+  name: Webinar
+  icon: 'mdi:monitor-account'
+  entities:
+    light.living_room_desk_screen:
+      state: 'on'
+      brightness: 200
+    light.living_room_desk_ambilight:
+      state: 'off'
 - id: 'yaml_lights_cooking'
   name: Cooking
   icon: 'mdi:chef-hat'
@@ -205,11 +214,11 @@
     light.living_room_desk_ambilight:
       state: 'on'
       brightness: 3
-      rgb_color: [255, 109, 61]
+      rgb_color: [255, 109, 40]
     light.living_room_desk_back:
       state: 'on'
       brightness: 10
-      rgb_color: [255, 120, 0]
+      rgb_color: [255, 130, 40]
     light.living_room_plant:
       state: 'on'
       brightness: 5
@@ -226,7 +235,7 @@
     light.top_strip:
       state: 'on'
       brightness: 3
-      rgb_color: [255, 102, 26]
+      rgb_color: [255, 120, 40]
     light.balcony_bamboo:
       state: 'on'
       brightness: 4

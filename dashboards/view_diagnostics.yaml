@@ -116,7 +116,6 @@ sections:
         entities:
           - entity: sensor.iphone_kamil_battery_level
           - entity: sensor.iphone_kamil_watch_battery
-          - entity: sensor.nspanel_pro_battery_level
   - type: grid
     cards:
       - type: heading
@@ -139,9 +138,9 @@ sections:
           - entity: sensor.shower_battery
           - entity: sensor.kitchen_leakage_battery
           - entity: sensor.hall_entrance_battery
-          - entity: sensor.hall_wardrobe_battery
-          - entity: sensor.hall_wardrobe_remote_battery
+          - entity: sensor.hall_wardrobe_door_battery
           - entity: sensor.balcony_leakage_battery
+          # - entity: sensor.hall_wardrobe_remote_battery
   - type: grid
     cards:
       - type: heading
