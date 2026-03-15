@@ -270,7 +270,7 @@ elements:
       '--state-binary_sensor-active-color': 'var(--picture-map-icon-active-color)'
       '--state-binary_sensor-off-color': 'var(--picture-map-icon-inactive-color-onblack)'
   - type: state-icon
-    entity: binary_sensor.hall_wardrobe_door
+    entity: binary_sensor.hall_wardrobe_door_contact
     style:
       top: 10%
       left: 39%
