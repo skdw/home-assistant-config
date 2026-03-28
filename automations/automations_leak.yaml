@@ -1,0 +1,19 @@
+- id: 'leak'
+  alias: "YAML alert on leakage"
+  mode: single
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.kitchen_leakage_water_leak
+      to: "on"
+    - platform: state
+      entity_id:
+      - binary_sensor.pot_leakage_1_water_leak
+      - binary_sensor.pot_leakage_2_water_leak
+      to: "on"
+  action:
+    - variables:
+        leakage_place: "{{ state_attr(trigger.entity_id, 'friendly_name') }}"
+    - action: script.home_alert
+      data:
+        level: 100
+        message: Water leakage has been detected in the {{ leakage_place }}
