@@ -1,6 +1,7 @@
 - fan:
   - default_entity_id: fan.audio_cabinet
     name: Audio Cabinet Fan
+    availability: "{{ has_value('light.outlet_audio_cabinet_fan') }}"
     state: "{{ states('light.outlet_audio_cabinet_fan') }}"
     percentage: "{{ state_attr('fan.esp3_fan_speed', 'percentage') if (is_state('light.outlet_audio_cabinet_fan', 'on') and state_attr('fan.esp3_fan_speed', 'percentage') is not none) else 0 }}"
     turn_on:

@@ -1,5 +1,7 @@
 - id: 'light_switches_sync'
   alias: 'YAML Lights - Sync balcony switches pairs'
+  mode: parallel
+  max: 20
   trigger_variables:
     switches_pairs:
     - &Pair1
