@@ -51,8 +51,6 @@ logbook:
   exclude: !include configuration/exclude.yaml
 
 influxdb:
-  username: !secret influxdb_user
-  password: !secret influxdb_password
   max_retries: 3
   default_measurement: state
   exclude: !include configuration/exclude.yaml
