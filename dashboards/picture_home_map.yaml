@@ -322,17 +322,11 @@ elements:
       left: 54.6%
       '--state-icon-color': 'var(--picture-map-icon-inactive-color-ongray)'
   - type: state-icon # Lights wardrobe
-    entity: light.wardrobe_clothes
+    entity: light.wardrobe
     style:
       top: 30%
       left: 16%
       '--state-icon-color': 'var(--picture-map-icon-inactive-color-ongray)'
-  - type: state-icon
-    entity: light.wardrobe_ceiling
-    style:
-      top: 37%
-      left: 25%
-      '--state-icon-color': 'var(--picture-map-icon-inactive-color-onblack)'
   - type: state-icon # Lights living room
     entity: light.living_room_table
     style:

@@ -277,3 +277,26 @@
       state: 'off'
     light.hall_wardrobe:
       state: 'off'
+- id: 'yaml_lights_off_bedroom'
+  name: Lights Off in Bedroom
+  entities:
+    switch.living_room_l1:
+      state: 'off'
+    switch.living_room_l2:
+      state: 'off'
+    switch.bedroom_ceiling:
+      state: 'off'
+    switch.bedroom_reading_left:
+      state: 'off'
+    switch.bedroom_reading_right:
+      state: 'off'
+    light.bedroom_strip:
+      state: 'off'
+    switch.balcony_l1:
+      state: 'off'
+    switch.balcony_l2:
+      state: 'off'
+    switch.wardrobe:
+      state: 'off'
+    switch.outlet_kitchen_hood:
+      state: 'off'
