@@ -13,6 +13,12 @@
           value_template: "{{ has_value('media_player.pioneer_dlna') == False }}"
       then:
         - stop: "Target media_player.pioneer_dlna is not available"
+    - alias: Stop if the selected state is not a valid station
+      condition: template
+      value_template: >
+        {{ trigger is defined and 
+           trigger.to_state is defined and 
+           trigger.to_state.state in stations | map(attribute='name') | list }}
     - alias: Get the NET radio station
       variables:
         station: "{{ stations | selectattr('name', 'eq', trigger.to_state.state) | first }}"

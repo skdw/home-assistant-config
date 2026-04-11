@@ -71,6 +71,7 @@ sections:
           - entity: scene.lights_dinner
           - entity: scene.lights_evening
           - entity: scene.lights_off
+          - entity: scene.lights_off_in_bedroom
       - type: heading
         icon: mdi:auto-mode
         heading_style: title
