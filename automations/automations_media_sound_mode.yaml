@@ -5,32 +5,49 @@
   - entity_id: input_select.sound_mode
     trigger: state
   variables:
-    listening_mode_value:
-      'Auto':     auto-surround
-      'Extended': all-ch-stereo
-      'Surround': dolby-atmos
-      'Desk':     full-mono
-    cmt_message: # Audio Muting by Channel Command 
-      'Auto':     CMT00000000000000000000000000
-      'Extended': CMT00000000000000000000000000
-      'Surround': CMT00000000000000000000000000
-      'Desk':     CMT00010100010000000000000000
-    tcl_message: # Temporary Channel Level Command 
-      'Auto':     TCL000000+02-01000000000-01000000000000000
-      'Extended': TCL-0C000+02+0E+0A000000-04000000000000000
-      'Surround': TCL000000+02-01000000000-01000000000000000
-      'Desk':     TCL000-01+02+18000000000-04000000000000000
+    sound_mode_value:
+      'Auto':     AUTO SURROUND
+      'Extended': ALL CH STEREO
+      'Surround': DOLBY ATMOS
+      'Desk':     FULL MONO
+    cmt_data: # Audio Muting by Channel
+      'Auto':     {}
+      'Extended': {}
+      'Surround': {}
+      'Desk':
+        front_right: true
+        center: true
+        surround_right: true
+    tcl_data: # Temporary Channel Level
+      'Auto':
+        center: 2
+        surround_left: -1
+        subwoofer: -1
+      'Extended':
+        front_left: -12
+        center: 2
+        surround_left: 14
+        surround_right: 10
+        subwoofer: -4
+      'Surround':
+        center: 2
+        surround_left: -1
+        subwoofer: -1
+      'Desk':
+        front_right: -1
+        center: 2
+        surround_left: 16
+        subwoofer: -4
   actions:
-  - action: media_player.onkyo_command
+  - action: media_player.select_sound_mode
     data:
       entity_id: media_player.pioneer_onkyo
-      iscp_command: listening-mode
-      iscp_value: "{{ listening_mode_value[trigger.to_state.state] }}"
-  - action: media_player.onkyo_message
+      sound_mode: "{{ sound_mode_value[trigger.to_state.state] }}"
+  - action: media_player.onkyo_set_channel_muting
     data:
       entity_id: media_player.pioneer_onkyo
-      iscp_message: "{{ cmt_message[trigger.to_state.state] }}"
-  - action: media_player.onkyo_message
+      channels: "{{ cmt_data[trigger.to_state.state] }}"
+  - action: media_player.onkyo_set_temporary_channel_level
     data:
       entity_id: media_player.pioneer_onkyo
-      iscp_message: "{{ tcl_message[trigger.to_state.state] }}"
+      channel_levels: "{{ tcl_data[trigger.to_state.state] }}"
