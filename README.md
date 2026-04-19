@@ -7,6 +7,9 @@ My [Home Assistant](http://home-assistant.io) configuration. The system is runni
 
 Dashboards are optimized for desktop browser, mobile app and wall panel display.
 
+> [!TIP]
+> **Explore System Design with AI**: Check out this [NotebookLM project](https://notebooklm.google.com/notebook/fd97c81e-35d3-4463-b4b3-c4f74ceaa441) to ask questions about this setup or listen to an AI-generated podcast debating the design, privacy, and maintenance.
+
 ## Integrations
 
 ```mermaid
@@ -111,14 +114,14 @@ graph TD
   - Oven
   - Cooktop
 - [Roborock](https://www.home-assistant.io/integrations/roborock/) - robot vacuum cleaner
-- [Onkyo](https://www.home-assistant.io/integrations/onkyo/) - Pioneer home cinema (5.1 + Zone 2 + Zone 3)
+- [Onkyo](https://www.home-assistant.io/integrations/onkyo/) - Pioneer home cinema (5.1 + Zone 2 + Zone 3). Using [customized fork](#onkyo-skdw-integration) for advanced control.
 - [Spotify](https://www.home-assistant.io/integrations/spotify/)
 - [Android TV](https://www.home-assistant.io/integrations/androidtv/)
 - [HomeKit Bridge](https://www.home-assistant.io/integrations/homekit/) - HASS entities exposed to Apple Home (complements the Matter service)
   - Pioneer home cinema, as Apple media player accessory
   - Curtains
   - Air quality
-- [IPP](https://www.home-assistant.io/integrations/ipp/) - Printer
+- [IPP](https://www.home-assistant.io/integrations/ipp/) - Printer (E-mail print included)
 - [OpenAI Conversation](https://www.home-assistant.io/integrations/openai_conversation/)
 - [Strava](https://github.com/craibo/ha_strava) - exercises tracking
 - [Electricity Maps](https://www.home-assistant.io/integrations/co2signal/) - CO2 intensity of home energy
@@ -260,7 +263,7 @@ The up-to-date backups of Home Assistant database are stored on [Google Drive](h
 
 ### Overwriting Core Integrations
 
-This project includes customizations to selected core Home Assistant integrations. The modified modules are available in a forked repository: [github.com/skdw/home-assistant-core/tree/skynet](https://github.com/skdw/home-assistant-core/tree/skynet).
+This project includes customizations to selected core Home Assistant integrations, most notably the [Onkyo integration](#onkyo-integration). The modified modules are available in a forked repository: [github.com/skdw/home-assistant-core/tree/skynet](https://github.com/skdw/home-assistant-core/tree/skynet).
 
 To efficiently obtain these customized integrations, perform a sparse checkout of the `skdw/home-assistant-core` repository instead of a full submodule initialization. This method downloads only the necessary files, optimizing the cloning process.
 ```
@@ -285,4 +288,85 @@ git checkout skynet
 # Validate sparse checkout
 home-assistant-core git:(skynet) find -type f | wc -l
 85
+```
+
+### Onkyo Integration
+
+This configuration uses a [customized fork](https://github.com/skdw/home-assistant-core) (domain: `onkyo_skdw`) of the official Onkyo integration, tailored for this specific setup using the [customized aioonkyo library](https://github.com/skdw/aioonkyo).
+
+### Features
+- **Media Information**: Support for displaying Artist, Album, and Title for Network/USB sources (retrieved via the `dock` zone mapping).
+- **Service-Based Control**: Replaces standard `switch` entities for channel muting with high-performance service calls.
+- **Optimized for Automations**: Allows atomic updates of multiple channels in a single ISCP message.
+
+### Why Service Calls instead of Switches?
+The standard Home Assistant Onkyo integration creates a `switch` entity for every single audio channel's muting state. For modern receivers, this results in over a dozen entities that clutter the UI. By moving to service calls, we achieve:
+1. **Atomic Updates**: Mute or adjust levels for multiple channels simultaneously, avoiding staggered updates.
+2. **Cleaner UI**: Keeps the entity list focused on primary controls.
+3. **Advanced Logic**: Enables complex "Sound Modes" (like "Night Mode" or "Desk Mode") to be defined in a single automation action.
+
+### Services
+
+#### `onkyo_skdw.onkyo_set_channel_muting`
+Sets the muting state for specific audio channels.
+
+**Service Data:**
+- `entity_id`: (Required) The media player entity.
+- `channels`: (Required) A dictionary of channels and their desired boolean muting state.
+
+**Example:**
+```yaml
+action: media_player.onkyo_set_channel_muting
+data:
+  entity_id: media_player.pioneer_onkyo
+  channels:
+    front_right: true
+    center: true
+```
+
+#### `onkyo_skdw.onkyo_set_temporary_channel_level`
+Sets temporary volume levels for specific audio channels (range: -16 to 16).
+
+**Service Data:**
+- `entity_id`: (Required) The media player entity.
+- `channel_levels`: (Required) A dictionary of channels and their desired integer levels.
+
+**Example:**
+```yaml
+action: media_player.onkyo_set_temporary_channel_level
+data:
+  entity_id: media_player.pioneer_onkyo
+  channel_levels:
+    front_left: 3
+    center: -1
+```
+
+#### `onkyo_skdw.onkyo_set_tuner_preset`
+Sets the tuner preset (FM/AM radio).
+
+**Service Data:**
+- `entity_id`: (Required) The media player entity.
+- `preset`: (Required) The preset number (1-40).
+
+**Example:**
+```yaml
+action: media_player.onkyo_set_tuner_preset
+data:
+  entity_id: media_player.pioneer_onkyo
+  preset: 1
+```
+
+#### `onkyo_skdw.onkyo_set_tv_operation`
+Sends a CEC/TV operation command to the receiver (e.g., to power on a projector).
+
+**Service Data:**
+- `entity_id`: (Required) The media player entity.
+- `operation`: (Required) The operation name (e.g., `pwron`, `pwroff`, `input`).
+
+**Example:**
+```yaml
+action: media_player.onkyo_set_tv_operation
+data:
+  entity_id: media_player.pioneer_onkyo
+  operation: pwron
 ```

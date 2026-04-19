@@ -7,9 +7,7 @@
   variables:
     preset_id: "{{ state_attr('input_select.radio_fm', 'options').index(trigger.to_state.state) + 1 }}"
   actions:
-    - action: media_player.onkyo_command
+    - action: media_player.onkyo_set_tuner_preset
       data:
         entity_id: media_player.pioneer_onkyo
-        iscp_command: preset
-        iscp_value: "{{ preset_id }}"
-
+        preset: "{{ preset_id }}"

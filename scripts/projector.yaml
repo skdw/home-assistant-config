@@ -1,10 +1,10 @@
 projector_turn_on:
   alias: Projector turn ON
   sequence:
-  - action: media_player.onkyo_message
+  - action: media_player.onkyo_set_tv_operation
     data:
       entity_id: media_player.pioneer_onkyo
-      iscp_message: CTVPWRON
+      operation: pwron
     alias: Projector Power ON
     enabled: true
   - action: script.remote_menu_publish

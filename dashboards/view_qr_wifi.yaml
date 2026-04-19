@@ -27,3 +27,5 @@ cards:
   - type: markdown
     content: |-
       <ha-qr-code data="https://github.com/skdw/home-assistant-config" scale="8" margin="0" width="150"></ha-qr-code>
+  - type: markdown
+    content: !include secret_email_print.yaml
