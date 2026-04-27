@@ -23,18 +23,14 @@ graph TD
 
 
     %% --- Connections to Coordinators/Devices ---
-    subgraph "Zigbee Network 1"
-      Dirigera
-      Lights --Zigbee--> Dirigera
-      Sensors --Zigbee--> Dirigera
-    end
-    subgraph "Zigbee Network 2"
+    subgraph "Zigbee Network"
       CC2652P
       Curtains --Zigbee--> CC2652P
       WS["Wall Switches"] --Zigbee--> CC2652P
       PO["Power Outlets"] --Zigbee--> CC2652P
       KN["Knobs"] --Zigbee--> CC2652P
       S1["Sensors"] --Zigbee--> CC2652P
+      Lights --Zigbee--> CC2652P
     end
     
     IR["GTV remote"] --IR_GPIO--> ESP32
@@ -60,7 +56,6 @@ graph TD
     end   
 
     %% --- Connections to Server ---
-    Dirigera --Matter_Bridge--> S
     CC2652P --USB_Zigbee2MQTT--> S
     ESP32 --WiFi_ESPHome--> S
     SM["SmartThings"] --Cloud_API--> S
@@ -72,31 +67,22 @@ graph TD
     S --MQTT--> MP["Adafruit MatrixPortal S3"]
     
     %% Output
-    Dirigera --LAN_Bridge--> AH
     MP --HUB75--> RGB["RGB Matrix Display"]
     S --HTTP--> CA["Companion App (Web + Mobile + Wall Panel)"]
     I --HTTPS--> CA
 
     %% Apply Styles
     class S server;
-    class Dirigera,CC2652P,SM,Onkyo,ESP32,AH,MP,I integration;
+    class CC2652P,SM,Onkyo,ESP32,MP,I integration;
 
     %% Add a clickable link to the server node
     %% click S "[https://www.home-assistant.io/](https://www.home-assistant.io/)" "Visit the Home Assistant Website"
 
 ```
 
-- [Matter](https://www.home-assistant.io/integrations/matter)
-  - IKEA Dirigera Hub
-    - Zigbee lights (IKEA, Philips)
-    - Temperature, humidity sensors
-    - Door sensors
-  - Apple Home ([multi fabric](https://www.home-assistant.io/integrations/matter#multi-fabric-join-to-multiple-controllers) provides an independent Dirigera <-> iOS connection)
-- [HomeKit Device](https://www.home-assistant.io/integrations/homekit_controller)
-  - [Aqara FP2](https://www.aqara.com/eu/product/presence-sensor-fp2/)
-    - Human presence sensor
-    - Light level sensor
 - [Zigbee2MQTT](https://www.zigbee2mqtt.io/)
+  - **Zigbee lights** (IKEA, Philips)
+  - **Temperature, humidity, door sensors** (IKEA, Aqara)
   - [BSEED](https://www.bseed.com/products/bseed-zigbee-1-2-3gang-1-2-3way-switch-wall-smart-light-switch-for-staircase) [TS0001](https://www.zigbee2mqtt.io/devices/TS0001.html) - wall light switches (with neutral, relays cannot cut off smart bulbs power)
   - [BSEED](https://www.bseed.com/products/bseed-zigbee-eu-wall-sockets-power-outlets-with-energy-monitoring-kids-protection) [TS011F](https://www.zigbee2mqtt.io/devices/TS011F_plug_1.html) - energy monitoring power outlets
   - [IKEA E1743](https://www.zigbee2mqtt.io/devices/E1743.html) - remote light switches
@@ -105,7 +91,12 @@ graph TD
   - [Tuya TS0207](https://www.zigbee2mqtt.io/devices/TS0207_water_leak_detector_1.html) - water leakage detectors
   - [COOLO CS-201Z](https://www.zigbee2mqtt.io/devices/CS-201Z.html) - soil moisture sensors
   - [Aqara C3](https://www.aqara.com/en/product/curtain-controller-c3/) [ZNCLDJ01LM](https://www.zigbee2mqtt.io/devices/ZNCLDJ01LM.html) - curtains
-- [MQTT](https://www.home-assistant.io/integrations/mqtt/) - [publishing](https://www.home-assistant.io/integrations/mqtt/#publish--dump-actions) home media states for the pixel display
+- [HomeKit Device](https://www.home-assistant.io/integrations/homekit_controller)
+  - [Aqara FP2](https://www.aqara.com/eu/product/presence-sensor-fp2/)
+    - Human presence sensor
+    - Light level sensor
+- [MQTT](https://www.home-assistant.io/integrations/mqtt/)
+  - [publishing](https://www.home-assistant.io/integrations/mqtt/#publish--dump-actions) home media states for the pixel display
   - Hardware - board: [AdaFruit MatrixPortal S3](https://learn.adafruit.com/adafruit-matrixportal-s3/)
   - Hardware - display: HUB75 [RGB-Matrix-P2-64x64](https://www.waveshare.com/wiki/RGB-Matrix-P2-64x64), four panels chained
   - OS - [CircuitPython](https://www.adafruit.com/circuitpython)
@@ -117,10 +108,11 @@ graph TD
 - [Onkyo](https://www.home-assistant.io/integrations/onkyo/) - Pioneer home cinema (5.1 + Zone 2 + Zone 3). Using [customized fork](#onkyo-skdw-integration) for advanced control.
 - [Spotify](https://www.home-assistant.io/integrations/spotify/)
 - [Android TV](https://www.home-assistant.io/integrations/androidtv/)
-- [HomeKit Bridge](https://www.home-assistant.io/integrations/homekit/) - HASS entities exposed to Apple Home (complements the Matter service)
+- [HomeKit Bridge](https://www.home-assistant.io/integrations/homekit/) - HASS entities exposed to Apple Home
+  - Lights
+  - Sensors
   - Pioneer home cinema, as Apple media player accessory
   - Curtains
-  - Air quality
 - [IPP](https://www.home-assistant.io/integrations/ipp/) - Printer (E-mail print included)
 - [OpenAI Conversation](https://www.home-assistant.io/integrations/openai_conversation/)
 - [Strava](https://github.com/craibo/ha_strava) - exercises tracking
