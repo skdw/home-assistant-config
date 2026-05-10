@@ -2,6 +2,7 @@ title: Skynet Mobile
 views:
   - !include "view_home_mobile.yaml"
   - !include "view_lights.yaml"
+  - !include "view_lights_scenes.yaml"
   - !include "view_media.yaml"
   - !include "view_robot_vacuum.yaml"
   - !include "view_climate.yaml"

@@ -2,7 +2,7 @@
   name: Lights On
   icon: mdi:lightbulb-multiple
   entities:
-    light.hall_entrance:
+    light.hall_ceiling:
       state: 'on'
     light.kitchen_spots:
       state: 'on'
@@ -195,7 +195,7 @@
   name: Evening
   icon: 'mdi:clock-time-eleven-outline'
   entities:
-    light.hall_entrance:
+    light.hall_ceiling:
       state: 'off'
     light.kitchen_spots:
       state: 'on'
