@@ -1,4 +1,4 @@
-- action: scene.turn_on
+- action: "{{ scene.turn_on if False }}" # action disabled
   target: scene.lights_on
 - action: scene.turn_on
   target: scene.lights_focus

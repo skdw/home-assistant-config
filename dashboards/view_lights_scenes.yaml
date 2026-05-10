@@ -24,7 +24,7 @@ badges:
     show_name: true
     show_state: true
     show_icon: true
-    entity: light.hall_entrance
+    entity: light.hall_ceiling
     name: Hall
     icon: mdi:door
   - type: entity

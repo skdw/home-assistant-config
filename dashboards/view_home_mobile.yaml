@@ -20,7 +20,7 @@ badges:
   name: Home
   display_type: complete
 - type: entity
-  entity: light.hall_entrance
+  entity: light.hall_ceiling
   display_type: complete
   show_entity_picture: false
   name: Hall
