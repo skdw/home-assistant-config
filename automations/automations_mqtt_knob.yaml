@@ -6,57 +6,102 @@
     trigger: mqtt
   - topic: zigbee2mqtt/Remote Bedroom audio knob
     trigger: mqtt
+  - topic: zigbee2mqtt/Remote Balcony Railing
+    trigger: mqtt
   conditions:
   - condition: template
     value_template: '{{ ''action'' in trigger.payload_json }}'
   actions:
   - variables:
-      media_player_entity: '{{ ''media_player.pioneer_onkyo_zone_2'' if (trigger.id
-        == ''0'') else ''media_player.pioneer_onkyo_zone_3'' }}'
+      entities:
+        '0':
+          id: 'media_player.pioneer_onkyo_zone_2'
+          type: 'media_player'
+        '1':
+          id: 'media_player.pioneer_onkyo_zone_3'
+          type: 'media_player'
+        '2':
+          id: 'light.balcony_railing'
+          type: 'light'
+      entity: '{{ entities[trigger.id] }}'
       command: '{{ trigger.payload_json.action  }}'
-      step_size: '{{ trigger.payload_json.action_step_size }}'
+      step_size: '{{ trigger.payload_json.action_step_size | default(0) }}'
       step_percent: '{% if is_number(step_size) %} {{ (step_size * 0.0005 ) | float
         }} {% else %} {{ 0 }} {% endif %}'
   - choose:
-    - conditions:
-      - condition: template
-        value_template: '{{ command == ''toggle'' }}'
+    # Operate media player
+    - conditions: '{{ command == ''toggle'' }}'
       sequence:
       - if:
         - condition: template
-          value_template: '{{ states(media_player_entity) == "on" }}'
+          value_template: '{{ entity.type == "media_player" and states(entity.id) == "on" }}'
         then:
         - target:
-            entity_id: '{{ media_player_entity }}'
+            entity_id: '{{ entity.id }}'
           data: {}
           action: media_player.turn_off
         else:
         - target:
-            entity_id: '{{ media_player_entity }}'
+            entity_id: '{{ entity.id }}'
           data: {}
           action: media_player.turn_on
         enabled: true
-    - conditions:
-      - condition: template
-        value_template: '{{ states(media_player_entity) == "on" }}'
-      - condition: template
-        value_template: '{{ command == ''brightness_step_down'' }}'
+    - conditions: '{{ entity.type == "media_player" and states(entity.id) == "on" and command == ''brightness_step_down'' }}'
       sequence:
       - target:
-          entity_id: '{{ media_player_entity }}'
+          entity_id: '{{ entity.id }}'
         data:
-          volume_level: '{{ state_attr(media_player_entity, ''volume_level'') - step_percent
+          volume_level: '{{ state_attr(entity.id, ''volume_level'') - step_percent
             }}'
         action: media_player.volume_set
-    - conditions:
-      - condition: template
-        value_template: '{{ states(media_player_entity) == "on" }}'
-      - condition: template
-        value_template: '{{ command == ''brightness_step_up'' }}'
+    - conditions: '{{ entity.type == "media_player" and states(entity.id) == "on" and command == ''brightness_step_up'' }}'
       sequence:
       - target:
-          entity_id: '{{ media_player_entity }}'
+          entity_id: '{{ entity.id }}'
         data:
-          volume_level: '{{ state_attr(media_player_entity, ''volume_level'') + step_percent
+          volume_level: '{{ state_attr(entity.id, ''volume_level'') + step_percent
             }}'
         action: media_player.volume_set
+    # Operate light
+    - conditions: '{{ entity.type == "light" and command == "on" }}'
+      sequence:
+      - action: light.turn_on
+        target:
+          entity_id: '{{ entity.id }}'
+    - conditions: '{{ entity.type == "light" and command == "off" }}'
+      sequence:
+      - action: light.turn_off
+        target:
+          entity_id: '{{ entity.id }}'
+    - conditions: '{{ entity.type == "light" and command == "brightness_move_up" }}'
+      sequence:
+      - action: light.turn_on
+        data:
+          brightness_step_pct: 10
+        target:
+          entity_id: '{{ entity.id }}'
+    - conditions: '{{ entity.type == "light" and command == "brightness_move_down" }}'
+      sequence:
+      - action: light.turn_on
+        data:
+          brightness_step_pct: -10
+        target:
+          entity_id: '{{ entity.id }}'
+    - conditions: '{{ entity.type == "light" and command == "arrow_left_click" }}'
+      sequence:
+      - action: light.turn_on
+        data:
+          hs_color:
+            - '{{ (state_attr(entity.id, ''hs_color'')[0] - 10) % 360 }}'
+            - '{{ state_attr(entity.id, ''hs_color'')[1] }}'
+        target:
+          entity_id: '{{ entity.id }}'
+    - conditions: '{{ entity.type == "light" and command == "arrow_right_click" }}'
+      sequence:
+      - action: light.turn_on
+        data:
+          hs_color:
+            - '{{ (state_attr(entity.id, ''hs_color'')[0] + 10) % 360 }}'
+            - '{{ state_attr(entity.id, ''hs_color'')[1] }}'
+        target:
+          entity_id: '{{ entity.id }}'
