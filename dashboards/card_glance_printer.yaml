@@ -5,7 +5,7 @@ show_icon: true
 show_state: true
 state_color: true
 entities:
-  - entity: sensor.epson_et_2720
+  - entity: sensor.epson_et_2720_series
     name: Epson
   - entity: sensor.epson_et_2720_series_black_ink
     name: Black

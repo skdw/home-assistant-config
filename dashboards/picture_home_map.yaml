@@ -114,18 +114,8 @@ elements:
       left: 65%
       '--state-switch-active-color': 'var(--picture-map-icon-active-color)'
       '--state-switch-inactive-color': 'var(--picture-map-icon-inactive-color-ongray)'
-  - type: conditional
-    conditions:
-      - entity: binary_sensor.pc_is_active
-        state: 'on'
-    elements:
-      - type: state-label
-        entity: sensor.pc_cpuload
-        style:
-          top: 86.3%
-          left: 83%
   - type: state-icon # Printer
-    entity: sensor.epson_et_2720
+    entity: sensor.epson_et_2720_series
     style:
       top: 44.5%
       left: 16%
