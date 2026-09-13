@@ -21,6 +21,10 @@
       data:
         mode: dark # TODO white theme support
         name: skynet
+    - alias: Turn on balcony strip L4
+      action: switch.turn_on
+      target:
+        entity_id: switch.balcony_strip_l4
     - action: script.home_alert
       data:
         message: Home Assistant server has started # TODO deduct if the current start is clean

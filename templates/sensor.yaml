@@ -121,7 +121,7 @@
     unique_id: "pc_is_active"
     device_class: "power"
     state: >
-      {{ has_value('media_player.pc') }}
+      {{ states('binary_sensor.living_room_ping_pc') }}
   - name: "Shower"
     unique_id: "shower"
     device_class: "occupancy"

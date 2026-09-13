@@ -38,12 +38,6 @@ homeassistant:
   external_url: !secret external_url
   customize: !include configuration/customize.yaml
 
-http:
-  use_x_forwarded_for: true
-  trusted_proxies:
-    - 192.168.1.0/24
-    - 172.30.33.0/24
-
 recorder:
   exclude: !include configuration/exclude.yaml
 
@@ -51,6 +45,9 @@ logbook:
   exclude: !include configuration/exclude.yaml
 
 influxdb:
+  # host: 192.168.1.2
+  # port: 8086
+  # database: home_assistant
   max_retries: 3
   default_measurement: state
   exclude: !include configuration/exclude.yaml
