@@ -8,10 +8,8 @@
   action:
     - variables:
         entities:
-          - id: light.wardrobe_ceiling
-            previous_state: "{{ states('light.wardrobe_ceiling') }}"
-          - id: light.wardrobe_clothes
-            previous_state: "{{ states('light.wardrobe_clothes') }}"
+          - id: light.wardrobe
+            previous_state: "{{ states('light.wardrobe') }}"
           - id: light.bathroom_ceiling
             previous_state: "{{ states('light.bathroom_ceiling') }}"
           - id: light.bathroom_mirror

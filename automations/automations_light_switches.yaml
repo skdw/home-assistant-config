@@ -1,46 +1,58 @@
 - id: 'lights_switch2light'
   alias: YAML Lights - On switch toggle light
+  description: Trigger light from switch. This automation applies to Wi-Fi lights which cannot be bound directly to switches.
   trigger_variables:
-    lights: &Lights !include ../entities/lights.yaml
     switches: &Switches !include ../entities/switches.yaml
+    switch_light_map: !include ../entities/switch_light_map.yaml
   mode: parallel
   max: 20
   triggers:
   - alias: Switch state changed
     trigger: state
     entity_id: *Switches
+    to:
   condition:
+  - alias: Target state is OFF (react to OFF only due to Wi-Fi lights latency)
+    condition: template
+    value_template: "{{ trigger.to_state.state in ['off'] }}"
+  - alias: Ensure switch exists in dictionary
+    condition: template
+    value_template: "{{ trigger.entity_id in switch_light_map }}"
   - alias: Initial light and switch states match
     condition: template
-    value_template: "{{ states(lights[switches.index(trigger.entity_id)]) == trigger.from_state.state }}"
-  - alias: Target state is defined
-    condition: template
-    value_template: "{{ trigger.to_state.state in ['on', 'off'] }}"
+    value_template: "{{ states(switch_light_map.get(trigger.entity_id)) == trigger.from_state.state }}"
   action:
-  - alias: Toggle light
+  - alias: Toggle corresponding light(s)
     service: "light.turn_{{ trigger.to_state.state }}"
     target:
-      entity_id: "{{ lights[switches.index(trigger.entity_id)] }}"
+      entity_id: "{{ switch_light_map.get(trigger.entity_id) }}"
 - id: 'lights_light2switch'
   alias: YAML Lights - On light toggle switch
   trigger_variables:
-    lights: *Lights
-    switches: *Switches
+    lights: &Lights !include ../entities/lights.yaml
+    light_switch_map: !include ../entities/light_switch_map.yaml
   mode: parallel
   max: 20
   triggers:
   - alias: Light state changed
     trigger: state
     entity_id: *Lights
+    to:
   condition:
-  - alias: Initial switch and light states match
-    condition: template
-    value_template: "{{ states(switches[lights.index(trigger.entity_id)]) == trigger.from_state.state }}"
   - alias: Target state is defined
     condition: template
     value_template: "{{ trigger.to_state.state in ['on', 'off'] }}"
+  - alias: Ensure light exists in dictionary
+    condition: template
+    value_template: "{{ trigger.entity_id in light_switch_map }}"
+  - alias: Initial light and switch states match
+    condition: template
+    value_template: >-
+      {{ expand(light_switch_map.get(trigger.entity_id, []))
+         | selectattr('state', 'eq', trigger.from_state.state)
+         | list | length > 0 }}
   action:
-  - alias: Toggle switch
+  - alias: Toggle corresponding switch(es)
     service: "switch.turn_{{ trigger.to_state.state }}"
     target:
-      entity_id: "{{ switches[lights.index(trigger.entity_id)] }}"
+      entity_id: "{{ light_switch_map.get(trigger.entity_id) }}"
