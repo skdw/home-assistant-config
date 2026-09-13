@@ -116,6 +116,14 @@
           data:
             sound_mode: Desk
           action: media_player.select_sound_mode
+    - submenu_selection: 4
+      name: '< Night Movie >'
+      on_press:
+        - target:
+            entity_id: media_player.pioneer
+          data:
+            sound_mode: Night Movie
+          action: media_player.select_sound_mode
 - menu_level: 6
   menu_name: "Lights scene"
   submenu:
