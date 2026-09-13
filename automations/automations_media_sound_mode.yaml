@@ -10,6 +10,7 @@
       'Extended': ALL CH STEREO
       'Surround': DOLBY ATMOS
       'Desk':     FULL MONO
+      'Night Movie': AUTO SURROUND
     cmt_data: # Audio Muting by Channel
       'Auto':     {}
       'Extended': {}
@@ -18,11 +19,10 @@
         front_right: true
         center: true
         surround_right: true
+      'Night Movie': {}
     tcl_data: # Temporary Channel Level
       'Auto':
         center: 2
-        surround_left: -1
-        subwoofer: -1
       'Extended':
         front_left: -12
         center: 2
@@ -31,12 +31,12 @@
         subwoofer: -4
       'Surround':
         center: 2
-        surround_left: -1
-        subwoofer: -1
       'Desk':
-        front_right: -1
-        center: 2
+        front_left: -10
         surround_left: 16
+        subwoofer: -7
+      'Night Movie':
+        center: 10
         subwoofer: -4
   actions:
   - action: media_player.select_sound_mode
