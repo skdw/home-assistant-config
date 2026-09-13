@@ -402,3 +402,9 @@ elements:
       top: 83%
       left: 14%
       '--state-icon-color': 'var(--picture-map-icon-inactive-color-onblack)'
+  - type: state-icon
+    entity: light.balcony_railing
+    style:
+      top: 83%
+      left: 28%
+      '--state-icon-color': 'var(--picture-map-icon-inactive-color-onblack)'

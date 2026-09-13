@@ -279,6 +279,8 @@
       state: 'off'
     light.balcony_bamboo:
       state: 'off'
+    light.balcony_railing:
+      state: 'off'
     light.wardrobe:
       state: 'off'
 - id: 'yaml_lights_off_bedroom'
@@ -303,6 +305,8 @@
     light.balcony_ceiling:
       state: 'off'
     light.balcony_bamboo:
+      state: 'off'
+    light.balcony_railing:
       state: 'off'
     light.wardrobe:
       state: 'off'
