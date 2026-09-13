@@ -245,58 +245,64 @@
   name: Lights Off
   icon: "mdi:weather-night"
   entities:
-    switch.living_room_l1:
+    light.hall_ceiling:
       state: 'off'
-    switch.living_room_l2:
+    light.hall_wardrobe:
       state: 'off'
-    switch.living_room_l3:
-      state: 'off'
-    switch.living_room_l4:
-      state: 'off'
-    switch.living_room_l5:
-      state: 'off'
-    switch.living_room_l6:
-      state: 'off'
-    switch.bathroom_l1:
-      state: 'off'
-    switch.bathroom_l2:
-      state: 'off'
-    switch.bedroom_ceiling:
-      state: 'off'
-    switch.bedroom_reading_left:
-      state: 'off'
-    switch.bedroom_reading_right:
-      state: 'off'
-    switch.balcony_l1:
-      state: 'off'
-    switch.balcony_l2:
-      state: 'off'
-    switch.wardrobe:
+    light.kitchen_spots:
       state: 'off'
     switch.outlet_kitchen_hood:
       state: 'off'
-    light.hall_wardrobe:
+    light.kitchen_countertop:
+      state: 'off'
+    light.living_room_table:
+      state: 'off'
+    light.living_room_sofa:
+      state: 'off'
+    light.living_room_desk:
+      state: 'off'
+    light.living_room_plant:
+      state: 'off'
+    light.top_strip:
+      state: 'off'
+    light.bathroom_ceiling:
+      state: 'off'
+    light.bathroom_mirror:
+      state: 'off'
+    light.bedroom_ceiling:
+      state: 'off'
+    light.bedroom_reading_left:
+      state: 'off'
+    light.bedroom_reading_right:
+      state: 'off'
+    light.balcony_ceiling:
+      state: 'off'
+    light.balcony_bamboo:
+      state: 'off'
+    light.wardrobe:
       state: 'off'
 - id: 'yaml_lights_off_bedroom'
   name: Lights Off in Bedroom
   entities:
-    switch.living_room_l1:
+    light.hall_ceiling:
       state: 'off'
-    switch.living_room_l2:
+    light.hall_wardrobe:
       state: 'off'
-    switch.bedroom_ceiling:
+    light.kitchen_spots:
       state: 'off'
-    switch.bedroom_reading_left:
-      state: 'off'
-    switch.bedroom_reading_right:
+    switch.outlet_kitchen_hood:
       state: 'off'
     light.bedroom_strip:
       state: 'off'
-    switch.balcony_l1:
+    light.bedroom_ceiling:
       state: 'off'
-    switch.balcony_l2:
+    light.bedroom_reading_left:
       state: 'off'
-    switch.wardrobe:
+    light.bedroom_reading_right:
       state: 'off'
-    switch.outlet_kitchen_hood:
+    light.balcony_ceiling:
+      state: 'off'
+    light.balcony_bamboo:
+      state: 'off'
+    light.wardrobe:
       state: 'off'

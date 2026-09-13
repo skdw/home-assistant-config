@@ -20,17 +20,9 @@
       color_temp_kelvin: 2000
     data: "{{ data_light if dim else data_dark }}"
   actions:
-  - action: switch.turn_on
-    alias: Turn on the wardrobe switch
-    data: {}
-    metadata: {}
-    target:
-      entity_id: switch.wardrobe
   - action: light.turn_on
     alias: Turn on wardrobe lights
     data: "{{ data }}"
     metadata: {}
     target:
-      entity_id:
-      - light.wardrobe_ceiling
-      - light.wardrobe_clothes
+      entity_id: light.wardrobe

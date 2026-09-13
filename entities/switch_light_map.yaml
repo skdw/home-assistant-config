@@ -1,0 +1,3 @@
+# A list of switches pointing to Wi-Fi lights
+# (fallback for lights that do not support direct binding)
+switch.living_room_l6: light.ambient

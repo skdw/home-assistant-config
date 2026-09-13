@@ -1,0 +1,18 @@
+light.hall_ceiling: switch.living_room_l1
+light.kitchen_spots: switch.living_room_l2
+light.kitchen_countertop: switch.living_room_l3
+light.living_room_table: switch.living_room_l4
+light.living_room_top: switch.living_room_l5
+light.ambient: switch.living_room_l6
+light.bathroom_ceiling: switch.bathroom_l1
+light.bathroom_mirror: switch.bathroom_l2
+light.bedroom_ceiling: switch.bedroom_ceiling
+light.bedroom_reading_left: switch.bedroom_reading_left
+light.bedroom_reading_right: switch.bedroom_reading_right
+light.balcony_ceiling:
+  - switch.balcony_l1
+  - switch.balcony_l3
+light.balcony_bamboo:
+  - switch.balcony_l2
+  - switch.balcony_l4
+light.wardrobe: switch.wardrobe
