@@ -10,14 +10,14 @@
   action:
     - wait_template: "{{ states(trigger.entity_id) != trigger.to_state.state }}"
       timeout:
-        seconds: 1
+        seconds: 3
       continue_on_timeout: false
     - wait_template: "{{ states(trigger.entity_id) == trigger.to_state.state }}"
       timeout:
-        seconds: 1
+        seconds: 3
       continue_on_timeout: false
     - delay:
-        milliseconds: 500
+        milliseconds: 200
     - action: "{{ actions[switches.index(trigger.entity_id)]['action'] }}"
       target:
         entity_id: "{{ actions[switches.index(trigger.entity_id)]['target'] }}"

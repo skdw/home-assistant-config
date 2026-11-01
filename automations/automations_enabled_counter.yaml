@@ -3,11 +3,24 @@
   description: "Count enabled switches for home presence estimation"
   mode: queued
   max: 50
-  trigger:
-    - platform: state
-      entity_id: !include ../entities/home_presence.yaml
-  condition: "{{ trigger.from_state.state != trigger.to_state.state and trigger.from_state.state in ['off', 'on'] and trigger.to_state.state in ['off', 'on'] }}"
+  triggers:
+  - trigger: state
+    entity_id: !include ../entities/home_presence.yaml
+    from: "off"
+    not_to:
+      - "off"
+      - "unavailable"
+      - "unknown"
+    id: increment
+  - trigger: state
+    entity_id: !include ../entities/home_presence.yaml
+    not_from:
+      - "off"
+      - "unavailable"
+      - "unknown"
+    to: "off"
+    id: decrement
   action:
-    - action: "{{ 'counter.decrement' if trigger.to_state.state == 'off' else 'counter.increment' }}"
+    - action: "counter.{{ trigger.id }}"
       target:
         entity_id: counter.switches_enabled
